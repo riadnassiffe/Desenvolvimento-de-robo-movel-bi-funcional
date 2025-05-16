@@ -1,42 +1,65 @@
 #include <ESP8266WiFi.h>
 #include <WiFiUdp.h>
 
-const char* ssid = "SUA_REDE";
-const char* password = "SUA_SENHA";
+const char* ssid = "ZTE_2.4G_7NXk26";       // substitua pelo nome da sua rede WiFi
+const char* password = "TUfyZZFT";  // substitua pela senha da sua rede WiFi
 
 WiFiUDP udp;
 unsigned int localPort = 4210;  // Porta onde o robô escuta
 char incomingPacket[255];
 
-IPAddress pcIP(192, 168, 0, 123); // IP do seu PC
-unsigned int pcPort = 5005;       // Porta que o Python está escutando
+int LED = LED_BUILTIN;
+bool estadoLED = false; // Estado atual do LED
+
+// IP do seu PC — ajuste para o IP correto da sua máquina
+IPAddress pcIP(192, 168, 1, 8);
+unsigned int pcPort = 5005;  // Porta que o Python está escutando
 
 void setup() {
   Serial.begin(115200);
+
+  pinMode(LED, OUTPUT);
+  digitalWrite(LED, HIGH); // Apaga o LED (ativo em LOW no ESP8266)
+
   WiFi.begin(ssid, password);
+  Serial.print("Conectando ao WiFi...");
   while (WiFi.status() != WL_CONNECTED) {
-    delay(500); Serial.print(".");
+    delay(500);
+    Serial.print(".");
   }
-  Serial.println("WiFi conectado");
+  Serial.println("\nWiFi conectado");
+  Serial.print("IP do ESP8266: ");
+  Serial.println(WiFi.localIP());
 
   udp.begin(localPort);
-  Serial.printf("Escutando na porta UDP %d\n", localPort);
+  Serial.printf("Escutando UDP na porta %d\n", localPort);
 }
 
 void loop() {
-  // RECEBER comandos do PC
   int packetSize = udp.parsePacket();
   if (packetSize) {
     int len = udp.read(incomingPacket, 255);
     if (len > 0) {
       incomingPacket[len] = '\0';
     }
+
     Serial.printf("Recebido: %s\n", incomingPacket);
 
-    // ENVIA resposta para o PC
-    udp.beginPacket(udp.remoteIP(), udp.remotePort());  // responde ao remetente
-    udp.print("Confirmado: ");
-    udp.print(incomingPacket);
+    String comando = String(incomingPacket);
+    if (comando == "1") {
+      digitalWrite(LED, LOW);  // Liga LED (ativo em LOW)
+      estadoLED = true;
+    } else if (comando == "0") {
+      digitalWrite(LED, HIGH); // Desliga LED
+      estadoLED = false;
+    }
+
+    // Envia a resposta explicitamente para o IP e porta do PC
+    udp.beginPacket(pcIP, pcPort);
+    udp.print("Comando recebido: ");
+    udp.print(comando);
+    udp.print(" | LED está ");
+    udp.print(estadoLED ? "LIGADO" : "DESLIGADO");
     udp.endPacket();
   }
 
