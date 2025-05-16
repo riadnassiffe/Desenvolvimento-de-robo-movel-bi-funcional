@@ -1,3 +1,4 @@
+# Identificar o Dispositivo
 import asyncio
 from bleak import BleakScanner, BleakClient
 
