@@ -1,19 +1,19 @@
 #include <SoftwareSerial.h>
 
-SoftwareSerial BTSerial(D6, D7); // RX, TX (Bluetooth)
-const int ledPin = D4; // LED interno do Wemos (GPIO2)
+SoftwareSerial BTSerial(D6, D7); 
+const int ledPin = D4; 
 
 void setup() {
   pinMode(ledPin, OUTPUT);
-  digitalWrite(ledPin, HIGH); // Começa desligado
+  digitalWrite(ledPin, HIGH); 
 
-  Serial.begin(9600);         // Monitor Serial
-  BTSerial.begin(9600);       // Comunicação Bluetooth
+  Serial.begin(9600);         
+  BTSerial.begin(9600);       
   Serial.println("Pronto para comunicação via Bluetooth!");
 }
 
 void loop() {
-  // Recebendo comando via Bluetooth (do PC)
+  
   if (BTSerial.available()) {
     String comando = BTSerial.readStringUntil('\n');
     Serial.println("Mensagem recebida do PC: " + comando);
@@ -28,7 +28,6 @@ void loop() {
     
   }
 
-  // Enviando mensagem digitada no Monitor Serial (para o PC)
   if (Serial.available()) {
     String comando = Serial.readStringUntil('\n');
     BTSerial.println("Mensagem do Wemos: " + comando);

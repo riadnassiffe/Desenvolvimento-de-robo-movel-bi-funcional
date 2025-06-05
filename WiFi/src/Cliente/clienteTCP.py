@@ -4,7 +4,7 @@ import readline
 import sys
 import time
 
-ROBOT_IP = "192.168.1.2"   
+ROBOT_IP = "192.168.1.8"   
 ROBOT_PORT = 4210          
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

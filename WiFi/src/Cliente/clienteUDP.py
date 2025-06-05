@@ -4,7 +4,7 @@ import readline
 import sys
 import time
 
-ROBOT_IP = "192.168.1.2"  
+ROBOT_IP = "192.168.61.189"  
 ROBOT_PORT = 4210        
 MY_PORT = 5005           
 
@@ -15,11 +15,11 @@ sock.settimeout(2.0)
 def escutar_robo():
     while True:
         try:
-            data = sock.recvfrom(1024)
+            data, addr = sock.recvfrom(1024)
             t2 = time.time()
             rtt = (t2 - t1)
             current_line = readline.get_line_buffer()
-            sys.stdout.write('\r' + ' ' * (len(current_line)+10) + '\r')  # Limpa linha
+            sys.stdout.write('\r' + ' ' * (len(current_line)+10) + '\r')
             print(f"[Robô]: {data.decode()} | RTT: {rtt:.2f} ms")
             sys.stdout.write(f"Comando: {current_line}")
             sys.stdout.flush()

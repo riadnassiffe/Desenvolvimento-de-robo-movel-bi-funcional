@@ -12,7 +12,7 @@ bool estadoLED = false;
 void setup() {
   Serial.begin(115200);
   pinMode(LED, OUTPUT);
-  digitalWrite(LED, HIGH);
+  digitalWrite(LED, HIGH); // LED desligado (LOW acende no ESP8266)
 
   WiFi.begin(ssid, password);
   Serial.print("Conectando ao WiFi...");
@@ -49,7 +49,6 @@ void loop() {
         String resposta = "Comando recebido: " + comando;
         resposta += " | LED está ";
         resposta += (estadoLED ? "LIGADO" : "DESLIGADO");
-        resposta += "\n";
 
         client.print(resposta);
       }
