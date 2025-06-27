@@ -13,14 +13,14 @@ const char* password = "TUfyZZFT";
 
 WiFiUDP udp;
 unsigned int localPort = 4210;
+unsigned int pcPort;
+bool pcConectado = false;  
+IPAddress pcIP;
 char incomingPacket[255];
 
 int LED = LED_BUILTIN;
 bool estadoLED = false;
 
-
-IPAddress pcIP(192, 168, 1, 8);
-unsigned int pcPort = 5005;  
 
 void setup() {
   Serial.begin(115200);
@@ -46,10 +46,33 @@ void setup() {
 
 void loop() {
 
+  while (!pcConectado) {
+    int packetSize = udp.parsePacket();
+    if (packetSize) {
+      int len = udp.read(incomingPacket, 254);
+      incomingPacket[len] = '\0';
+      Serial.printf("Recebido (descoberta): %s\n", incomingPacket);
+
+      if (strcmp(incomingPacket, "WeMosD1") == 0) {
+        pcIP = udp.remoteIP();
+        pcPort = udp.remotePort();
+        pcConectado = true;
+
+        udp.beginPacket(pcIP, pcPort);
+        udp.print("ESP8266 aqui!");
+        udp.endPacket();
+
+        Serial.println("Cliente conectado!");
+      }
+    }
+  }
+
+
+
   if (WiFi.status() != WL_CONNECTED) {
     WiFi.reconnect();
   }
-  /*
+  
   digitalWrite(PinTrigger, LOW);
   delayMicroseconds(2);
   digitalWrite(PinTrigger, HIGH);
@@ -64,27 +87,22 @@ void loop() {
   }
 
   if (distance > 20) { 
-    //digitalWrite(LED_BUILTIN, HIGH);
+    digitalWrite(LED_BUILTIN, HIGH);
 
   } else { 
-    //digitalWrite(LED_BUILTIN, LOW);
+    digitalWrite(LED_BUILTIN, LOW);
   }
   char distStr[16];
   dtostrf(distance, 6, 2, distStr);
   udp.beginPacket(pcIP, pcPort);
   udp.print(distStr);
   udp.endPacket();
-  */
+  
   int packetSize = udp.parsePacket();
   if (packetSize) {
 
-    udp.beginPacket(pcIP, pcPort);
-    udp.printf("Comando recebido: %s | LED está %s", incomingPacket, estadoLED ? "LIGADO" : "DESLIGADO");
-    udp.endPacket();
-
     int len = udp.read(incomingPacket, 254);
     incomingPacket[len] = '\0';
-
     Serial.printf("Recebido: %s\n", incomingPacket);
 
     if (strcmp(incomingPacket, "1") == 0) {
@@ -94,6 +112,10 @@ void loop() {
       digitalWrite(LED, HIGH);
       estadoLED = false;
     }
+
+    udp.beginPacket(pcIP, pcPort);
+    udp.printf("Comando recebido: %s", incomingPacket);
+    udp.endPacket();
 
   }
 
