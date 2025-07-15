@@ -4,21 +4,51 @@ import readline
 import sys
 import time
 
-ROBOT_IP = "192.168.1.8"   
-ROBOT_PORT = 4210          
+ROBOT_PORT = 4210
+MY_PORT = 5005   
+
+T1 = 0  
+T2 = 0  
+
+udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+udp_sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+udp_sock.bind(("", MY_PORT))
+udp_sock.settimeout(2.0)
+
+mensagem = b"WeMosD1"
+udp_sock.sendto(mensagem, ("255.255.255.255", ROBOT_PORT))
+
+try:
+    data, addr = udp_sock.recvfrom(1024)
+    ROBOT_IP = addr[0]
+    print(f"Robô respondeu via UDP: {data.decode()}")
+    print(f"Endereço do robô: {ROBOT_IP}")
+except socket.timeout:
+    print("Robô não respondeu à descoberta (UDP).")
+    udp_sock.close()
+    sys.exit()
+
+udp_sock.close()
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.connect((ROBOT_IP, ROBOT_PORT))
+try:
+    sock.connect((ROBOT_IP, ROBOT_PORT))
+except socket.error as e:
+    print(f"Erro ao conectar via TCP: {e}")
+    sys.exit()
+
 sock.settimeout(2.0)
 
 def escutar_robo():
+    global T2, T1
     while True:
         try:
             data = sock.recv(1024)
-            t2 = time.time()
-            rtt = (t2 - t1) * 1000  # em milissegundos
+            T2 = time.perf_counter()
+            rtt = (T2 - T1) * 1000  # milissegundos
+
             current_line = readline.get_line_buffer()
-            sys.stdout.write('\r' + ' ' * (len(current_line) + 20) + '\r')
+            sys.stdout.write('\r' + ' ' * (len(current_line)+30) + '\r')
             print(f"[Robô]: {data.decode()} | RTT: {rtt:.2f} ms")
             sys.stdout.write(f"Comando: {current_line}")
             sys.stdout.flush()
@@ -30,15 +60,15 @@ def escutar_robo():
 thread = threading.Thread(target=escutar_robo, daemon=True)
 thread.start()
 
-print("Cliente TCP iniciado. Digite comandos para o robô.")
+print("\nCliente TCP iniciado. Digite comandos para o robô.")
 print("Digite 'sair' para encerrar.\n")
 
 while True:
     comando = input()
-    t1 = time.time()
     if comando.lower() == "sair":
         break
-    sock.sendall(comando.encode())
+    T1 = time.perf_counter()
+    sock.sendall((comando+'\n').encode())
 
 sock.close()
 print("Encerrando...")

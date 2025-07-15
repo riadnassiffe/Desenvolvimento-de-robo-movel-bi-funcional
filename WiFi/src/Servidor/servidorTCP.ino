@@ -1,18 +1,35 @@
 #include <ESP8266WiFi.h>
-#include <WiFiClient.h>
+#include <WiFiUdp.h>
 
-const char* ssid = "ZTE_2.4G_7NXk26";
-const char* password = "TUfyZZFT";
+const int PinTrigger = D1; 
+const int PinEcho = D2;    
+
+long duration;
+float distance;
+
+const char* ssid = "CLARO_2GDF6584";
+const char* password = "12DF6584";
+
+WiFiUDP udp;
+unsigned int localPort = 4210;
+char incomingPacket[255];
+bool pcConectado = false;
+IPAddress pcIP;
+unsigned int pcPort;
 
 WiFiServer server(4210);
+WiFiClient client;
 
 int LED = LED_BUILTIN;
 bool estadoLED = false;
 
 void setup() {
   Serial.begin(115200);
+
   pinMode(LED, OUTPUT);
-  digitalWrite(LED, HIGH); // LED desligado (LOW acende no ESP8266)
+  digitalWrite(LED, HIGH); 
+  pinMode(PinTrigger, OUTPUT);
+  pinMode(PinEcho, INPUT);
 
   WiFi.begin(ssid, password);
   Serial.print("Conectando ao WiFi...");
@@ -24,36 +41,63 @@ void setup() {
   Serial.print("IP do ESP8266: ");
   Serial.println(WiFi.localIP());
 
+  udp.begin(localPort);
   server.begin();
-  Serial.println("Servidor TCP iniciado.");
+
+  Serial.println("UDP e TCP escutando na porta 4210...");
 }
 
 void loop() {
-  WiFiClient client = server.available();
-  if (client) {
-    Serial.println("Cliente conectado.");
-    while (client.connected()) {
-      if (client.available()) {
-        String comando = client.readStringUntil('\n');
-        comando.trim();
-        Serial.println("Recebido: " + comando);
 
-        if (comando == "1") {
-          digitalWrite(LED, LOW);
-          estadoLED = true;
-        } else if (comando == "0") {
-          digitalWrite(LED, HIGH);
-          estadoLED = false;
-        }
+  while (!pcConectado) {
+    int packetSize = udp.parsePacket();
+    if (packetSize) {
+      int len = udp.read(incomingPacket, 254);
+      incomingPacket[len] = '\0';
+      Serial.printf("Recebido (descoberta): %s\n", incomingPacket);
 
-        String resposta = "Comando recebido: " + comando;
-        resposta += " | LED está ";
-        resposta += (estadoLED ? "LIGADO" : "DESLIGADO");
+      if (strcmp(incomingPacket, "WeMosD1") == 0) {
+        pcIP = udp.remoteIP();
+        pcPort = udp.remotePort();
+        pcConectado = true;
 
-        client.print(resposta);
+        udp.beginPacket(pcIP, pcPort);
+        udp.print("ESP8266 aqui!");
+        udp.endPacket();
+
+        Serial.println("Resposta UDP enviada.");
       }
     }
-    client.stop();
-    Serial.println("Cliente desconectado.");
   }
+
+  while (!client || !client.connected()) {
+    client = server.available();
+    if (client) {
+      Serial.println("Cliente TCP conectado.");
+    }
+    
+  }
+
+  if (WiFi.status() != WL_CONNECTED) {
+    WiFi.reconnect();
+  }
+
+  if (client.available()) {
+    String comando = client.readStringUntil('\n');
+    comando.trim();
+    Serial.print("Recebido: ");
+    Serial.println(comando);
+
+    if (comando == "1") {
+      digitalWrite(LED, LOW);
+      estadoLED = true;
+    } else if (comando == "0") {
+      digitalWrite(LED, HIGH);
+      estadoLED = false;
+    }
+
+    client.print("Comando recebido: " + comando);
+  }
+
+  delay(5);  
 }
