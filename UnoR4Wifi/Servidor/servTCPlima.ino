@@ -34,7 +34,7 @@ binaryFloat velocidade;
 binaryFloat dado_retorno;
 
 // Endereço para comunicação com o sensor MPU6050
-const int MPU=0x68;
+const int MPU6050=0x68;
 
 // Definição de variáveis para representação numérica dos erros pré-definidos no projeto
 const float erro0 = 10000000;
@@ -1394,35 +1394,35 @@ void setup() {
           break;
 
         case (83):
-          configurarLedSimples();
+          //configurarLedSimples();
           break;
 
         case (76):
-          configurarLedRGB();
+          //configurarLedRGB();
           break;
 
         case (90):
-          configurarBuzzer();
+          //configurarBuzzer();
           break;
 
         case (70):
-          configurarSensorFotoresistor();
+          //configurarSensorFotoresistor();
           break;
 
         case (79):
-          configurarSensorOpticoReflexivo();
+          //configurarSensorOpticoReflexivo();
           break;
 
         case (80):
-          configurarPotenciometro();
+          //configurarPotenciometro();
           break;
 
         case (66):
-          configurarPushButton();
+          //configurarPushButton();
           break;
 
         case (88):
-          configurarMPU();
+          //configurarMPU();
           break;
 
         case (82):
@@ -1435,7 +1435,7 @@ void setup() {
 
         default:
           // Em caso de erro, notificar o cliente
-          dado_retorno.floatingPoint = erro2;
+          dado_retorno.floatingPoint = erro2 + 1;
           break;
       }
       // Enviando os bytes do dado de retorno ao cliente
@@ -1512,47 +1512,47 @@ void loop() {
             break;
 
           case (70):
-            lerSensorFotoresistor();
+            //lerSensorFotoresistor();
             break;
 
           case (79):
-            lerSensorOpticoReflexivo();
+            //lerSensorOpticoReflexivo();
             break;
 
           case (80):
-            lerPotenciometro();
+            //lerPotenciometro();
             break;
 
           case (66):
-            lerBotao();
+            //lerBotao();
             break;
 
           case (84):
-            lerTemperatura();
+            //lerTemperatura();
             break;
 
           case (65):
-            lerAcelerometroX();
+            //lerAcelerometroX();
             break;
 
           case (67):
-            lerAcelerometroY();
+            //lerAcelerometroY();
             break;
 
           case (69):
-            lerAcelerometroZ();
+            //lerAcelerometroZ();
             break;
 
           case (71):
-            lerGiroscopioX();
+            //lerGiroscopioX();
             break;
 
           case (73):
-            lerGiroscopioY();
+            //lerGiroscopioY();
             break;
 
           case (75):
-            lerGiroscopioZ();
+            //lerGiroscopioZ();
             break;
 
           default:
@@ -1566,19 +1566,19 @@ void loop() {
         switch (c2){
         
           case (65):
-            ativarLed();
+            //ativarLed();
             break;
 
           case (84):
-            ativarLedDelay();
+            //ativarLedDelay();
             break;
 
           case (73):
-            inverterLed();
+            //inverterLed();
             break;
 
           case (68):
-            desativarLed();
+            //desativarLed();
             break;
 
           default:
@@ -1593,15 +1593,15 @@ void loop() {
         switch (c2){
           
           case (65):
-            ativarLedRGB();
+            //ativarLedRGB();
             break;
 
           case (84):
-            ativarLedRGBDelay();
+            //ativarLedRGBDelay();
             break;
 
           case (68):
-            desativarLedRGB();
+            //desativarLedRGB();
             break;
 
           default:
@@ -1615,15 +1615,15 @@ void loop() {
         switch (c2){
 
           case (65):
-            ativarBuzzer();
+            //ativarBuzzer();
             break;
 
           case (84):
-            ativarBuzzer();
+            //ativarBuzzer();
             break;
 
           case (68):
-            desativarBuzzer();
+            //desativarBuzzer();
             break;
             
           default:

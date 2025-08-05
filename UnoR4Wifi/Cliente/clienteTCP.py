@@ -3,6 +3,7 @@ import threading
 import readline
 import sys
 import time
+import struct
 
 ROBOT_PORT = 4210
 MY_PORT = 5005   
@@ -52,7 +53,13 @@ def escutar_robo():
 
             current_line = readline.get_line_buffer()
             sys.stdout.write('\r' + ' ' * (len(current_line)+30) + '\r')
-            print(f"[Robô]: {data.decode()} | RTT: {rtt:.2f} ms")
+            try:
+                decoded = data.decode()
+                print(f"[Robô]: {decoded.strip()} | RTT: {rtt:.2f} ms")
+            except UnicodeDecodeError:
+                valor_float = struct.unpack('f', data)[0]
+                print(f"[Robô]: {valor_float:.2f} (binário) | RTT: {rtt:.2f} ms")
+
             sys.stdout.write(f"Comando: {current_line}")
             sys.stdout.flush()
         except socket.timeout:
@@ -71,7 +78,7 @@ while True:
     if comando.lower() == "sair":
         break
     T1 = time.perf_counter()
-    sock.sendall((comando+'\n').encode())
+    sock.sendall((comando).encode())
 
 sock.close()
 print("Encerrando...")
