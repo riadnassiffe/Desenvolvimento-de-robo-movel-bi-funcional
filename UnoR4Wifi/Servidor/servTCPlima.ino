@@ -3,7 +3,7 @@
 #include <Wire.h>
 
 //Variaves para que se possa estabelecer uma conexção entre o servidor e cliente, um broadcast para encontrar o cliente via UDP, depois mantem conexção TCP
-
+int teste = 0;
 char ssid[] = "ZTE_2.4G_7NXk26";
 char pass[] = "TUfyZZFT";
 
@@ -247,8 +247,8 @@ void configurarMotores(){
 void configurarSensorUltrassonico(){
 
   // Leitura dos parâmetros do comando para configuração das variáveis de pinagem
-  PIN_ECHO = client.read();
-  PIN_TRIG = client.read();
+  PIN_ECHO = client.parseInt();
+  PIN_TRIG = client.parseInt();
 
   // Validação dos parâmetros do comando
   if ((PIN_ECHO < 0 || PIN_ECHO > 19) || (PIN_TRIG < 0 || PIN_TRIG > 19)){
@@ -509,7 +509,7 @@ void getVelocidade(){
 void setVelocidade(){
   
   // Leitura dos parâmetros do comando
-  int v = client.read();  // Lê um byte
+  int v = client.parseInt();  // Lê um byte
 
   // Validação do parâmetro
   if (v >= 0 && v <= 255){
@@ -1435,12 +1435,12 @@ void setup() {
 
         default:
           // Em caso de erro, notificar o cliente
-          dado_retorno.floatingPoint = erro2 + 1;
+          dado_retorno.floatingPoint = erro2;
           break;
       }
       // Enviando os bytes do dado de retorno ao cliente
       client.write(dado_retorno.binary, 4);
-
+    
     }
   }
   
