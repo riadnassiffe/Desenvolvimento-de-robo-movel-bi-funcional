@@ -535,15 +535,15 @@ void andarParaFrente(){
   }
   
   // Parando os motores
-  digitalWrite(PIN_M1, LOW);
+  digitalWrite(PIN_M1, HIGH);
   digitalWrite(PIN_M2, LOW);
-  digitalWrite(PIN_M3, LOW);
+  digitalWrite(PIN_M3, HIGH);
   digitalWrite(PIN_M4, LOW);
   
   // Acionando os pinos para que os motores acionem e o robô ande para frente
   // conforme velocidade armazenada em variável
-  analogWrite(PIN_M1, int(velocidade.floatingPoint));
-  analogWrite(PIN_M3, int(velocidade.floatingPoint));
+  //analogWrite(PIN_M1, int(velocidade.floatingPoint));
+  //analogWrite(PIN_M3, int(velocidade.floatingPoint));
   
   // Configurando a variável com o dado de retorno para o servidor
   dado_retorno.floatingPoint = 1;
@@ -561,14 +561,14 @@ void andarParaTras(){
   
   // Parando os motores
   digitalWrite(PIN_M1, LOW);
-  digitalWrite(PIN_M2, LOW);
+  digitalWrite(PIN_M2, HIGH);
   digitalWrite(PIN_M3, LOW);
-  digitalWrite(PIN_M4, LOW);
+  digitalWrite(PIN_M4, HIGH);
   
   // Acionando os pinos para que os motores acionem e o robô ande para trás
   // conforme velocidade armazenada em variável
-  analogWrite(PIN_M2, int(velocidade.floatingPoint));
-  analogWrite(PIN_M4, int(velocidade.floatingPoint));
+  //analogWrite(PIN_M2, int(velocidade.floatingPoint));
+  //analogWrite(PIN_M4, int(velocidade.floatingPoint));
 
   // Configurando a variável com o dado de retorno para o servidor
   dado_retorno.floatingPoint = 1;
@@ -585,14 +585,14 @@ void rotacionarDireita(){
   }
   
   // Parando os motores
-  digitalWrite(PIN_M1, LOW);
+  digitalWrite(PIN_M1, HIGH);
   digitalWrite(PIN_M2, LOW);
   digitalWrite(PIN_M3, LOW);
-  digitalWrite(PIN_M4, LOW);
+  digitalWrite(PIN_M4, HIGH);
 
   // Acionando os pinos para que o motor da direita acione e o robô rotacione
   // conforme velocidade armazenada em variável
-  analogWrite(PIN_M1, int(velocidade.floatingPoint));
+  //analogWrite(PIN_M1, int(velocidade.floatingPoint));
 
   // Configurando a variável com o dado de retorno para o servidor
   dado_retorno.floatingPoint = 1;
@@ -610,13 +610,13 @@ void rotacionarEsquerda(){
   
   // Parando os motores
   digitalWrite(PIN_M1, LOW);
-  digitalWrite(PIN_M2, LOW);
-  digitalWrite(PIN_M3, LOW);
+  digitalWrite(PIN_M2, HIGH);
+  digitalWrite(PIN_M3, HIGH);
   digitalWrite(PIN_M4, LOW);
 
   // Acionando os pinos para que o motor da esquerda acione e o robô rotacione
   // conforme velocidade armazenada em variável
-  analogWrite(PIN_M3, int(velocidade.floatingPoint));
+  //analogWrite(PIN_M3, int(velocidade.floatingPoint));
 
   // Configurando a variável com o dado de retorno para o servidor
   dado_retorno.floatingPoint = 1;
@@ -651,8 +651,8 @@ void fazerCurva(){
 
   // Acionando os pinos para que os motores sejam acionados conforme
   // velocidades passadas por parâmetro
-  analogWrite(PIN_M1, v1);
-  analogWrite(PIN_M3, v2);
+  //analogWrite(PIN_M1, v1);
+  //analogWrite(PIN_M3, v2);
   
   // Configurando a variável com o dado de retorno para o servidor
   dado_retorno.floatingPoint = 1;
@@ -1314,7 +1314,7 @@ void encerrarComunicacao(){
 void setup() {
   Serial.begin(115200);
   // Configurando a velocidade para o seu valor inicial padrão
-  velocidade.floatingPoint = 0;
+  velocidade.floatingPoint = 255;
   
   // Iniciando o dispositivo para comunicação Wifi
   Serial.print("Conectando ao WiFi");
