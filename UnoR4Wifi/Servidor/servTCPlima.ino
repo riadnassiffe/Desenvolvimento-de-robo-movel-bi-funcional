@@ -42,10 +42,12 @@ const float erro1 = 10000001;
 const float erro2 = 10000002;
 
 // Pinos para os Motores
+byte PIN_ENA = 255;
 byte PIN_M1 = 255;
 byte PIN_M2 = 255;
 byte PIN_M3 = 255;
 byte PIN_M4 = 255;
+byte PIN_ENB = 255;
 
 // Pinos para sensor do tipo Ultrassônico
 byte PIN_ECHO = 255;
@@ -86,10 +88,12 @@ byte PIN_MPU2 = 255;
 
 void resetarPinos(){
   // Configuração de todos os pinos para o valor padrão
+  PIN_ENA = 255;
   PIN_M1 = 255;
   PIN_M2 = 255;
   PIN_M3 = 255;
   PIN_M4 = 255;
+  PIN_ENB = 255;
   PIN_ECHO = 255;
   PIN_TRIG = 255;
   PIN_LED1 = 255;
@@ -123,86 +127,94 @@ void verificarPinoConfigurado(){
   switch (n) {
 
     case (0):
-      dado_retorno.floatingPoint = PIN_M1;
+      dado_retorno.floatingPoint = PIN_ENA;
       break;
 
     case (1):
-      dado_retorno.floatingPoint = PIN_M2;
+      dado_retorno.floatingPoint = PIN_M1;
       break;
 
     case (2):
-      dado_retorno.floatingPoint = PIN_M3;
+      dado_retorno.floatingPoint = PIN_M2;
       break;
 
     case (3):
-      dado_retorno.floatingPoint = PIN_M4;
+      dado_retorno.floatingPoint = PIN_M3;
       break;
 
     case (4):
-      dado_retorno.floatingPoint = PIN_ECHO;
+      dado_retorno.floatingPoint = PIN_M4;
       break;
 
     case (5):
-      dado_retorno.floatingPoint = PIN_TRIG;
+      dado_retorno.floatingPoint = PIN_ENB;
       break;
 
     case (6):
-      dado_retorno.floatingPoint = PIN_LED1;
+      dado_retorno.floatingPoint = PIN_ECHO;
       break;
 
     case (7):
-      dado_retorno.floatingPoint = PIN_LED2;
+      dado_retorno.floatingPoint = PIN_TRIG;
       break;
 
     case (8):
-      dado_retorno.floatingPoint = PIN_LEDR;
+      dado_retorno.floatingPoint = PIN_LED1;
       break;
 
     case (9):
-      dado_retorno.floatingPoint = PIN_LEDG;
+      dado_retorno.floatingPoint = PIN_LED2;
       break;
 
     case (10):
-      dado_retorno.floatingPoint = PIN_LEDB;
+      dado_retorno.floatingPoint = PIN_LEDR;
       break;
 
     case (11):
-      dado_retorno.floatingPoint = PIN_TONE;
+      dado_retorno.floatingPoint = PIN_LEDG;
       break;
 
     case (12):
-      dado_retorno.floatingPoint = PIN_FR1;
+      dado_retorno.floatingPoint = PIN_LEDB;
       break;
 
     case (13):
-      dado_retorno.floatingPoint = PIN_FR2;
+      dado_retorno.floatingPoint = PIN_TONE;
       break;
 
     case (14):
-      dado_retorno.floatingPoint = PIN_OR1;
+      dado_retorno.floatingPoint = PIN_FR1;
       break;
 
     case (15):
-      dado_retorno.floatingPoint = PIN_OR2;
+      dado_retorno.floatingPoint = PIN_FR2;
       break;
 
     case (16):
-      dado_retorno.floatingPoint = PIN_OR3;
+      dado_retorno.floatingPoint = PIN_OR1;
       break;
 
     case (17):
-      dado_retorno.floatingPoint = PIN_PTC;
+      dado_retorno.floatingPoint = PIN_OR2;
       break;
 
     case (18):
-      dado_retorno.floatingPoint = PIN_PBT;
+      dado_retorno.floatingPoint = PIN_OR3;
       break;
 
     case (19):
-      dado_retorno.floatingPoint = PIN_MPU1;
+      dado_retorno.floatingPoint = PIN_PTC;
       break;
 
     case (20):
+      dado_retorno.floatingPoint = PIN_PBT;
+      break;
+
+    case (21):
+      dado_retorno.floatingPoint = PIN_MPU1;
+      break;
+
+    case (22):
       dado_retorno.floatingPoint = PIN_MPU2;
       break;
 
@@ -217,27 +229,34 @@ void verificarPinoConfigurado(){
 void configurarMotores(){
   
   // Leitura dos parâmetros do comando para configuração das variáveis de pinagem
+  PIN_ENA = client.parseInt();
   PIN_M1 = client.parseInt();
   PIN_M2 = client.parseInt();
   PIN_M3 = client.parseInt();
   PIN_M4 = client.parseInt();
+  PIN_ENB = client.parseInt();
 
   // Validação dos parâmetros do comando
-  if ((PIN_M1 < 0 || PIN_M1 > 19) || (PIN_M2 < 0 || PIN_M2 > 19) || (PIN_M3 < 0 || PIN_M3 > 19) || (PIN_M4 < 0 || PIN_M4 > 19)){
+  if ((PIN_ENA < 0 || PIN_ENA > 19) || (PIN_ENB < 0 || PIN_ENB > 19) || (PIN_M1 < 0 || PIN_M1 > 19) || (PIN_M2 < 0 || PIN_M2 > 19) || (PIN_M3 < 0 || PIN_M3 > 19) || (PIN_M4 < 0 || PIN_M4 > 19)){
     // Em caso de erro, notificar o cliente e resetar os pinos do motor para o valor padrão
     dado_retorno.floatingPoint = erro1;
+    PIN_ENA = 255;
     PIN_M1 = 255;
     PIN_M2 = 255;
     PIN_M3 = 255;
     PIN_M4 = 255;
+    PIN_ENB = 255:
     return;
   }
 
   // Configuração dos pinos do Arduíno
+  pinMode(PIN_ENA, OUTPUT);
   pinMode(PIN_M1, OUTPUT);
   pinMode(PIN_M2, OUTPUT);
   pinMode(PIN_M3, OUTPUT);
   pinMode(PIN_M4, OUTPUT);
+  pinMode(PIN_ENB, OUTPUT);
+
 
   // Configurando a variável com o dado de retorno para o servidor
   dado_retorno.floatingPoint = 1;
@@ -509,15 +528,15 @@ void getVelocidade(){
 void setVelocidade(){
   
   // Leitura dos parâmetros do comando
-  int v = client.parseInt();  // Lê um byte
+  int v1 = client.parseInt();  // Lê um byte
+  int v2 = client.parseInt();  // Lê um byte
 
   // Validação do parâmetro
-  if (v >= 0 && v <= 255){
+  if ((v1 >= 0 && v1 <= 255) && (v2 >= 0 && v2 <= 255)){
     // Configurando a variável com o dado de retorno para o servidor
     dado_retorno.floatingPoint = 1;
-    
-    // Atribuição da nova velocidade
-    velocidade.floatingPoint = v;
+    analogWrite(PIN_ENA, v1);
+    analogWrite(PIN_ENB, v2);
   }
   else
     // Em caso de erro, notificar o cliente
@@ -527,23 +546,11 @@ void setVelocidade(){
 
 void andarParaFrente(){
 
-  // Verifica se os pinos requeridos para essa ação foram configurados
-  if (PIN_M1 == 255){
-    // Em caso de erro, notificar o cliente
-    dado_retorno.floatingPoint = erro0;
-    return; 
-  }
-  
   // Parando os motores
   digitalWrite(PIN_M1, HIGH);
   digitalWrite(PIN_M2, LOW);
   digitalWrite(PIN_M3, HIGH);
   digitalWrite(PIN_M4, LOW);
-  
-  // Acionando os pinos para que os motores acionem e o robô ande para frente
-  // conforme velocidade armazenada em variável
-  //analogWrite(PIN_M1, int(velocidade.floatingPoint));
-  //analogWrite(PIN_M3, int(velocidade.floatingPoint));
   
   // Configurando a variável com o dado de retorno para o servidor
   dado_retorno.floatingPoint = 1;
@@ -552,24 +559,12 @@ void andarParaFrente(){
 
 void andarParaTras(){
 
-  // Verifica se os pinos requeridos para essa ação foram configurados
-  if (PIN_M1 == 255){
-    // Em caso de erro, notificar o cliente
-    dado_retorno.floatingPoint = erro0;
-    return; 
-  }
-  
   // Parando os motores
   digitalWrite(PIN_M1, LOW);
   digitalWrite(PIN_M2, HIGH);
   digitalWrite(PIN_M3, LOW);
   digitalWrite(PIN_M4, HIGH);
   
-  // Acionando os pinos para que os motores acionem e o robô ande para trás
-  // conforme velocidade armazenada em variável
-  //analogWrite(PIN_M2, int(velocidade.floatingPoint));
-  //analogWrite(PIN_M4, int(velocidade.floatingPoint));
-
   // Configurando a variável com o dado de retorno para o servidor
   dado_retorno.floatingPoint = 1;
 
@@ -577,22 +572,11 @@ void andarParaTras(){
 
 void rotacionarDireita(){
   
-  // Verifica se os pinos requeridos para essa ação foram configurados
-  if (PIN_M1 == 255){
-    // Em caso de erro, notificar o cliente
-    dado_retorno.floatingPoint = erro0;
-    return; 
-  }
-  
   // Parando os motores
   digitalWrite(PIN_M1, HIGH);
   digitalWrite(PIN_M2, LOW);
   digitalWrite(PIN_M3, LOW);
   digitalWrite(PIN_M4, HIGH);
-
-  // Acionando os pinos para que o motor da direita acione e o robô rotacione
-  // conforme velocidade armazenada em variável
-  //analogWrite(PIN_M1, int(velocidade.floatingPoint));
 
   // Configurando a variável com o dado de retorno para o servidor
   dado_retorno.floatingPoint = 1;
@@ -601,73 +585,19 @@ void rotacionarDireita(){
 
 void rotacionarEsquerda(){
 
-  // Verifica se os pinos requeridos para essa ação foram configurados
-  if (PIN_M1 == 255){
-    // Em caso de erro, notificar o cliente
-    dado_retorno.floatingPoint = erro0;
-    return; 
-  }
-  
   // Parando os motores
   digitalWrite(PIN_M1, LOW);
   digitalWrite(PIN_M2, HIGH);
   digitalWrite(PIN_M3, HIGH);
   digitalWrite(PIN_M4, LOW);
 
-  // Acionando os pinos para que o motor da esquerda acione e o robô rotacione
-  // conforme velocidade armazenada em variável
-  //analogWrite(PIN_M3, int(velocidade.floatingPoint));
-
   // Configurando a variável com o dado de retorno para o servidor
   dado_retorno.floatingPoint = 1;
   
-}
-
-void fazerCurva(){
-
-  // Verifica se os pinos requeridos para essa ação foram configurados
-  if (PIN_M1 == 255){
-    // Em caso de erro, notificar o cliente
-    dado_retorno.floatingPoint = erro0;
-    return; 
-  }
-
-  // Leitura dos parâmetros do comando
-  int v1 = client.read();  // Lê um byte
-  int v2 = client.read();  // Lê outro byte
-
-  // Validação dos parâmetros
-  if (v1 < 0 || v1 > 255 || v2 < 0 || v2 > 255){
-    // Em caso de erro, notificar o cliente
-    dado_retorno.floatingPoint = erro1;
-    return;
-  }
-
-  // Parando os motores
-  digitalWrite(PIN_M1, LOW);
-  digitalWrite(PIN_M2, LOW);
-  digitalWrite(PIN_M3, LOW);
-  digitalWrite(PIN_M4, LOW);
-
-  // Acionando os pinos para que os motores sejam acionados conforme
-  // velocidades passadas por parâmetro
-  //analogWrite(PIN_M1, v1);
-  //analogWrite(PIN_M3, v2);
-  
-  // Configurando a variável com o dado de retorno para o servidor
-  dado_retorno.floatingPoint = 1;
-
 }
 
 void pararMotores(){
 
-  // Verifica se os pinos requeridos para essa ação foram configurados
-  if (PIN_M1 == 255){
-    // Em caso de erro, notificar o cliente
-    dado_retorno.floatingPoint = erro0;
-    return; 
-  }
-  
   // Código para parar os motores
   digitalWrite(PIN_M1, LOW);
   digitalWrite(PIN_M2, LOW);

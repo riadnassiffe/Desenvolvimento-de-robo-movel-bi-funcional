@@ -70,15 +70,49 @@ def escutar_robo():
 thread = threading.Thread(target=escutar_robo, daemon=True)
 thread.start()
 
-print("\nCliente TCP iniciado. Digite comandos para o robô.")
+def setup():
+    global T1
+    while True:
+        comando = input()
+        if comando.lower() == "*":
+            T1 = time.perf_counter()
+            sock.sendall((comando).encode())
+            break
+        T1 = time.perf_counter()
+        sock.sendall((comando).encode())
+
+
+print("\nCliente TCP iniciado. Digite comandos para configurar o robô.")
+print("Digite '*' para encerrar.\n")
+
+setup()
+
 print("Digite 'sair' para encerrar.\n")
 
-while True:
-    comando = input()
-    if comando.lower() == "sair":
-        break
-    T1 = time.perf_counter()
-    sock.sendall((comando).encode())
+def escutar_clientuser():
+    global T1
+    while True:
+        comando = input()
+        if comando.lower() == "sair":
+            break
+        T1 = time.perf_counter()
+        sock.sendall((comando).encode())
+    sock.close()
 
-sock.close()
-print("Encerrando...")
+thread1 = threading.Thread(target=escutar_clientuser, daemon=True)
+thread1.start()
+
+while True:
+    comando = "VS/150/150"
+    sock.sendall((comando).encode())
+    time.sleep(5)
+    comando = "MF"
+    sock.sendall((comando).encode())
+    time.sleep(5)
+    comando = "MP"
+    sock.sendall((comando).encode())
+    time.sleep(5)
+    comando = "MT"
+    sock.sendall((comando).encode())
+    time.sleep(5) 
+        
