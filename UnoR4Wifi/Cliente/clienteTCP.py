@@ -31,10 +31,10 @@ while(True):
         print("Robô não respondeu à descoberta (UDP).")
         time.sleep(0.25)
         
-
 udp_sock.close()
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
 try:
     sock.connect((ROBOT_IP, ROBOT_PORT))
 except socket.error as e:
