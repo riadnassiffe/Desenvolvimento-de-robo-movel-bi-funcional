@@ -9,6 +9,7 @@ import sys
 import time
 import readline
 from erro import *
+from comandos import *
 
 
 class ClienteUnoR4Wifi(Cliente):
@@ -22,6 +23,7 @@ class ClienteUnoR4Wifi(Cliente):
         self._T1 = 0
         self._T2 = 0
         self._estado = 1
+        self.valor = 0
 
     def descoberta(self):
         udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -58,59 +60,77 @@ class ClienteUnoR4Wifi(Cliente):
         self._socket.settimeout(2.0)
 
     def desconectar(self):
-        self._socket.close()
-        sys.exit()
+        try:
+            self._socket.close()
+        except:
+            pass
+        print("Conexão com Servidor Finalizada")
 
     def enviar_mensagem(self, mensagem:str):
-        self._T1 = time.perf_counter()
         self._socket.sendall((mensagem).encode())
     
     def receber_mensagem(self):
         self._resposta = self._socket.recv(1024)
-        self._T2 = time.perf_counter()
+    
 
     def escutar_servidor(self):
-        while True:
+        buffer = b''  # buffer acumulativo
+
+        while self._estado:
             try:
                 self.receber_mensagem()
-                data = self._resposta
-                rtt = 0
-                if (self._T1 != 0):
-                    rtt = (self._T2 - self._T1) * 1000  # milissegundos
+
+                if not self._resposta:
+                    continue
+                buffer += self._resposta
 
                 current_line = readline.get_line_buffer()
                 sys.stdout.write('\r' + ' ' * (len(current_line)+30) + '\r')
-                try:
-                    decoded = data.decode()
-                    print(f"[Robô]: {decoded.strip()} | RTT: {rtt:.2f} ms")
-                except UnicodeDecodeError:
-                    valor_float = struct.unpack('f', data)[0]
-                    print(f"[Robô]: {valor_float:.2f} (binário) | RTT: {rtt:.2f} ms")
+
+                # Processa floats binários completos (4 bytes)
+                while len(buffer) >= 4:
+                    chunk = buffer[:4]
+                    buffer = buffer[4:]
+                    valor_float = struct.unpack('f', chunk)[0]
+                    
+                    if valor_float != 1:
+                        self.valor = valor_float
+                        print(f"[Robô]: {self.valor:.2f}")
 
                 sys.stdout.write(f"Comando: {current_line}")
                 sys.stdout.flush()
 
-                self._T1 = 0 
-                self._T2 = 0
             except socket.timeout:
                 continue
             except OSError:
                 break
 
     def escutar_cliente(self):
-        while True:
+        while self._estado:
             comando = input()
             if comando.lower() == "sair":
+                self.enviar_mensagem("ER")
+                time.sleep(0.5)
                 self._estado = 0
                 break
             else:
                 self.enviar_mensagem(comando)
-        self.desconectar()
+
 
             
 
-    def get_resposta(self) -> float:
+    def get_valor(self):
+        return self.valor
+        
+    def get_resposta(self):
         return self._resposta
+
+    def iniciar_threads(self):
+        thread = threading.Thread(target=self.escutar_servidor, daemon=True)
+        thread.start()
+        thread1 = threading.Thread(target=self.escutar_cliente, daemon=True)
+        thread1.start()
+
 
     def solicitar_status(self):
         print("status\n")
@@ -121,53 +141,66 @@ class ClienteUnoR4Wifi(Cliente):
     def testar_tempo_conexao(self, mensagem):
         print("tempo\n")
 
+    def metodos(self):
+        global enviar, receber, esperar
+        enviar = self.enviar_mensagem
+        receber = self.get_valor
+        esperar = time.sleep
+
     def setup(self) -> None:
         while (True):
             comando = input()
             if comando.lower() == "*":
-                self._T1 = time.perf_counter()
                 self.enviar_mensagem(comando)
                 break
-            self._T1 = time.perf_counter()
             self.enviar_mensagem(comando)
 
     def executar(self):
         
         self.descoberta()
         self.conectar()
-
-        thread = threading.Thread(target=self.escutar_servidor, daemon=True)
-        thread.start()
-
+        self.metodos()
+        self.iniciar_threads()
         self.setup()
 
-        thread1 = threading.Thread(target=self.escutar_cliente, daemon=True)
-        thread1.start()
-
+    
         while self._estado:
-            #self.solicitar_status()
-            #self.alterar_conexao()
+
             self.acao()
 
         self.desconectar()
     
-    def acao(self) -> float:
-        comando = "VS/150/150"
-        self.enviar_mensagem(comando)
-        time.sleep(5)
+    def acao(self):
+        '''
         
-        comando = "MF"
-        self.enviar_mensagem(comando)
-        time.sleep(5)
+            Descrição dos metodos enviar, esperar, receber, etc
+            achei melhor deixar assim do que self.metodo
+
+        '''
+
+        enviar(SENSOR_ULTRASSONICO)
+        enviar(velociade(100,100))
+
+        if(receber() < 15):
+            enviar(MOTOR_PARAR)
+            esperar(0.5)
+            enviar(MOVER_PARA_TRAZ)
+            esperar(0.5)
+            enviar(MOTOR_PARAR)
+            esperar(0.5)
+            enviar(MOVER_PARA_DIREITA)
+            esperar(0.5)
         
-        comando = "MP"
-        self.enviar_mensagem(comando)
-        time.sleep(5)
         
-        comando = "MT"
-        self.enviar_mensagem(comando)
-        time.sleep(5) 
-    
+        enviar(MOVER_PARA_FRENTE)
+
+        esperar(0.05)
+
+
+def velociade( a, b):
+    return "VS/" + str(a) + "/" + str(b)
+        
+        
         
 
 # Execução de um exemplo de troca de mensagens entre cliente e servidor

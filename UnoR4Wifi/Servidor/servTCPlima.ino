@@ -4,8 +4,8 @@
 
 //Variaves para que se possa estabelecer uma conexção entre o servidor e cliente, um broadcast para encontrar o cliente via UDP, depois mantem conexção TCP
 int teste = 0;
-char ssid[] = "ZTE_2.4G_7NXk26";
-char pass[] = "TUfyZZFT";
+char ssid[] = "kadu"; //" kadu  ZTE_2.4G_7NXk26";
+char pass[] = "12345678"; //"TUfyZZFT 12345678";
 
 WiFiUDP udp;
 unsigned int localPort = 4210;
@@ -16,9 +16,6 @@ unsigned int pcPort;
 
 WiFiServer server(4210);
 WiFiClient client;
-
-// Definição da função para resetar arduino
-void(* resetFunc) (void) = 0;
 
 // Definição da estrutura de dados utilizada para representação de informações que são envidas
 // e recebidas na comunicação entre cliente e servidor
@@ -245,7 +242,7 @@ void configurarMotores(){
     PIN_M2 = 255;
     PIN_M3 = 255;
     PIN_M4 = 255;
-    PIN_ENB = 255:
+    PIN_ENB = 255;
     return;
   }
 
@@ -1237,7 +1234,7 @@ void lerGiroscopioZ(){
 }
 */
 void encerrarComunicacao(){
-  resetFunc();
+  NVIC_SystemReset();
 }
 
 
@@ -1272,7 +1269,7 @@ void setup() {
       Serial.println(incomingPacket);
 
 
-      if (strcmp(incomingPacket, "WeMosD1") == 0) {
+      if (strcmp(incomingPacket, "UnoR4WiFi") == 0) {
         pcIP = udp.remoteIP();
         pcPort = udp.remotePort();
         pcConectado = true;
