@@ -4,15 +4,36 @@
 from cliente import Cliente
 import struct
 import socket
+import builtins
 import threading 
 import sys
 import time
 import readline
+import builtins
 from erro import *
 from comandos import *
 
-a=120
-b=120
+builtins._orig_print = print
+
+def safe_prompt(label="Comando: "):
+    sys.stdout.write(label)
+    sys.stdout.flush()
+
+def safe_print(msg: str):
+    current = readline.get_line_buffer()
+    sys.stdout.write('\r' + ' ' * (len(current) + 12) + '\r')
+    sys.stdout.flush()
+
+    builtins._orig_print(msg)
+
+    sys.stdout.write(current)
+    sys.stdout.flush()
+    
+
+def patched_print(*args, **kwargs):
+    safe_print(" ".join(str(a) for a in args))
+
+builtins.print = patched_print
 
 class ClienteUnoR4Wifi(Cliente):
     '''
@@ -88,19 +109,12 @@ class ClienteUnoR4Wifi(Cliente):
                     continue
                 buffer += self._resposta
 
-                current_line = readline.get_line_buffer()
-                sys.stdout.write('\r' + ' ' * (len(current_line)+30) + '\r')
-
                 while len(buffer) >= 4:
                     chunk = buffer[:4]
                     buffer = buffer[4:]
                     valor_float = struct.unpack('f', chunk)[0]
                     if (valor_float != 1.0):
                         self.valor = valor_float
-                        #print(f"[Robô]: {self.valor:.2f}")
-
-                sys.stdout.write(f"Comando: {current_line}")
-                sys.stdout.flush()
 
             except socket.timeout:
                 continue
@@ -119,9 +133,6 @@ class ClienteUnoR4Wifi(Cliente):
             else:
                 self.enviar_mensagem(comando)
 
-
-            
-
     def get_valor(self, timeout=5.0):
         start = time.time()
         while True:
@@ -132,7 +143,6 @@ class ClienteUnoR4Wifi(Cliente):
             if time.time() - start > timeout:
                 return 999  
             time.sleep(0.01)  
-
 
     def get_resposta(self):
         return self._resposta
@@ -165,12 +175,12 @@ class ClienteUnoR4Wifi(Cliente):
 
     def setup(self) -> None:
         while (True):
+            safe_prompt()
             comando = input()
             self.enviar_mensagem(comando)
             if comando.lower() == "*":   
                 break
-        
-            
+             
     def executar(self):
         
         self.descoberta()
@@ -194,7 +204,7 @@ class ClienteUnoR4Wifi(Cliente):
         valor = receber()
         print(f"distancia: {valor:.2f}")
 
-
+        '''
         if(valor < 15):
             enviar(MOTOR_PARAR)
             esperar(0.5)
@@ -204,16 +214,13 @@ class ClienteUnoR4Wifi(Cliente):
             esperar(0.5)
             
         enviar(MOVER_PARA_FRENTE)
-
+        '''
         esperar(0.05)
 
 
 def velocidade( a, b):
     return "VS/" + str(a) + "/" + str(b)
         
-        
-        
-
 # Execução de um exemplo de troca de mensagens entre cliente e servidor
 if __name__ == "__main__":
     
