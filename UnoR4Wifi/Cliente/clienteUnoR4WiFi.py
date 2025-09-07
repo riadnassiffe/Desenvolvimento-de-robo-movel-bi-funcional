@@ -4,13 +4,15 @@
 from cliente import Cliente
 import struct
 import socket
-import threading
+import threading 
 import sys
 import time
 import readline
 from erro import *
 from comandos import *
 
+a=120
+b=120
 
 class ClienteUnoR4Wifi(Cliente):
     '''
@@ -20,10 +22,8 @@ class ClienteUnoR4Wifi(Cliente):
 
     def __init__(self, porta_cliente: int, porta_robo: int):
         super().__init__(porta_cliente, porta_robo)
-        self._T1 = 0
-        self._T2 = 0
         self._estado = 1
-        self.valor = 0
+        self.valor = None
 
     def descoberta(self):
         udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -67,14 +67,18 @@ class ClienteUnoR4Wifi(Cliente):
         print("Conexão com Servidor Finalizada")
 
     def enviar_mensagem(self, mensagem:str):
-        self._socket.sendall((mensagem).encode())
+        if self._estado and self._socket:
+            try:
+                self._socket.sendall(mensagem.encode())
+            except OSError:
+                pass
     
     def receber_mensagem(self):
         self._resposta = self._socket.recv(1024)
     
 
     def escutar_servidor(self):
-        buffer = b''  # buffer acumulativo
+        buffer = b''  
 
         while self._estado:
             try:
@@ -87,15 +91,13 @@ class ClienteUnoR4Wifi(Cliente):
                 current_line = readline.get_line_buffer()
                 sys.stdout.write('\r' + ' ' * (len(current_line)+30) + '\r')
 
-                # Processa floats binários completos (4 bytes)
                 while len(buffer) >= 4:
                     chunk = buffer[:4]
                     buffer = buffer[4:]
                     valor_float = struct.unpack('f', chunk)[0]
-                    
-                    if valor_float != 1:
+                    if (valor_float != 1.0):
                         self.valor = valor_float
-                        print(f"[Robô]: {self.valor:.2f}")
+                        #print(f"[Robô]: {self.valor:.2f}")
 
                 sys.stdout.write(f"Comando: {current_line}")
                 sys.stdout.flush()
@@ -112,6 +114,7 @@ class ClienteUnoR4Wifi(Cliente):
                 self.enviar_mensagem("ER")
                 time.sleep(0.5)
                 self._estado = 0
+                self.valor = 0
                 break
             else:
                 self.enviar_mensagem(comando)
@@ -119,17 +122,30 @@ class ClienteUnoR4Wifi(Cliente):
 
             
 
-    def get_valor(self):
-        return self.valor
-        
+    def get_valor(self, timeout=5.0):
+        start = time.time()
+        while True:
+            if self.valor is not None:
+                val = self.valor
+                self.valor = None 
+                return val
+            if time.time() - start > timeout:
+                return 999  
+            time.sleep(0.01)  
+
+
     def get_resposta(self):
         return self._resposta
 
-    def iniciar_threads(self):
-        thread = threading.Thread(target=self.escutar_servidor, daemon=True)
-        thread.start()
-        thread1 = threading.Thread(target=self.escutar_cliente, daemon=True)
-        thread1.start()
+    def iniciar_threads(self, n):
+
+        match n:
+            case(0):
+                thread = threading.Thread(target=self.escutar_servidor, daemon=True)
+                thread.start()
+            case(1):
+                thread1 = threading.Thread(target=self.escutar_cliente, daemon=True)
+                thread1.start()
 
 
     def solicitar_status(self):
@@ -150,19 +166,19 @@ class ClienteUnoR4Wifi(Cliente):
     def setup(self) -> None:
         while (True):
             comando = input()
-            if comando.lower() == "*":
-                self.enviar_mensagem(comando)
-                break
             self.enviar_mensagem(comando)
-
+            if comando.lower() == "*":   
+                break
+        
+            
     def executar(self):
         
         self.descoberta()
         self.conectar()
         self.metodos()
-        self.iniciar_threads()
+        self.iniciar_threads(0)
         self.setup()
-
+        self.iniciar_threads(1)
     
         while self._estado:
 
@@ -171,33 +187,28 @@ class ClienteUnoR4Wifi(Cliente):
         self.desconectar()
     
     def acao(self):
-        '''
-        
-            Descrição dos metodos enviar, esperar, receber, etc
-            achei melhor deixar assim do que self.metodo
 
-        '''
+        enviar(velocidade(120,120))
 
         enviar(SENSOR_ULTRASSONICO)
-        enviar(velociade(100,100))
+        valor = receber()
+        print(f"distancia: {valor:.2f}")
 
-        if(receber() < 15):
-            enviar(MOTOR_PARAR)
-            esperar(0.5)
-            enviar(MOVER_PARA_TRAZ)
-            esperar(0.5)
+
+        if(valor < 15):
             enviar(MOTOR_PARAR)
             esperar(0.5)
             enviar(MOVER_PARA_DIREITA)
+            esperar(0.3)
+            enviar(MOTOR_PARAR)
             esperar(0.5)
-        
-        
+            
         enviar(MOVER_PARA_FRENTE)
 
         esperar(0.05)
 
 
-def velociade( a, b):
+def velocidade( a, b):
     return "VS/" + str(a) + "/" + str(b)
         
         
