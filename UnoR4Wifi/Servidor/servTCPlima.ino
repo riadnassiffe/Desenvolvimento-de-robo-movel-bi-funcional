@@ -254,14 +254,11 @@ void configurarMotores(){
   pinMode(PIN_M4, OUTPUT);
   pinMode(PIN_ENB, OUTPUT);
 
-
   // Configurando a variável com o dado de retorno para o servidor
   dado_retorno.floatingPoint = 1;
-
 }
 
 void configurarSensorUltrassonico(){
-
   // Leitura dos parâmetros do comando para configuração das variáveis de pinagem
   PIN_ECHO = client.parseInt();
   PIN_TRIG = client.parseInt();
@@ -274,17 +271,15 @@ void configurarSensorUltrassonico(){
     PIN_TRIG = 255;
     return;
   }
-
   // Configuração dos pinos do Arduíno
   pinMode(PIN_ECHO, INPUT);
   pinMode(PIN_TRIG, OUTPUT);
-
   digitalWrite(PIN_TRIG, LOW);
 
   // Configurando a variável com o dado de retorno para o servidor
   dado_retorno.floatingPoint = 1;
-  
 }
+
 /*
 void configurarLedSimples(){
 
@@ -567,9 +562,9 @@ void andarParaTras(){
 
 }
 
-void rotacionarDireita(){
+void rotacionarEsquerda(){
   
-  // Parando os motores
+  // Motores para esquerda
   digitalWrite(PIN_M1, HIGH);
   digitalWrite(PIN_M2, LOW);
   digitalWrite(PIN_M3, LOW);
@@ -577,12 +572,11 @@ void rotacionarDireita(){
 
   // Configurando a variável com o dado de retorno para o servidor
   dado_retorno.floatingPoint = 1;
-
 }
 
-void rotacionarEsquerda(){
+void rotacionarDireita(){
 
-  // Parando os motores
+  // Motores para direita
   digitalWrite(PIN_M1, LOW);
   digitalWrite(PIN_M2, HIGH);
   digitalWrite(PIN_M3, HIGH);
@@ -590,7 +584,6 @@ void rotacionarEsquerda(){
 
   // Configurando a variável com o dado de retorno para o servidor
   dado_retorno.floatingPoint = 1;
-  
 }
 
 void pararMotores(){
@@ -1369,6 +1362,11 @@ void setup() {
     
     }
   }
+
+  pinMode(PIN_ENA, OUTPUT);
+  pinMode(PIN_ENB, OUTPUT);
+  analogWrite(PIN_ENA, 128);
+  analogWrite(PIN_ENB, 128);
   
 }
 
