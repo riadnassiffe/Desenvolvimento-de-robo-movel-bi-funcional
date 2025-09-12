@@ -1,5 +1,6 @@
+import pygame
 '''
-    ClienteUnoR4WiFi
+    Cliente
 '''
 from cliente import Cliente
 import struct
@@ -12,6 +13,17 @@ import readline
 import builtins
 from erro import *
 from comandos import *
+
+frente = False
+tras = False
+esquerda = False
+direita = False
+
+pygame.init()
+joystick = pygame.joystick.Joystick(0)
+joystick.init()
+
+print(f"Controle detectado: {joystick.get_name()}")
 
 ''' 
     --- Print -----
@@ -199,28 +211,50 @@ class ClienteUnoR4Wifi(Cliente):
     
     def acao(self):
 
-        enviar(velocidade(120,120))
+        
+        global frente, tras, direita, esquerda
 
-        enviar(SENSOR_ULTRASSONICO)
-        valor = receber()
-        print(f"distancia: {valor:.2f}")
+        pygame.event.pump()
+        enviar(velocidade(110,110))
 
-        if(valor < 20):
-            enviar(MOTOR_PARAR)
-            esperar(0.5)
-            enviar(MOVER_PARA_TRAZ)
-            esperar(0.5)
-            enviar(MOTOR_PARAR)
-            esperar(0.5)
-            enviar(MOVER_PARA_DIREITA)
-            esperar(0.4)
-            enviar(MOTOR_PARAR)
-            esperar(0.5)
+        # Verifica se existe algum D-pad (geralmente só há um, no índice 0)
+        if joystick.get_numhats() > 0:
+            # 2. Pega o estado do primeiro D-pad (hat 0)
+            # O valor é uma tupla (x, y)
+            valor_dpad = joystick.get_hat(0)
             
-        enviar(MOVER_PARA_FRENTE)
+            # Desempacota a tupla para facilitar a leitura
+            eixo_x, eixo_y = valor_dpad
 
-        esperar(0.05)
-    
+            # 3. Atualiza as variáveis booleanas com base nos valores do D-pad
+            if eixo_y == 1:
+                frente = True
+            elif eixo_y == -1:
+                tras = True
+
+            if eixo_x == -1:
+                esquerda = True
+            elif eixo_x == 1:
+                direita = True
+
+        safe_print(f"Frente: {frente}, Trás: {tras}, Esquerda: {esquerda}, Direita: {direita}")
+
+        if frente:
+            frente = False
+            enviar(MOVER_PARA_FRENTE)
+        elif tras:
+            tras = False
+            enviar(MOTOR_PARAR)
+        elif direita:
+            direita = False 
+            enviar(MOVER_PARA_DIREITA)
+        elif esquerda:
+            esquerda = False
+            enviar(MOVER_PARA_ESQUERDA)
+
+        esperar(0.1)
+        
+
 def velocidade( a, b):
     return "VS/" + str(a) + "/" + str(b)
         
@@ -233,49 +267,3 @@ if __name__ == "__main__":
     cliente = ClienteUnoR4Wifi(PORTA_CLIENTE, PORTA_ROBO)
 
     cliente.executar()
-
-'''
-        enviar(velocidade(120,120))
-
-        enviar(SENSOR_ULTRASSONICO)
-        valor = receber()
-        print(f"distancia: {valor:.2f}")
-
-        if(valor < 20):
-            enviar(MOTOR_PARAR)
-            esperar(0.5)
-            enviar(MOVER_PARA_TRAZ)
-            esperar(0.5)
-            enviar(MOTOR_PARAR)
-            esperar(0.5)
-            enviar(MOVER_PARA_DIREITA)
-            esperar(0.4)
-            enviar(MOTOR_PARAR)
-            esperar(0.5)
-            
-        enviar(MOVER_PARA_FRENTE)
-
-        esperar(0.05)
-
-        
-        self.enviar_mensagem("VS/120/120")
-
-        self.enviar_mensagem("RU")
-        valor = self.receber_mensagem()
-        print(f"distancia: {valor:.2f}")
-
-        if(valor < 15):
-            self.enviar_mensagem("MP")
-            time.sleep(0.5)
-
-            self.enviar_mensagem("MD")
-            time.sleep(0.3)
-
-            self.enviar_mensagem("MP")
-            time.sleep(0.5)
-            
-        self.enviar_mensagem("MF")
-        
-        time.sleep(0.05)
-
-'''

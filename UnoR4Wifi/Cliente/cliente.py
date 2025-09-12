@@ -46,7 +46,7 @@ class Cliente(metaclass=ABCMeta):
         ...
         
     @abstractmethod
-    def get_resposta(self) -> str:
+    def receber_mensagem(self, timeout: float = 5.0) -> float:
         ...
 
     @abstractmethod

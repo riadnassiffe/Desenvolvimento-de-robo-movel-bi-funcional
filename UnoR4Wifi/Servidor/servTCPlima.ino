@@ -1275,7 +1275,6 @@ void setup() {
         pcConectado = true;
 
         udp.beginPacket(pcIP, pcPort);
-        udp.print("UNO R4 WiFi aqui!");
         udp.endPacket();
 
         Serial.println("Resposta UDP enviada.");
