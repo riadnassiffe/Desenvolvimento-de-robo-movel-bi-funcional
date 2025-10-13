@@ -1,4 +1,4 @@
-#include <WiFiS3.h>
+k#include <WiFiS3.h>
 #include <WiFiUdp.h>
 #include <Wire.h>
 
@@ -280,15 +280,14 @@ void configurarSensorUltrassonico(){
   dado_retorno.floatingPoint = 1;
 }
 
-/*
 void configurarLedSimples(){
 
   // Leitura dos parâmetros do comando
-  int n = bluetoothSerial.parseInt();
-  int pin = bluetoothSerial.parseInt();
+  int n = client.parseInt();
+  int pin = client.parseInt();
 
   // Validação dos parâmetros do comando
-  if (pin < 0 | pin > 19){
+  if (pin < 0 || pin > 19){
     // Em caso de erro, notificar o cliente
     dado_retorno.floatingPoint = erro1;
     return;
@@ -315,22 +314,21 @@ void configurarLedSimples(){
   dado_retorno.floatingPoint = 1;
   
 }
-*/
-/*
+
 void configurarLedRGB(){
 
   // Leitura dos parâmetros do comando para configuração das variáveis de pinagem
-  PIN_LEDR = bluetoothSerial.parseInt();
-  PIN_LEDG = bluetoothSerial.parseInt();
-  PIN_LEDB = bluetoothSerial.parseInt();
+  PIN_LEDR = client.parseInt();
+  PIN_LEDG = client.parseInt();
+  PIN_LEDB = client.parseInt();
 
   // Validação dos parâmetros do comando
   if ((PIN_LEDR < 0 || PIN_LEDR > 19) || (PIN_LEDG < 0 || PIN_LEDG > 19) || (PIN_LEDB < 0 || PIN_LEDB > 19)){
     // Em caso de erro, notificar o cliente e resetar os pinos do motor para o valor padrão
     dado_retorno.floatingPoint = erro1;
     PIN_LEDR = 255;
-    PIN_LEDR = 255;
-    PIN_LEDR = 255;
+    PIN_LEDG = 255;
+    PIN_LEDB = 255;
     return;
   }
 
@@ -343,12 +341,11 @@ void configurarLedRGB(){
   dado_retorno.floatingPoint = 1;
   
 }
-*/
-/*
+
 void configurarBuzzer(){
   
   // Leitura dos parâmetros do comando para configuração das variáveis de pinagem
-  PIN_TONE = bluetoothSerial.parseInt();
+  PIN_TONE = client.parseInt();
 
   // Validação dos parâmetros do comando
   if (PIN_TONE < 0 || PIN_TONE > 19){
@@ -365,13 +362,12 @@ void configurarBuzzer(){
   dado_retorno.floatingPoint = 1;
   
 }
-*/  
-/*
+  
 void configurarSensorFotoresistor(){
 
   // Leitura dos parâmetros do comando
-  int n = bluetoothSerial.parseInt();
-  int pin = bluetoothSerial.parseInt();
+  int n = client.parseInt();
+  int pin = client.parseInt();
 
   // Validação dos parâmetros do comando
   if (pin < 0 | pin > 19){
@@ -383,12 +379,12 @@ void configurarSensorFotoresistor(){
   // Configuração dos pinos do Arduíno e das variáveis de pinagem conforme parâmetros
   if (n == 1){
     PIN_FR1 = pin;
-    pinMode(PIN_FR1, OUTPUT);
+    pinMode(PIN_FR1, INPUT);
   }
   
   else if (n == 2){
     PIN_FR2 = pin;
-    pinMode(PIN_FR2, OUTPUT);
+    pinMode(PIN_FR2, INPUT);
   }
 
   else {
@@ -400,14 +396,13 @@ void configurarSensorFotoresistor(){
   // Configurando a variável com o dado de retorno para o servidor
   dado_retorno.floatingPoint = 1;
 
-}
-*/  
-/*
+}  
+
 void configurarSensorOpticoReflexivo(){
 
   // Leitura dos parâmetros do comando
-  int n = bluetoothSerial.parseInt();
-  int pin = bluetoothSerial.parseInt();
+  int n = client.parseInt();
+  int pin = client.parseInt();
 
   // Validação dos parâmetros do comando
   if (pin < 0 | pin > 19){
@@ -442,12 +437,11 @@ void configurarSensorOpticoReflexivo(){
   dado_retorno.floatingPoint = 1;
  
 }
-*/  
-/*
+  
 void configurarPotenciometro(){
 
   // Leitura dos parâmetros do comando para configuração das variáveis de pinagem
-  PIN_PTC = bluetoothSerial.parseInt();
+  PIN_PTC = client.parseInt();
 
   // Validação dos parâmetros do comando
   if (PIN_PTC < 0 || PIN_PTC > 19){
@@ -464,12 +458,11 @@ void configurarPotenciometro(){
   dado_retorno.floatingPoint = 1;
   
 }
-*/
-/*
+
 void configurarPushButton(){
 
   // Leitura dos parâmetros do comando
-  PIN_PBT = bluetoothSerial.parseInt();
+  PIN_PBT = client.parseInt();
 
   // Validação dos parâmetros do comando
   if (PIN_PBT < 0 || PIN_PBT > 19){
@@ -486,8 +479,7 @@ void configurarPushButton(){
   dado_retorno.floatingPoint = 1;
 
 }
-*/
-/*
+
 void configurarMPU(){
   
   // Iniciar a comunicação I2C para comunicar com o sensor MPU6050
@@ -507,7 +499,6 @@ void configurarMPU(){
   dado_retorno.floatingPoint = 1;
   
 }
-*/
 // FUNÇÕES DE AÇÕES //
 
 void getVelocidade(){
@@ -599,11 +590,10 @@ void pararMotores(){
 
 }
 
-/*
 void ativarLed(){
 
   // Leitura dos parâmetros do comando
-  int n = bluetoothSerial.parseInt();
+  int n = client.parseInt();
 
   // Identificação de qual Led deve ser acionado
   if (n == 1 && PIN_LED1 != 255)
@@ -629,14 +619,13 @@ void ativarLed(){
   // Configurando a variável com o dado de retorno para o servidor
   dado_retorno.floatingPoint = 1;
  
-}
-*/  
-/*
+}  
+
 void ativarLedDelay(){
   
   // Leitura dos parâmetros do comando
-  int n = bluetoothSerial.parseInt();
-  unsigned int tempo_atraso_ms = bluetoothSerial.parseInt();
+  int n = client.parseInt();
+  unsigned int tempo_atraso_ms = client.parseInt();
 
   // Identificação de qual Led deve ser acionado
   if (n == 1 && PIN_LED1 != 255){
@@ -670,13 +659,12 @@ void ativarLedDelay(){
   // Configurando a variável com o dado de retorno para o servidor
   dado_retorno.floatingPoint = 1;
   
-}
-*/  
-/*
+}  
+
 void inverterLed(){
   
   // Leitura dos parâmetros do comando
-  int n = bluetoothSerial.parseInt();
+  int n = client.parseInt();
 
   // Identificação de qual Led deve ser acionado
   if (n == 1 && PIN_LED1 != 255)
@@ -703,12 +691,11 @@ void inverterLed(){
   dado_retorno.floatingPoint = 1;
 
 }
-*/
-/*
+
 void desativarLed(){
 
   // Leitura dos parâmetros do comando
-  int n = bluetoothSerial.parseInt();
+  int n = client.parseInt();
 
   // Identificação de qual Led deve ser desativado
   if (n == 1 && PIN_LED1 != 255)
@@ -734,8 +721,7 @@ void desativarLed(){
   dado_retorno.floatingPoint = 1;
     
 }
-*/
-/*
+
 void ativarLedRGB(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -746,9 +732,9 @@ void ativarLedRGB(){
   }
   
   // Leitura dos parâmetros do comando
-  int r = bluetoothSerial.parseInt();
-  int g = bluetoothSerial.parseInt();
-  int b = bluetoothSerial.parseInt();
+  int r = client.parseInt();
+  int g = client.parseInt();
+  int b = client.parseInt();
 
   // Validação dos parâmetros
   if (r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255){
@@ -766,8 +752,7 @@ void ativarLedRGB(){
     dado_retorno.floatingPoint = erro1;   
  
 }
-*/    
-/*
+
 void ativarLedRGBDelay(){
   
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -778,10 +763,10 @@ void ativarLedRGBDelay(){
   }
   
   // Leitura dos parâmetros do comando
-  int r = bluetoothSerial.parseInt();
-  int g = bluetoothSerial.parseInt();
-  int b = bluetoothSerial.parseInt();
-  unsigned int tempo_atraso_ms = bluetoothSerial.parseInt();
+  int r = client.parseInt();
+  int g = client.parseInt();
+  int b = client.parseInt();
+  unsigned int tempo_atraso_ms = client.parseInt();
 
   if (r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255){
   
@@ -806,8 +791,7 @@ void ativarLedRGBDelay(){
     dado_retorno.floatingPoint = erro1; 
     
 }
-*/    
-/*
+    
 void desativarLedRGB(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -824,8 +808,7 @@ void desativarLedRGB(){
 
   dado_retorno.floatingPoint = 1;
 }
-*/  
-/*
+
 void ativarBuzzer(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -836,7 +819,7 @@ void ativarBuzzer(){
   }
 
   // Leitura dos parâmetros do comando
-  unsigned int frequencia = bluetoothSerial.parseInt();
+  unsigned int frequencia = client.parseInt();
   
   // Ativando o buzzer
   tone(PIN_TONE, frequencia);
@@ -844,8 +827,8 @@ void ativarBuzzer(){
   // Configurando a variável com o dado de retorno para o servidor
   dado_retorno.floatingPoint = 1;
 }
-*/  
-/*
+  
+
 void ativarBuzzerDelay(){
   
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -856,8 +839,8 @@ void ativarBuzzerDelay(){
   }
 
   // Leitura dos parâmetros do comando
-  unsigned int frequencia = bluetoothSerial.parseInt();
-  unsigned int tempo_atraso_ms = bluetoothSerial.parseInt();
+  unsigned int frequencia = client.parseInt();
+  unsigned int tempo_atraso_ms = client.parseInt();
   
   // Ativando o buzzer
   tone(PIN_TONE, frequencia);
@@ -872,8 +855,7 @@ void ativarBuzzerDelay(){
   dado_retorno.floatingPoint = 1;
   
 }
-*/ 
-/*
+
 void desativarBuzzer(){
   
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -890,7 +872,6 @@ void desativarBuzzer(){
   dado_retorno.floatingPoint = 1;
 
 }
-*/
 
 void lerSensorUltrassonico(){
 
@@ -913,11 +894,10 @@ void lerSensorUltrassonico(){
 
 }
 
-/*
 void lerSensorFotoresistor(){
 
   // Leitura dos parâmetros do comando
-  int n = bluetoothSerial.parseInt();
+  int n = client.parseInt();
 
   // Identificado qual sensor fotoresistor foi selecionado
   if (n == 1 && PIN_FR1 != 255)
@@ -939,12 +919,11 @@ void lerSensorFotoresistor(){
   }
 
 }
-*/  
-/*
+
 void lerSensorOpticoReflexivo(){
   
   // Leitura dos parâmetros do comando
-  int n = bluetoothSerial.parseInt();
+  int n = client.parseInt();
 
   // Identificando qual sensor óptico reflexivo foi selecionado
   if (n == 1 && PIN_OR1 != 255)
@@ -968,8 +947,7 @@ void lerSensorOpticoReflexivo(){
   }
     
 }
-*/  
-/*
+  
 void lerPotenciometro(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -983,8 +961,7 @@ void lerPotenciometro(){
   dado_retorno.floatingPoint = analogRead(PIN_PTC);
   
 }
-*/  
-/*
+  
 void lerBotao(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -998,8 +975,7 @@ void lerBotao(){
   dado_retorno.floatingPoint = digitalRead(PIN_PBT);
   
 }
-*/  
-/*
+  
 void lerTemperatura(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -1034,8 +1010,7 @@ void lerTemperatura(){
   Wire.read()<<8|Wire.read(); 
  
 }
-*/
-/*
+
 void lerAcelerometroX(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -1065,8 +1040,7 @@ void lerAcelerometroX(){
   Wire.read()<<8|Wire.read(); 
   
 }
-*/  
-/*
+
 void lerAcelerometroY(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -1097,8 +1071,7 @@ void lerAcelerometroY(){
   Wire.read()<<8|Wire.read(); 
   
 }
-*/
-/*
+
 void lerAcelerometroZ(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -1129,8 +1102,7 @@ void lerAcelerometroZ(){
   Wire.read()<<8|Wire.read(); 
   
 }
-*/ 
-/*
+
 void lerGiroscopioX(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -1161,8 +1133,7 @@ void lerGiroscopioX(){
   Wire.read()<<8|Wire.read(); 
   
 }
-*/
-/*
+
 void lerGiroscopioY(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -1193,8 +1164,7 @@ void lerGiroscopioY(){
   Wire.read()<<8|Wire.read(); 
   
 }
-*/  
-/*
+
 void lerGiroscopioZ(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -1225,11 +1195,10 @@ void lerGiroscopioZ(){
   dado_retorno.floatingPoint = (Wire.read()<<8|Wire.read())/131*0.0174533; 
   
 }
-*/
+
 void encerrarComunicacao(){
   NVIC_SystemReset();
 }
-
 
 void setup() {
   Serial.begin(115200);
@@ -1313,35 +1282,35 @@ void setup() {
           break;
 
         case (83):
-          //configurarLedSimples();
+          configurarLedSimples();
           break;
 
         case (76):
-          //configurarLedRGB();
+          configurarLedRGB();
           break;
 
         case (90):
-          //configurarBuzzer();
+          configurarBuzzer();
           break;
 
         case (70):
-          //configurarSensorFotoresistor();
+          configurarSensorFotoresistor();
           break;
 
         case (79):
-          //configurarSensorOpticoReflexivo();
+          configurarSensorOpticoReflexivo();
           break;
 
         case (80):
-          //configurarPotenciometro();
+          configurarPotenciometro();
           break;
 
         case (66):
-          //configurarPushButton();
+          configurarPushButton();
           break;
 
         case (88):
-          //configurarMPU();
+          configurarMPU();
           break;
 
         case (82):
@@ -1436,47 +1405,47 @@ void loop() {
             break;
 
           case (70):
-            //lerSensorFotoresistor();
+            lerSensorFotoresistor();
             break;
 
           case (79):
-            //lerSensorOpticoReflexivo();
+            lerSensorOpticoReflexivo();
             break;
 
           case (80):
-            //lerPotenciometro();
+            lerPotenciometro();
             break;
 
           case (66):
-            //lerBotao();
+            lerBotao();
             break;
 
           case (84):
-            //lerTemperatura();
+            lerTemperatura();
             break;
 
           case (65):
-            //lerAcelerometroX();
+            lerAcelerometroX();
             break;
 
           case (67):
-            //lerAcelerometroY();
+            lerAcelerometroY();
             break;
 
           case (69):
-            //lerAcelerometroZ();
+            lerAcelerometroZ();
             break;
 
           case (71):
-            //lerGiroscopioX();
+            lerGiroscopioX();
             break;
 
           case (73):
-            //lerGiroscopioY();
+            lerGiroscopioY();
             break;
 
           case (75):
-            //lerGiroscopioZ();
+            lerGiroscopioZ();
             break;
 
           default:
@@ -1490,19 +1459,19 @@ void loop() {
         switch (c2){
         
           case (65):
-            //ativarLed();
+            ativarLed();
             break;
 
           case (84):
-            //ativarLedDelay();
+            ativarLedDelay();
             break;
 
           case (73):
-            //inverterLed();
+            inverterLed();
             break;
 
           case (68):
-            //desativarLed();
+            desativarLed();
             break;
 
           default:
@@ -1517,15 +1486,15 @@ void loop() {
         switch (c2){
           
           case (65):
-            //ativarLedRGB();
+            ativarLedRGB();
             break;
 
           case (84):
-            //ativarLedRGBDelay();
+            ativarLedRGBDelay();
             break;
 
           case (68):
-            //desativarLedRGB();
+            desativarLedRGB();
             break;
 
           default:
@@ -1539,15 +1508,15 @@ void loop() {
         switch (c2){
 
           case (65):
-            //ativarBuzzer();
+            ativarBuzzer();
             break;
 
           case (84):
-            //ativarBuzzer();
+            ativarBuzzerDelay();
             break;
 
           case (68):
-            //desativarBuzzer();
+            desativarBuzzer();
             break;
             
           default:
