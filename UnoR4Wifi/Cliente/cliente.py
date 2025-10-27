@@ -69,8 +69,6 @@ class Cliente(metaclass=ABCMeta):
         self.conectar()
         self.setup()
         while True:
-            self.solicitar_status()
-            self.alterar_conexao()
             self.acao()
             
 
