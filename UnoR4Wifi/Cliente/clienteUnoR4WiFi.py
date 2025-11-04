@@ -231,6 +231,7 @@ if __name__ == "__main__":
     PORTA_ROBO = 4210
 
     cliente = ClienteUnoR4Wifi(PORTA_CLIENTE, PORTA_ROBO)
+    #cliente.robo = 
 
     cliente.executar()
 

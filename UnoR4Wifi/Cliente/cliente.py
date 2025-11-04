@@ -53,10 +53,7 @@ class Cliente(metaclass=ABCMeta):
     def setup(self) -> None:
         ...
 
-    @abstractmethod
-    def acao(self) -> float:
-        ...
-    
+
     @abstractmethod    
     def testar_tempo_conexao(self,mensagem:str) -> float:
         ...
@@ -65,11 +62,6 @@ class Cliente(metaclass=ABCMeta):
     def solicitar_status(self):
         ...
         
-    def executar(self):
-        self.conectar()
-        self.setup()
-        while True:
-            self.acao()
             
 
     def veriricar_erros(self,saida:int)->int:
