@@ -13,34 +13,6 @@ import builtins
 from erro import *
 from comandos import *
 
-''' 
-    --- Print -----
-
-    essa mudança é apenas para que ao imprimir um valor,e ao inserir um valor
-    fique mais agradavel no terminal
-
-'''
-builtins._orig_print = print
-
-def safe_prompt(label="Comando: "):
-    sys.stdout.write(label)
-    sys.stdout.flush()
-
-def safe_print(msg: str):
-    current = readline.get_line_buffer()
-    sys.stdout.write('\r' + ' ' * (len(current) + 12) + '\r')
-    sys.stdout.flush()
-
-    builtins._orig_print(msg)
-
-    sys.stdout.write(current)
-    sys.stdout.flush()
-    
-def patched_print(*args, **kwargs):
-    safe_print(" ".join(str(a) for a in args))
-
-builtins.print = patched_print
-
 '''
     Classe ClienteUnoR4Wifi
 
@@ -137,146 +109,37 @@ class ClienteUnoR4Wifi(Cliente):
             except OSError:
                 break
 
-    def escutar_cliente(self):
-        while self._estado:
-            comando = input()
-            if comando.lower() == "sair":
-                self.enviar_mensagem("ER")
-                time.sleep(0.5)
-                self._estado = 0
-                self.valor = 0
-                break
-            else:
-                self.enviar_mensagem(comando)
-
     def iniciar_threads(self, n):
 
         match n:
             case(0):
                 thread = threading.Thread(target=self.escutar_servidor, daemon=True)
                 thread.start()
-            case(1):
-                thread1 = threading.Thread(target=self.escutar_cliente, daemon=True)
-                thread1.start()
 
     def solicitar_status(self):
-        print("status\n")
+        pass
     
     def alterar_conexao(self):
-        print("conexao\n")
+        pass
 
     def testar_tempo_conexao(self, mensagem):
-        print("tempo\n")
+        pass
+
+    def setup(self) -> None:
+        pass
 
     def metodos(self):
         global enviar, receber, esperar
         enviar = self.enviar_mensagem
         receber = self.receber_mensagem
         esperar = time.sleep
-
-    def setup(self) -> None:
-        while (True):
-            safe_prompt()
-            comando = input()
-            self.enviar_mensagem(comando)
-            if comando.lower() == "*":   
-                break
-             
+         
     def executar(self):
         
         self.descoberta()
         self.conectar()
         self.metodos()
         self.iniciar_threads(0)
-        self.setup()
-        self.iniciar_threads(1)
     
-        while self._estado:
-
-            self.acao()
-
-        self.desconectar()
     
-    def acao(self):
-
-        enviar(velocidade(120,120))
-
-        enviar(SENSOR_ULTRASSONICO)
-        valor = receber()
-        print(f"distancia: {valor:.2f}")
-
-        if(valor < 20):
-            enviar(MOTOR_PARAR)
-            esperar(0.5)
-            enviar(MOVER_PARA_TRAZ)
-            esperar(0.5)
-            enviar(MOTOR_PARAR)
-            esperar(0.5)
-            enviar(MOVER_PARA_DIREITA)
-            esperar(0.4)
-            enviar(MOTOR_PARAR)
-            esperar(0.5)
-            
-        enviar(MOVER_PARA_FRENTE)
-
-        esperar(0.05)
     
-def velocidade( a, b):
-    return "VS/" + str(a) + "/" + str(b)
-        
-# Execução de um exemplo de troca de mensagens entre cliente e servidor
-if __name__ == "__main__":
-    
-    PORTA_CLIENTE = 5005
-    PORTA_ROBO = 4210
-
-    cliente = ClienteUnoR4Wifi(PORTA_CLIENTE, PORTA_ROBO)
-    #cliente.robo = 
-
-    cliente.executar()
-
-'''
-        enviar(velocidade(120,120))
-
-        enviar(SENSOR_ULTRASSONICO)
-        valor = receber()
-        print(f"distancia: {valor:.2f}")
-
-        if(valor < 20):
-            enviar(MOTOR_PARAR)
-            esperar(0.5)
-            enviar(MOVER_PARA_TRAZ)
-            esperar(0.5)
-            enviar(MOTOR_PARAR)
-            esperar(0.5)
-            enviar(MOVER_PARA_DIREITA)
-            esperar(0.4)
-            enviar(MOTOR_PARAR)
-            esperar(0.5)
-            
-        enviar(MOVER_PARA_FRENTE)
-
-        esperar(0.05)
-
-        
-        self.enviar_mensagem("VS/120/120")
-
-        self.enviar_mensagem("RU")
-        valor = self.receber_mensagem()
-        print(f"distancia: {valor:.2f}")
-
-        if(valor < 15):
-            self.enviar_mensagem("MP")
-            time.sleep(0.5)
-
-            self.enviar_mensagem("MD")
-            time.sleep(0.3)
-
-            self.enviar_mensagem("MP")
-            time.sleep(0.5)
-            
-        self.enviar_mensagem("MF")
-        
-        time.sleep(0.05)
-
-'''

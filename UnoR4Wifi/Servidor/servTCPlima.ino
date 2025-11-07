@@ -1,4 +1,4 @@
-k#include <WiFiS3.h>
+#include <WiFiS3.h>
 #include <WiFiUdp.h>
 #include <Wire.h>
 
@@ -484,7 +484,7 @@ void configurarMPU(){
   
   // Iniciar a comunicação I2C para comunicar com o sensor MPU6050
   Wire.begin();
-  Wire.beginTransmission(MPU);
+  Wire.beginTransmission(MPU6050);
   Wire.write(0x6B); 
 
   // Envio de argumento de configuração padrão e finalização da transmissão
@@ -986,12 +986,12 @@ void lerTemperatura(){
   }
   
   // Iniciando comunicação com o sensor MPU-6050
-  Wire.beginTransmission(MPU);
+  Wire.beginTransmission(MPU6050);
   Wire.write(0x3B);  
   Wire.endTransmission(false);
   
   // Requisitando os bytes com os dados de leitura do servidor
-  Wire.requestFrom(MPU,14,true);
+  Wire.requestFrom(MPU6050,14,true);
 
   // Percorrendo os bytes do retorno para obter apenas aqueles
   // que condizem com a função atual
@@ -1020,12 +1020,12 @@ void lerAcelerometroX(){
     return;
   }
   // Iniciando comunicação com o sensor MPU-6050
-  Wire.beginTransmission(MPU);
+  Wire.beginTransmission(MPU6050);
   Wire.write(0x3B);  
   Wire.endTransmission(false);
   
   // Requisitando os bytes com os dados de leitura do servidor
-  Wire.requestFrom(MPU,14,true);
+  Wire.requestFrom(MPU6050,14,true);
   
   // Percorrendo os bytes do retorno para obter apenas aqueles
   // que condizem com a função atual
@@ -1051,12 +1051,12 @@ void lerAcelerometroY(){
   }
 
   // Iniciando comunicação com o sensor MPU-6050
-  Wire.beginTransmission(MPU);
+  Wire.beginTransmission(MPU6050);
   Wire.write(0x3B);  
   Wire.endTransmission(false);
   
   // Requisitando os bytes com os dados de leitura do servidor
-  Wire.requestFrom(MPU,14,true);
+  Wire.requestFrom(MPU6050,14,true);
   
   // Percorrendo os bytes do retorno para obter apenas aqueles
   // que condizem com a função atual
@@ -1082,12 +1082,12 @@ void lerAcelerometroZ(){
   }
 
   // Iniciando comunicação com o sensor MPU-6050
-  Wire.beginTransmission(MPU);
+  Wire.beginTransmission(MPU6050);
   Wire.write(0x3B);  
   Wire.endTransmission(false);
   
   // Requisitando os bytes com os dados de leitura do servidor
-  Wire.requestFrom(MPU,14,true);
+  Wire.requestFrom(MPU6050,14,true);
   
   // Percorrendo os bytes do retorno para obter apenas aqueles
   // que condizem com a função atual
@@ -1113,12 +1113,12 @@ void lerGiroscopioX(){
   }
 
   // Iniciando comunicação com o sensor MPU-6050
-  Wire.beginTransmission(MPU);
+  Wire.beginTransmission(MPU6050);
   Wire.write(0x3B);  
   Wire.endTransmission(false);
   
   // Requisitando os bytes com os dados de leitura do servidor
-  Wire.requestFrom(MPU,14,true);
+  Wire.requestFrom(MPU6050,14,true);
   
   // Percorrendo os bytes do retorno para obter apenas aqueles
   // que condizem com a função atual
@@ -1144,12 +1144,12 @@ void lerGiroscopioY(){
   }
 
   // Iniciando comunicação com o sensor MPU-6050
-  Wire.beginTransmission(MPU);
+  Wire.beginTransmission(MPU6050);
   Wire.write(0x3B);  
   Wire.endTransmission(false);
   
   // Requisitando os bytes com os dados de leitura do servidor
-  Wire.requestFrom(MPU,14,true);
+  Wire.requestFrom(MPU6050,14,true);
   
   // Percorrendo os bytes do retorno para obter apenas aqueles
   // que condizem com a função atual
@@ -1175,12 +1175,12 @@ void lerGiroscopioZ(){
   }
   
   // Iniciando comunicação com o sensor MPU-6050
-  Wire.beginTransmission(MPU);
+  Wire.beginTransmission(MPU6050);
   Wire.write(0x3B);  
   Wire.endTransmission(false);
   
   // Requisitando os bytes com os dados de leitura do servidor
-  Wire.requestFrom(MPU,14,true);
+  Wire.requestFrom(MPU6050,14,true);
   
   // Percorrendo os bytes do retorno para obter apenas aqueles
   // que condizem com a função atual
