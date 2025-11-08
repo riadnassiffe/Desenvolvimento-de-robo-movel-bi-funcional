@@ -49,11 +49,6 @@ class Cliente(metaclass=ABCMeta):
     def receber_mensagem(self, timeout: float = 5.0) -> float:
         ...
 
-    @abstractmethod
-    def setup(self) -> None:
-        ...
-
-
     @abstractmethod    
     def testar_tempo_conexao(self,mensagem:str) -> float:
         ...
@@ -62,8 +57,6 @@ class Cliente(metaclass=ABCMeta):
     def solicitar_status(self):
         ...
         
-            
-
     def veriricar_erros(self,saida:int)->int:
         if saida == 10000000:
             raise ErroPinoNaoConfigurado()

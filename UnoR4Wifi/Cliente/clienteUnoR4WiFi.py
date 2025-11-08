@@ -124,10 +124,7 @@ class ClienteUnoR4Wifi(Cliente):
 
     def testar_tempo_conexao(self, mensagem):
         pass
-
-    def setup(self) -> None:
-        pass
-
+    
     def metodos(self):
         global enviar, receber, esperar
         enviar = self.enviar_mensagem

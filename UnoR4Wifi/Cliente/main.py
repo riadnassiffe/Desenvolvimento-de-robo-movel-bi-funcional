@@ -10,11 +10,11 @@ lembre de finalizar enviando "*"
 '''
 
 def setup():
-    enviar("M/8/9/10/11/12/13")
+    enviar(CONFIGURAR_MOTORES + "/8/9/10/11/12/13")
     esperar(0.5)
-    enviar("U/6/7")
+    enviar(CONFIGURAR_ULTRASSONICO + "/6/7")
     esperar(0.5)
-    enviar("*") # Obrigatório para finalizar a configuração
+    enviar(SETUP_CONCLUIDO) # Obrigatório para finalizar a configuração
 
 '''
 --- Loop ---
@@ -37,7 +37,7 @@ def loop():
         enviar(MOTOR_PARAR)
         esperar(0.5)
         enviar(MOVER_PARA_DIREITA)
-        esperar(0.4)
+        esperar(0.5)
         enviar(MOTOR_PARAR)
         esperar(0.5)
     else:
@@ -51,7 +51,6 @@ def main():
     try:
         conectar_robo()
         setup()
-
         print("Iniciando loop de ação. Pressione Ctrl+C para parar.")
                 
         while True:

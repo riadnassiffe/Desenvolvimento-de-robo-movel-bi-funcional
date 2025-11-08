@@ -577,6 +577,28 @@ void rotacionarDireita(){
   dado_retorno.floatingPoint = 1;
 }
 
+void fazerCurva(){
+  
+  // Leitura dos parâmetros do comando (velocidades N1 e N2)
+  int v1 = client.parseInt();  // Velocidade para o Motor A (PIN_ENA)
+  int v2 = client.parseInt();  // Velocidade para o Motor B (PIN_ENB)
+
+  // Validação dos parâmetros [0, 255] (ERRO 1)
+  if ((v1 < 0 || v1 > 255) || (v2 < 0 || v2 > 255)){
+    // Em caso de erro, notificar o cliente
+    dado_retorno.floatingPoint = erro1;
+    return;
+  }
+
+  // Define as velocidades diferentes para cada motor
+  analogWrite(PIN_ENA, v1);
+  analogWrite(PIN_ENB, v2);
+  
+  // Configurando a variável com o dado de retorno para o servidor
+  dado_retorno.floatingPoint = 1;
+
+}
+
 void pararMotores(){
 
   // Código para parar os motores
@@ -1386,6 +1408,10 @@ void loop() {
           
           case (69):
             rotacionarEsquerda();
+            break;
+          
+          case (67):
+            fazerCurva();
             break;
             
           default:
