@@ -41,8 +41,3 @@ def desconectar_robo():
         _cliente.enviar_mensagem(FINALIZAR)
         _cliente.desconectar()
         print("Robô desconectado.")
-
-# --- Funções De Ajuda ---
-def velocidade(a, b):
-    """Formata o comando de velocidade."""
-    return "VS/" + str(a) + "/" + str(b)
