@@ -4,6 +4,10 @@
     mensagem de aviso para quando ele for disparado.
 '''
 
+ERRO_0_PINO_NAO_CONFIGURADO = 10000000.0
+ERRO_1_PARAMETRO_INVALIDO = 10000001.0
+ERRO_2_COMANDO_INVALIDO = 10000002.0
+
 class ErroPinoNaoConfigurado(Exception):
     """
         ERRO 0

@@ -1,4 +1,15 @@
-# Este arquivo mapeia os comandos em Python para as strings
+"""
+Módulo de Comandos - Protocolo Serial do Robô.
+
+Este arquivo centraliza todas as strings de comando (códigos de protocolo)
+usadas na comunicação entre o script Python e o robô (ex: Arduino).
+
+O objetivo é mapear constantes Python legíveis (ex: MOVER_PARA_FRENTE)
+para os códigos de string curtos (ex: "MF") que o robô espera.
+
+Fica a gosto do usuário utilizar os comandos ou diretamente suas representações
+de letras.
+"""
 
 # --- Comandos de Configuração setup() ---
 CONFIGURAR_MOTORES = "M"            # configurarMotores()
