@@ -8,7 +8,7 @@ simples e globais que o 'main.py' pode utilizar.
 O 'main.py' (o arquivo do usuário) deve importar
 apenas deste módulo.
 """
-from clienteUnoR4WiFi import ClienteUnoR4Wifi
+#from clienteUnoR4WiFi import ClienteUnoR4Wifi
 from comandos import *
 import time
 import sys
@@ -23,7 +23,7 @@ PORTA_ROBO = 4210
 _cliente = None
 """
 Armazena a instância única do 'ClienteUnoR4Wifi' após a conexão.
-As funções 'enviar' e 'receber' usam esta variável.
+As funções 'enviar' e 'receber' usam esta variável global.
 """
 
 # --- Funções de Interface para o main.py ---
@@ -37,6 +37,7 @@ def enviar(comando: str):
     Args:
         comando (str): A string de comando (ex: "MF", "VS/120/120").
     """
+    # Garante que o comando só seja enviado se a conexão (_cliente) foi estabelecida.
     if _cliente:
         _cliente.enviar_mensagem(comando)
 
@@ -55,13 +56,14 @@ def receber(timeout=5.0):
         float: O valor recebido do robô (ex: distância, status)
                ou 999 se o tempo estourar.
     """
+    # Garante que a recepção só ocorra se a conexão (_cliente) existir.
     if _cliente:
         return _cliente.receber_mensagem(timeout)
 
 # Atalho global para time.sleep, usado para consistência no main.py
 esperar = time.sleep
 
-def conectar_robo():
+def conectar_robo(cliente=None):
     """Inicializa e conecta ao robô.
 
     Esta função deve ser chamada uma vez no início do 'main.py'.
@@ -70,15 +72,23 @@ def conectar_robo():
     Em seguida, chama o método 'executar()' do cliente para
     realizar a descoberta, conexão e iniciar a thread de escuta.
     """
+    if cliente is None:
+        # Garante que o usuário forneça uma classe de cliente válida.
+        raise ValueError("Você precisa informar um cliente válido, no parametro de conectar_robo(ClienteUnoR4Wifi)")
+    
+    # Define a variável global _cliente para ser usada por outras funções do módulo.
     global _cliente
     print("Iniciando conexão com o robô")
     try:
-        _cliente = ClienteUnoR4Wifi(PORTA_CLIENTE, PORTA_ROBO)
+        # Instancia o cliente com as portas padrão.
+        _cliente = cliente(PORTA_CLIENTE, PORTA_ROBO)
+        # O método executar lida com a descoberta, conexão e inicialização da thread.
         _cliente.executar()
        
         print("Robo pronto para ação")
     
     except Exception as e:
+        # Em caso de falha na conexão, encerra o programa.
         print(f"Erro fatal ao conectar: {e}")
         sys.exit()
 
@@ -92,6 +102,8 @@ def desconectar_robo():
     if _cliente:
         print("Desligando robô")
 
+        # Envia um comando para o Arduino saber que a conexão está sendo encerrada.
         _cliente.enviar_mensagem(FINALIZAR)
+        # Fecha o socket e libera os recursos de rede.
         _cliente.desconectar()
         print("Robô desconectado.")

@@ -1,32 +1,33 @@
 """
-Define a interface abstrata (Classe Base Abstrata - ABC) para um Cliente de Robô.
+Define a interface abstrata para um Cliente de Robô.
 
-Esta classe serve como um "contrato", garantindo que qualquer classe de cliente
-concreta implemente todos os métodos essenciais
-para a comunicação, como conectar, enviar e receber.
+Esta classe serve como um "contrato", garantindo que qualquer classe de cliente concreta implemente todos os métodos essenciais para a comunicação, como conectar, enviar e receber.
 """
 
 from abc import ABC, ABCMeta, abstractmethod
 from erro import *
 
 class Cliente(metaclass=ABCMeta):
+    """Essa classe é uma interface que deve ser herda por outra classe que deve implementar
+    as especificidades de comunicação com a placa que controla o robô.
+
+    """
     
     def __init__(self, porta_cliente:int, porta_robo:int):
         """Inicializa a classe base do Cliente.
 
-        Args:
-            porta_cliente (int): A porta de origem (deste script).
-            porta_robo (int): A porta de destino (no robô).
+            :param porta_cliente (int): A porta de origem (deste script).
+            :param porta_robo (int): A porta de destino (no robô).
         """
-        self._porta_cliente = porta_cliente
-        self._porta_robo = porta_robo
-        self._addr = None
-        self._socket = None
-        self._resposta = None
+        self._porta_cliente = porta_cliente # Porta UDP para descoberta
+        self._porta_robo = porta_robo       # Porta do servidor no robô (UDP e TCP)
+        self._addr = None                   # Endereço IP do robô, a ser descoberto
+        self._socket = None                 # Socket TCP para comunicação principal
+        self._resposta = None               # Armazena a última resposta bruta recebida
 
     @property
     def resposta(self)->str:
-        """Obtém a última resposta bruta recebida."""
+        """Obtém a última resposta recebida."""
         return str(self._resposta)
 
     @resposta.setter
@@ -83,11 +84,13 @@ class Cliente(metaclass=ABCMeta):
             ErroValorParametroInvalido: Se o código for ERRO_1_PARAMETRO_INVALIDO.
             ErroComandoInvalido: Se o código for ERRO_2_COMANDO_INVALIDO.
         """
-        if saida == ERRO_0_PINO_NAO_CONFIGURADO:
+        # Compara o valor de saída com os códigos de erro predefinidos.
+        if saida == ERRO_0_PINO_NAO_CONFIGURADO: # Código 10000000.0
             raise ErroPinoNaoConfigurado()
-        elif saida == ERRO_1_PARAMETRO_INVALIDO:
+        elif saida == ERRO_1_PARAMETRO_INVALIDO: # Código 10000001.0
             raise ErroValorParametroInvalido()
-        elif saida == ERRO_2_COMANDO_INVALIDO:
+        elif saida == ERRO_2_COMANDO_INVALIDO:   # Código 10000002.0
             raise ErroComandoInvalido()
 
+        # Se não for um erro, retorna o valor original.
         return saida

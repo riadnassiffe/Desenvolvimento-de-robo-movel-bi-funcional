@@ -1,0 +1,15 @@
+# Arquivos de Bytecode e Cache do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Documentação gerada pelo Sphinx
+# Ignora o diretório 'build' dentro de qualquer pasta 'docs'
+**/docs/build/
+
+
+
+# Arquivos de configuração de IDEs
+.vscode/
+

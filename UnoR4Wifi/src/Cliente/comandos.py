@@ -22,8 +22,8 @@ CONFIGURAR_OPTICO = "O"             # configurarSensorOpticoReflexivo()
 CONFIGURAR_POTENCIOMETRO = "P"      # configurarPotenciometro()
 CONFIGURAR_BOTAO = "B"              # configurarPushButton()
 CONFIGURAR_MPU = "X"                # configurarMPU()
-RESETAR_PINOS = "R"                 # resetarPinos()
-VERIFICAR_PINO_CONFIGURADO = "V"    # verificarPinoConfigurado()
+RESETAR_PINOS = "R"                 # resetarPINos()
+VERIFICAR_PINO_CONFIGURADO = "V"    # verificarPINoConfigurado()
 SETUP_CONCLUIDO = "*"               # Finaliza o loop de configuração
 
 # --- Comandos de Ação loop() ---
@@ -71,3 +71,19 @@ LED_RGB_DESATIVAR = "LD"            # desativarLedRGB()
 BUZZER_ATIVAR = "ZA"                # ativarBuzzer()
 BUZZER_ATIVAR_DELAY = "ZT"          # ativarBuzzerDelay()
 BUZZER_DESATIVAR = "ZD"             # desativarBuzzer()
+
+# Porta do Arduino
+PIN1 = "1"
+PIN2 = "2"
+PIN3 = "3"
+PIN4 = "4"
+PIN5 = "5"
+PIN6 = "6"
+PIN7 = "7"
+PIN8 = "8"
+PIN9 = "9"
+PIN10 = "10"
+PIN11 = "11"
+PIN12 = "12"
+PIN13 = "13"
+PIN14 = "14"
