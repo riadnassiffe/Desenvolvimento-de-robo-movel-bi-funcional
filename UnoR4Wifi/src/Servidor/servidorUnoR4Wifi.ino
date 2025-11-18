@@ -527,7 +527,7 @@ void setVelocidade(){
     
 }
 
-void andarParaFrente(){
+void andarParaTras(){
 
   // Parando os motores
   digitalWrite(PIN_M1, HIGH);
@@ -540,7 +540,7 @@ void andarParaFrente(){
 
 }
 
-void andarParaTras(){
+void andarParaFrente(){
 
   // Parando os motores
   digitalWrite(PIN_M1, LOW);

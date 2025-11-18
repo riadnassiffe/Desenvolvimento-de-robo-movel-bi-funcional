@@ -11,6 +11,27 @@ from comandos import *
 import time
 
 '''
+ --- Funções De Ajuda ---
+ opcional, isso depende caso o usuário precise
+ apenas um exemplo para facilitar o uso de enviar
+ comandos para alterar a velocidade do robo
+'''
+def velocidade(a, b):
+    """Formata o comando de velocidade para os motores.
+
+    Cria uma string de comando padronizada "VS/a/b" que pode ser
+    enviada ao robô para definir a velocidade dos motores.
+
+    Args:
+        a (int): A velocidade desejada para o motor A (ou esquerdo).
+        b (int): A velocidade desejada para o motor B (ou direito).
+
+    Returns:
+        str: A string de comando formatada (ex: "VS/120/120").
+    """
+    return "VS/" + str(a) + "/" + str(b)
+
+'''
 --- Setup ---
 Informe o robo a configuração dele
 lembre de finalizar enviando "*"
@@ -23,11 +44,8 @@ def setup():
     Finalize enviando o comando 'SETUP_CONCLUIDO'
     para sinalizar que o robô está pronto para iniciar o loop principal.
     """
-    # Exemplo: Configura os pinos dos motores.
-    enviar(CONFIGURAR_MOTORES + "/8/9/10/11/12/13")
-    esperar(0.5)
-    # Exemplo: Configura os pinos do sensor ultrassônico.
-    enviar(CONFIGURAR_ULTRASSONICO + "/6/7")
+    # Exemplo: Configura o pino do buzzer.
+    enviar(CONFIGURAR_BUZZER + "/7")
     esperar(0.5)
     # Envia o comando para o robô sair do modo de configuração e entrar no loop de ação.
     enviar(SETUP_CONCLUIDO)
@@ -40,37 +58,11 @@ e receba o resultado delas
 '''
 
 def loop():
-    """
-    Executa o ciclo da lógica de controle do robô o qual deve
-    ser criado pelo usuário.
-    """
-    # Define a velocidade dos motores para 120 (em uma escala de 0-255, por exemplo).
-    enviar(velocidade(120, 120))
-    # Solicita uma leitura do sensor ultrassônico.
-    enviar(SENSOR_ULTRASSONICO)
-    # Aguarda e recebe o valor da distância lida.
-    valor = receber()
-    print(valor)
-
-    # Lógica de desvio de obstáculo simples.
-    if (valor < 20):
-        # Se um obstáculo estiver a menos de 20cm, o robô para e manobra.
-        enviar(MOTOR_PARAR)
-        esperar(0.5)
-        enviar(MOVER_PARA_TRAZ)
-        esperar(0.5)
-        enviar(MOTOR_PARAR)
-        esperar(0.5)
-        enviar(MOVER_PARA_DIREITA)
-        esperar(0.5)
-        enviar(MOTOR_PARAR)
-        esperar(0.5)
-    else:
-        # Se o caminho estiver livre, o robô continua em frente.
-        enviar(MOVER_PARA_FRENTE)
-
+    
+    # Enviando comando para ativar o buzzer
+    enviar(BUZZER_ATIVAR_DELAY + "500/100")
     # Pequena pausa para controlar a frequência do loop.
-    esperar(0.05)
+    esperar(2)
 
 def main():
     """Função principal que gerencia o ciclo de vida da execução do robô.
@@ -109,23 +101,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-'''
- --- Funções De Ajuda ---
- opcional, isso depende caso o usuário precise
- apenas um exemplo para facilitar o uso de enviar
- comandos para alterar a velocidade do robo
-'''
-def velocidade(a, b):
-    """Formata o comando de velocidade para os motores.
-
-    Cria uma string de comando padronizada "VS/a/b" que pode ser
-    enviada ao robô para definir a velocidade dos motores.
-
-    Args:
-        a (int): A velocidade desejada para o motor A (ou esquerdo).
-        b (int): A velocidade desejada para o motor B (ou direito).
-
-    Returns:
-        str: A string de comando formatada (ex: "VS/120/120").
-    """
-    return "VS/" + str(a) + "/" + str(b)
