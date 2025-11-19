@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>clienteUnoR4WiFi &mdash; Documentação Desenvolvimento de robo bifuncional 2.0</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=f5127f15" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../_static/jquery.js?v=958b65b0"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=29cdef05"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=beaedd51"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Pesquisar" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Desenvolvimento de robo bifuncional
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar docs" aria-label="Pesquisar docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Desenvolvimento de robo bifuncional</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Código do módulo</a></li>
+      <li class="breadcrumb-item active">clienteUnoR4WiFi</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fonte de clienteUnoR4WiFi</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Implementação do cliente de comunicação específico para o Arduino Uno R4 WiFi.</span>
+
+<span class="sd">Esta classe herda de &#39;Cliente&#39; e implementa a lógica de:</span>
+<span class="sd">1. Descoberta do robô na rede local usando broadcast UDP.</span>
+<span class="sd">2. Conexão TCP para troca de mensagens de comando e dados.</span>
+<span class="sd">3. Uma thread de escuta para receber dados (floats) continuamente.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">cliente</span> <span class="kn">import</span> <span class="n">Cliente</span>
+<span class="kn">import</span> <span class="nn">struct</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">threading</span> 
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<div class="viewcode-block" id="ClienteUnoR4Wifi">
+<a class="viewcode-back" href="../Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi">[documentos]</a>
+<span class="k">class</span> <span class="nc">ClienteUnoR4Wifi</span><span class="p">(</span><span class="n">Cliente</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">porta_cliente</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">porta_robo</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inicializa o cliente para o Uno R4 WiFi.</span>
+<span class="sd">        Args:</span>
+<span class="sd">            porta_cliente (int): Porta que o cliente (este script) usará</span>
+<span class="sd">                                 para a descoberta UDP.</span>
+<span class="sd">            porta_robo (int): Porta que o robô (Uno R4) está escutando</span>
+<span class="sd">                              tanto para UDP quanto para TCP.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">porta_cliente</span><span class="p">,</span> <span class="n">porta_robo</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_estado</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># 1 = Ativo, 0 = Inativo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">valor</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># Buffer para o último valor float recebido pela thread de escuta.</span>
+
+<div class="viewcode-block" id="ClienteUnoR4Wifi.descoberta">
+<a class="viewcode-back" href="../Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi.descoberta">[documentos]</a>
+    <span class="k">def</span> <span class="nf">descoberta</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Localiza o robô na rede local usando broadcast UDP.</span>
+
+<span class="sd">        Envia uma mensagem de broadcast (&quot;UnoR4WiFi&quot;) e aguarda</span>
+<span class="sd">        uma resposta do robô para identificar seu endereço IP.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Cria um socket UDP.</span>
+        <span class="n">udp_sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_DGRAM</span><span class="p">)</span>
+        <span class="c1"># Permite que o socket envie pacotes de broadcast.</span>
+        <span class="n">udp_sock</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_BROADCAST</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Associa o socket à porta do cliente para poder receber a resposta.</span>
+        <span class="n">udp_sock</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_porta_cliente</span><span class="p">))</span>
+        <span class="n">udp_sock</span><span class="o">.</span><span class="n">settimeout</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span> <span class="c1"># Define um timeout para a espera da resposta.</span>
+
+        <span class="n">mensagem</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;UnoR4WiFi&quot;</span>
+
+        <span class="c1"># Loop para enviar a mensagem de descoberta até que o robô responda.</span>
+        <span class="k">while</span><span class="p">(</span><span class="kc">True</span><span class="p">):</span>
+            <span class="c1"># Envia a mensagem para todos os dispositivos na rede (broadcast).</span>
+            <span class="n">udp_sock</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">mensagem</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;255.255.255.255&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_porta_robo</span><span class="p">))</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Aguarda a resposta do robô.</span>
+                <span class="n">data</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">udp_sock</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_addr</span> <span class="o">=</span> <span class="n">addr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># Armazena o endereço IP do robô.</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Robô respondeu: </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Endereço do robô: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_addr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">break</span>
+            <span class="k">except</span> <span class="n">socket</span><span class="o">.</span><span class="n">timeout</span><span class="p">:</span>
+                <span class="c1"># Se o robô não responder dentro do timeout, tenta novamente.</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Robô não respondeu à descoberta.&quot;</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+                
+        <span class="n">udp_sock</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="ClienteUnoR4Wifi.conectar">
+<a class="viewcode-back" href="../Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi.conectar">[documentos]</a>
+    <span class="k">def</span> <span class="nf">conectar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Estabelece a conexão TCP principal com o robô.</span>
+
+<span class="sd">        Utiliza o endereço IP (self._addr) obtido durante a descoberta</span>
+<span class="sd">        para criar a conexão de streaming (TCP).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Cria um socket TCP/IP.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_socket</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Conecta ao endereço IP e porta do robô.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_socket</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_addr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_porta_robo</span><span class="p">))</span>
+        <span class="k">except</span> <span class="n">socket</span><span class="o">.</span><span class="n">error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Erro ao conectar via TCP: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+
+        <span class="c1"># Define um timeout para operações no socket (ex: recv).</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_socket</span><span class="o">.</span><span class="n">settimeout</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span> </div>
+
+
+<div class="viewcode-block" id="ClienteUnoR4Wifi.desconectar">
+<a class="viewcode-back" href="../Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi.desconectar">[documentos]</a>
+    <span class="k">def</span> <span class="nf">desconectar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Encerra a conexão TCP com o robô.&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_socket</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erro ao finalizar a conexão com ervidor.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Conexão com Servidor Finalizada&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ClienteUnoR4Wifi.enviar_mensagem">
+<a class="viewcode-back" href="../Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi.enviar_mensagem">[documentos]</a>
+    <span class="k">def</span> <span class="nf">enviar_mensagem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mensagem</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Envia uma string de comando para o robô via TCP.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_estado</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_socket</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Envia a mensagem, codificando a string para bytes.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_socket</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="n">mensagem</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+            <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erro ao enviar mensagem, código:&quot;</span><span class="p">,</span><span class="ne">OSError</span><span class="o">.</span><span class="n">errno</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="ClienteUnoR4Wifi.receber_mensagem">
+<a class="viewcode-back" href="../Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi.receber_mensagem">[documentos]</a>
+    <span class="k">def</span> <span class="nf">receber_mensagem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mf">5.0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Aguarda e obtém o próximo valor (float) recebido pela thread.</span>
+
+<span class="sd">        Esta função não lê o socket diretamente. Ela consome o valor</span>
+<span class="sd">        que a thread &#39;escutar_servidor&#39; armazena em &#39;self.valor&#39;.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            timeout (float): Tempo máximo em segundos para esperar por um valor.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: O valor recebido, ou 999 em caso de timeout.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Marca o tempo de início para controlar o timeout.</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="c1"># Verifica se a thread de escuta já colocou um novo valor no buffer &#39;self.valor&#39;.</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">valor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">val_float</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">valor</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">valor</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># Limpa o buffer para o próximo valor.</span>
+                <span class="c1"># Verifica se o valor recebido é um código de erro.</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">verificar_erros</span><span class="p">(</span><span class="n">val_float</span><span class="p">)</span>
+                    
+            <span class="c1"># Se o tempo de espera exceder o timeout, retorna um código de erro.</span>
+            <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span> <span class="o">&gt;</span> <span class="n">timeout</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mi">999</span>  <span class="c1"># Retorna código de erro/timeout</span>
+            <span class="c1"># Pequena pausa para não sobrecarregar a CPU.</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>  </div>
+
+
+
+<div class="viewcode-block" id="ClienteUnoR4Wifi.escutar_servidor">
+<a class="viewcode-back" href="../Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi.escutar_servidor">[documentos]</a>
+    <span class="k">def</span> <span class="nf">escutar_servidor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Thread de escuta para dados do robô.</span>
+
+<span class="sd">        Lê continuamente o socket TCP, monta pacotes de 4 bytes e</span>
+<span class="sd">        os decodifica como valores float, armazenando o último valor</span>
+<span class="sd">        em &#39;self.valor&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">buffer</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>  <span class="c1"># Buffer para armazenar bytes recebidos que ainda não formam um float completo.</span>
+
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">_estado</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Tenta receber até 1024 bytes do socket.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_resposta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_socket</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+
+                <span class="c1"># Se não receber dados, a conexão pode ter sido fechada.</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resposta</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="c1"># Adiciona os dados recebidos ao buffer.</span>
+                <span class="n">buffer</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resposta</span>
+
+                <span class="c1"># Processa o buffer em pedaços de 4 bytes (tamanho de um float).</span>
+                <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
+                    <span class="n">chunk</span> <span class="o">=</span> <span class="n">buffer</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="c1"># Pega os primeiros 4 bytes.</span>
+                    <span class="n">buffer</span> <span class="o">=</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span> <span class="c1"># Remove os 4 bytes processados do buffer.</span>
+                    <span class="c1"># Desempacota os 4 bytes como um número float (&#39;f&#39;).</span>
+                    <span class="n">valor_float</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="n">chunk</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="c1"># O robô pode enviar valores &#39;1.0&#39; como &#39;keep-alive&#39;, que são ignorados.</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">valor_float</span> <span class="o">!=</span> <span class="mf">1.0</span><span class="p">):</span> <span class="c1"># Ignora valores &quot;keep-alive&quot;</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">valor</span> <span class="o">=</span> <span class="n">valor_float</span>
+
+            <span class="k">except</span> <span class="n">socket</span><span class="o">.</span><span class="n">timeout</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+                <span class="k">break</span></div>
+
+
+<div class="viewcode-block" id="ClienteUnoR4Wifi.iniciar_threads">
+<a class="viewcode-back" href="../Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi.iniciar_threads">[documentos]</a>
+    <span class="k">def</span> <span class="nf">iniciar_threads</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inicia as threads de serviço do cliente.</span>
+
+<span class="sd">        Case(0): Inicia a thread &#39;escutar_servidor&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">match</span> <span class="n">n</span><span class="p">:</span>
+            <span class="k">case</span><span class="p">(</span><span class="mi">0</span><span class="p">):</span>
+                <span class="c1"># Cria e inicia a thread de escuta em modo &#39;daemon&#39; para que ela</span>
+                <span class="c1"># seja encerrada automaticamente quando o programa principal terminar.</span>
+                <span class="n">thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">escutar_servidor</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="ClienteUnoR4Wifi.solicitar_status">
+<a class="viewcode-back" href="../Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi.solicitar_status">[documentos]</a>
+    <span class="k">def</span> <span class="nf">solicitar_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Método placeholder (não implementado).&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+    
+<div class="viewcode-block" id="ClienteUnoR4Wifi.alterar_conexao">
+<a class="viewcode-back" href="../Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi.alterar_conexao">[documentos]</a>
+    <span class="k">def</span> <span class="nf">alterar_conexao</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Método placeholder (não implementado).&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="ClienteUnoR4Wifi.testar_tempo_conexao">
+<a class="viewcode-back" href="../Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi.testar_tempo_conexao">[documentos]</a>
+    <span class="k">def</span> <span class="nf">testar_tempo_conexao</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mensagem</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Método placeholder (não implementado).&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+         
+<div class="viewcode-block" id="ClienteUnoR4Wifi.executar">
+<a class="viewcode-back" href="../Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi.executar">[documentos]</a>
+    <span class="k">def</span> <span class="nf">executar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Executa a sequência de inicialização completa.</span>
+
+<span class="sd">        Realiza a descoberta, conecta-se via TCP e inicia a</span>
+<span class="sd">        thread de escuta.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">descoberta</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conectar</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iniciar_threads</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, IFC.</p>
+  </div>
+
+  Compilado com <a href="https://www.sphinx-doc.org/">Sphinx</a> usando um
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornecido por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
