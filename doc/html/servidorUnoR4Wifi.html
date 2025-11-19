@@ -1,0 +1,734 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>servidorUnoR4Wifi &mdash; Documentação Desenvolvimento de robo bifuncional 2.0</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=29cdef05"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/translations.js?v=beaedd51"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Pesquisar" href="search.html" />
+    <link rel="prev" title="Cliente package" href="Cliente.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Desenvolvimento de robo bifuncional
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar docs" aria-label="Pesquisar docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <p class="caption" role="heading"><span class="caption-text">Conteúdo:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Cliente</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">servidorUnoR4Wifi</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv412resetarPinosv"><code class="docutils literal notranslate"><span class="pre">resetarPinos()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv424verificarPinoConfiguradov"><code class="docutils literal notranslate"><span class="pre">verificarPinoConfigurado()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv417configurarMotoresv"><code class="docutils literal notranslate"><span class="pre">configurarMotores()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv428configurarSensorUltrassonicov"><code class="docutils literal notranslate"><span class="pre">configurarSensorUltrassonico()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv420configurarLedSimplesv"><code class="docutils literal notranslate"><span class="pre">configurarLedSimples()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv416configurarLedRGBv"><code class="docutils literal notranslate"><span class="pre">configurarLedRGB()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv416configurarBuzzerv"><code class="docutils literal notranslate"><span class="pre">configurarBuzzer()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv428configurarSensorFotoresistorv"><code class="docutils literal notranslate"><span class="pre">configurarSensorFotoresistor()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv431configurarSensorOpticoReflexivov"><code class="docutils literal notranslate"><span class="pre">configurarSensorOpticoReflexivo()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv423configurarPotenciometrov"><code class="docutils literal notranslate"><span class="pre">configurarPotenciometro()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv420configurarPushButtonv"><code class="docutils literal notranslate"><span class="pre">configurarPushButton()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv413configurarMPUv"><code class="docutils literal notranslate"><span class="pre">configurarMPU()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv413getVelocidadev"><code class="docutils literal notranslate"><span class="pre">getVelocidade()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv413setVelocidadev"><code class="docutils literal notranslate"><span class="pre">setVelocidade()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv415andarParaFrentev"><code class="docutils literal notranslate"><span class="pre">andarParaFrente()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv413andarParaTrasv"><code class="docutils literal notranslate"><span class="pre">andarParaTras()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv418rotacionarEsquerdav"><code class="docutils literal notranslate"><span class="pre">rotacionarEsquerda()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv417rotacionarDireitav"><code class="docutils literal notranslate"><span class="pre">rotacionarDireita()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv410fazerCurvav"><code class="docutils literal notranslate"><span class="pre">fazerCurva()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv412pararMotoresv"><code class="docutils literal notranslate"><span class="pre">pararMotores()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv49ativarLedv"><code class="docutils literal notranslate"><span class="pre">ativarLed()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv414ativarLedDelayv"><code class="docutils literal notranslate"><span class="pre">ativarLedDelay()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv411inverterLedv"><code class="docutils literal notranslate"><span class="pre">inverterLed()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv412desativarLedv"><code class="docutils literal notranslate"><span class="pre">desativarLed()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv412ativarLedRGBv"><code class="docutils literal notranslate"><span class="pre">ativarLedRGB()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv417ativarLedRGBDelayv"><code class="docutils literal notranslate"><span class="pre">ativarLedRGBDelay()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv415desativarLedRGBv"><code class="docutils literal notranslate"><span class="pre">desativarLedRGB()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv412ativarBuzzerv"><code class="docutils literal notranslate"><span class="pre">ativarBuzzer()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv417ativarBuzzerDelayv"><code class="docutils literal notranslate"><span class="pre">ativarBuzzerDelay()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv415desativarBuzzerv"><code class="docutils literal notranslate"><span class="pre">desativarBuzzer()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv421lerSensorUltrassonicov"><code class="docutils literal notranslate"><span class="pre">lerSensorUltrassonico()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv421lerSensorFotoresistorv"><code class="docutils literal notranslate"><span class="pre">lerSensorFotoresistor()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv424lerSensorOpticoReflexivov"><code class="docutils literal notranslate"><span class="pre">lerSensorOpticoReflexivo()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv416lerPotenciometrov"><code class="docutils literal notranslate"><span class="pre">lerPotenciometro()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv48lerBotaov"><code class="docutils literal notranslate"><span class="pre">lerBotao()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv414lerTemperaturav"><code class="docutils literal notranslate"><span class="pre">lerTemperatura()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv416lerAcelerometroXv"><code class="docutils literal notranslate"><span class="pre">lerAcelerometroX()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv416lerAcelerometroYv"><code class="docutils literal notranslate"><span class="pre">lerAcelerometroY()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv416lerAcelerometroZv"><code class="docutils literal notranslate"><span class="pre">lerAcelerometroZ()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv414lerGiroscopioXv"><code class="docutils literal notranslate"><span class="pre">lerGiroscopioX()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv414lerGiroscopioYv"><code class="docutils literal notranslate"><span class="pre">lerGiroscopioY()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv414lerGiroscopioZv"><code class="docutils literal notranslate"><span class="pre">lerGiroscopioZ()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv419encerrarComunicacaov"><code class="docutils literal notranslate"><span class="pre">encerrarComunicacao()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv45setupv"><code class="docutils literal notranslate"><span class="pre">setup()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv44loopv"><code class="docutils literal notranslate"><span class="pre">loop()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv45teste"><code class="docutils literal notranslate"><span class="pre">teste</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv44ssid"><code class="docutils literal notranslate"><span class="pre">ssid</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv44pass"><code class="docutils literal notranslate"><span class="pre">pass</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv43udp"><code class="docutils literal notranslate"><span class="pre">udp</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv49localPort"><code class="docutils literal notranslate"><span class="pre">localPort</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv414incomingPacket"><code class="docutils literal notranslate"><span class="pre">incomingPacket</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv411pcConectado"><code class="docutils literal notranslate"><span class="pre">pcConectado</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv44pcIP"><code class="docutils literal notranslate"><span class="pre">pcIP</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv46pcPort"><code class="docutils literal notranslate"><span class="pre">pcPort</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv46client"><code class="docutils literal notranslate"><span class="pre">client</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv410velocidade"><code class="docutils literal notranslate"><span class="pre">velocidade</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv412dado_retorno"><code class="docutils literal notranslate"><span class="pre">dado_retorno</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv47MPU6050"><code class="docutils literal notranslate"><span class="pre">MPU6050</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv45erro0"><code class="docutils literal notranslate"><span class="pre">erro0</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv45erro1"><code class="docutils literal notranslate"><span class="pre">erro1</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv45erro2"><code class="docutils literal notranslate"><span class="pre">erro2</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv47PIN_ENA"><code class="docutils literal notranslate"><span class="pre">PIN_ENA</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv46PIN_M1"><code class="docutils literal notranslate"><span class="pre">PIN_M1</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv46PIN_M2"><code class="docutils literal notranslate"><span class="pre">PIN_M2</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv46PIN_M3"><code class="docutils literal notranslate"><span class="pre">PIN_M3</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv46PIN_M4"><code class="docutils literal notranslate"><span class="pre">PIN_M4</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv47PIN_ENB"><code class="docutils literal notranslate"><span class="pre">PIN_ENB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv48PIN_ECHO"><code class="docutils literal notranslate"><span class="pre">PIN_ECHO</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv48PIN_TRIG"><code class="docutils literal notranslate"><span class="pre">PIN_TRIG</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv48PIN_LED1"><code class="docutils literal notranslate"><span class="pre">PIN_LED1</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv48PIN_LED2"><code class="docutils literal notranslate"><span class="pre">PIN_LED2</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv48PIN_LEDR"><code class="docutils literal notranslate"><span class="pre">PIN_LEDR</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv48PIN_LEDG"><code class="docutils literal notranslate"><span class="pre">PIN_LEDG</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv48PIN_LEDB"><code class="docutils literal notranslate"><span class="pre">PIN_LEDB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv48PIN_TONE"><code class="docutils literal notranslate"><span class="pre">PIN_TONE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv47PIN_FR1"><code class="docutils literal notranslate"><span class="pre">PIN_FR1</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv47PIN_FR2"><code class="docutils literal notranslate"><span class="pre">PIN_FR2</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv47PIN_OR1"><code class="docutils literal notranslate"><span class="pre">PIN_OR1</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv47PIN_OR2"><code class="docutils literal notranslate"><span class="pre">PIN_OR2</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv47PIN_OR3"><code class="docutils literal notranslate"><span class="pre">PIN_OR3</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv47PIN_PTC"><code class="docutils literal notranslate"><span class="pre">PIN_PTC</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv47PIN_PBT"><code class="docutils literal notranslate"><span class="pre">PIN_PBT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv48PIN_MPU1"><code class="docutils literal notranslate"><span class="pre">PIN_MPU1</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv48PIN_MPU2"><code class="docutils literal notranslate"><span class="pre">PIN_MPU2</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv411binaryFloat"><code class="docutils literal notranslate"><span class="pre">binaryFloat</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N11binaryFloat13floatingPointE"><code class="docutils literal notranslate"><span class="pre">floatingPoint</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N11binaryFloat6binaryE"><code class="docutils literal notranslate"><span class="pre">binary</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Desenvolvimento de robo bifuncional</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">servidorUnoR4Wifi</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/servidorUnoR4Wifi.rst.txt" rel="nofollow"> Ver código-fonte da página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="servidorunor4wifi">
+<h1>servidorUnoR4Wifi<a class="headerlink" href="#servidorunor4wifi" title="Link to this heading"></a></h1>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412resetarPinosv">
+<span id="_CPPv312resetarPinosv"></span><span id="_CPPv212resetarPinosv"></span><span id="resetarPinos"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a954fce97884c9f03d16ae86946f89897"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resetarPinos</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412resetarPinosv" title="Link to this definition"></a><br /></dt>
+<dd><p>Redefine todas as configurações de pino para seu estado padrão (não configurado) de 255. Também define o dado de retorno como 1 para indicar sucesso. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv424verificarPinoConfiguradov">
+<span id="_CPPv324verificarPinoConfiguradov"></span><span id="_CPPv224verificarPinoConfiguradov"></span><span id="verificarPinoConfigurado"></span><span class="target" id="servidorUnoR4Wifi_8ino_1af98376458ce101b2606db73f49fc2724"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">verificarPinoConfigurado</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424verificarPinoConfiguradov" title="Link to this definition"></a><br /></dt>
+<dd><p>Verifica a configuração de um pino específico. Lê um inteiro do cliente que corresponde ao pino de um componente específico. A função então define o dado de retorno para o número do pino configurado para aquele componente. Se o índice do componente for inválido, define o dado de retorno para um código de erro (erro1). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv417configurarMotoresv">
+<span id="_CPPv317configurarMotoresv"></span><span id="_CPPv217configurarMotoresv"></span><span id="configurarMotores"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a99c9fd6a63f6eed2d909d71d96f17883"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">configurarMotores</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417configurarMotoresv" title="Link to this definition"></a><br /></dt>
+<dd><p>Configura os pinos para os motores. Lê 6 números de pino do cliente para ENA, M1, M2, M3, M4 e ENB. Valida os números dos pinos (0-19) e, se forem válidos, os define como SAÍDA (OUTPUT). Se os números dos pinos forem inválidos, define um código de erro (erro1) e redefine os pinos do motor para 255. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv428configurarSensorUltrassonicov">
+<span id="_CPPv328configurarSensorUltrassonicov"></span><span id="_CPPv228configurarSensorUltrassonicov"></span><span id="configurarSensorUltrassonico"></span><span class="target" id="servidorUnoR4Wifi_8ino_1afc2eeb512d517b4695cdf5508669ed66"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">configurarSensorUltrassonico</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428configurarSensorUltrassonicov" title="Link to this definition"></a><br /></dt>
+<dd><p>Configura os pinos para o sensor ultrassônico. Lê 2 números de pino do cliente para ECHO (ENTRADA) e TRIG (SAÍDA). Valida os números dos pinos (0-19). Se os números dos pinos forem inválidos, define um código de erro (erro1) e redefine os pinos do sensor para 255. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv420configurarLedSimplesv">
+<span id="_CPPv320configurarLedSimplesv"></span><span id="_CPPv220configurarLedSimplesv"></span><span id="configurarLedSimples"></span><span class="target" id="servidorUnoR4Wifi_8ino_1ab525a01b2720fc032d277c8a9d6f176a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">configurarLedSimples</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420configurarLedSimplesv" title="Link to this definition"></a><br /></dt>
+<dd><p>Configura o pino para um dos dois LEDs simples. Lê o número do LED (1 ou 2) e o número do pino do cliente. Valida o número do pino (0-19). Se os parâmetros forem inválidos, define um código de erro (erro1). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv416configurarLedRGBv">
+<span id="_CPPv316configurarLedRGBv"></span><span id="_CPPv216configurarLedRGBv"></span><span id="configurarLedRGB"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a346b08a0d427c6c5b479b8ab89ddf938"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">configurarLedRGB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416configurarLedRGBv" title="Link to this definition"></a><br /></dt>
+<dd><p>Configura os pinos para o LED RGB. Lê 3 números de pino do cliente para os componentes R, G e B (SAÍDA). Valida os números dos pinos (0-19). Se os números dos pinos forem inválidos, define um código de erro (erro1) e redefine os pinos do LED RGB para 255. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv416configurarBuzzerv">
+<span id="_CPPv316configurarBuzzerv"></span><span id="_CPPv216configurarBuzzerv"></span><span id="configurarBuzzer"></span><span class="target" id="servidorUnoR4Wifi_8ino_1af06be3870e9f2549853a86d9cf90811b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">configurarBuzzer</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416configurarBuzzerv" title="Link to this definition"></a><br /></dt>
+<dd><p>Configura o pino para o buzzer. Lê 1 número de pino do cliente para o buzzer (SAÍDA). Valida o número do pino (0-19). Se o número do pino for inválido, define um código de erro (erro1) e redefine o pino do buzzer para 255. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv428configurarSensorFotoresistorv">
+<span id="_CPPv328configurarSensorFotoresistorv"></span><span id="_CPPv228configurarSensorFotoresistorv"></span><span id="configurarSensorFotoresistor"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a782965d13bf9ba90e035aee5b4b0f1de"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">configurarSensorFotoresistor</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428configurarSensorFotoresistorv" title="Link to this definition"></a><br /></dt>
+<dd><p>Configura o pino para um dos dois sensores fotorresistores. Lê o número do sensor (1 ou 2) e o número do pino do cliente. Valida o número do pino (0-19) e o define como ENTRADA (INPUT). Se os parâmetros forem inválidos, define um código de erro (erro1). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv431configurarSensorOpticoReflexivov">
+<span id="_CPPv331configurarSensorOpticoReflexivov"></span><span id="_CPPv231configurarSensorOpticoReflexivov"></span><span id="configurarSensorOpticoReflexivo"></span><span class="target" id="servidorUnoR4Wifi_8ino_1aa42c16490ac8c828c8a600a9dd969b1b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">configurarSensorOpticoReflexivo</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431configurarSensorOpticoReflexivov" title="Link to this definition"></a><br /></dt>
+<dd><p>Configura o pino para um dos três sensores ópticos reflexivos. Lê o número do sensor (1, 2 ou 3) e o número do pino do cliente. Valida o número do pino (0-19). Os pinos para os sensores 1 e 2 são SAÍDA (OUTPUT), o pino para o sensor 3 é ENTRADA (INPUT). Se os parâmetros forem inválidos, define um código de erro (erro1). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv423configurarPotenciometrov">
+<span id="_CPPv323configurarPotenciometrov"></span><span id="_CPPv223configurarPotenciometrov"></span><span id="configurarPotenciometro"></span><span class="target" id="servidorUnoR4Wifi_8ino_1ad93ab4b6ce1df3fdb501cf51ffaed5a3"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">configurarPotenciometro</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423configurarPotenciometrov" title="Link to this definition"></a><br /></dt>
+<dd><p>Configura o pino para o potenciômetro. Lê 1 número de pino do cliente para o potenciômetro (ENTRADA). Valida o número do pino (0-19). Se o número do pino for inválido, define um código de erro (erro1) e redefine o pino do potenciômetro para 255. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv420configurarPushButtonv">
+<span id="_CPPv320configurarPushButtonv"></span><span id="_CPPv220configurarPushButtonv"></span><span id="configurarPushButton"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a126461d53e055bb0a536d18c65bec6fa"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">configurarPushButton</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420configurarPushButtonv" title="Link to this definition"></a><br /></dt>
+<dd><p>Configura o pino para o botão de pressão. Lê 1 número de pino do cliente para o botão de pressão (ENTRADA). Valida o número do pino (0-19). Se o número do pino for inválido, define um código de erro (erro1) e redefine o pino do botão de pressão para 255. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv413configurarMPUv">
+<span id="_CPPv313configurarMPUv"></span><span id="_CPPv213configurarMPUv"></span><span id="configurarMPU"></span><span class="target" id="servidorUnoR4Wifi_8ino_1aa1468c09a2b1f8f500d2a41edbc9b74a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">configurarMPU</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413configurarMPUv" title="Link to this definition"></a><br /></dt>
+<dd><p>Configura o sensor MPU6050. Inicializa a comunicação I2C com o MPU6050 e o ativa. Define as variáveis de pino internas para o MPU como 18 (SDA) e 19 (SCL). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv413getVelocidadev">
+<span id="_CPPv313getVelocidadev"></span><span id="_CPPv213getVelocidadev"></span><span id="getVelocidade"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a087f779b8b9f4f18cf4ba1b4ead11b0d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getVelocidade</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413getVelocidadev" title="Link to this definition"></a><br /></dt>
+<dd><p>Obtém a velocidade atual do motor. A velocidade é armazenada em uma variável global e esta função a define como o dado de retorno. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv413setVelocidadev">
+<span id="_CPPv313setVelocidadev"></span><span id="_CPPv213setVelocidadev"></span><span id="setVelocidade"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a77440c3ed10c584ba3bdebf86da1eafa"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setVelocidade</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413setVelocidadev" title="Link to this definition"></a><br /></dt>
+<dd><p>Define a velocidade para ambos os motores. Lê dois valores de velocidade (0-255) do cliente para o motor A e o motor B. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv415andarParaFrentev">
+<span id="_CPPv315andarParaFrentev"></span><span id="_CPPv215andarParaFrentev"></span><span id="andarParaFrente"></span><span class="target" id="servidorUnoR4Wifi_8ino_1aac9440a16cfd8cb283bcd3a546c4947b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">andarParaFrente</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415andarParaFrentev" title="Link to this definition"></a><br /></dt>
+<dd><p>Move o robô para frente. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv413andarParaTrasv">
+<span id="_CPPv313andarParaTrasv"></span><span id="_CPPv213andarParaTrasv"></span><span id="andarParaTras"></span><span class="target" id="servidorUnoR4Wifi_8ino_1ab89c93d77db36afe5db7f8ad6f9092db"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">andarParaTras</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413andarParaTrasv" title="Link to this definition"></a><br /></dt>
+<dd><p>Move o robô para trás. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv418rotacionarEsquerdav">
+<span id="_CPPv318rotacionarEsquerdav"></span><span id="_CPPv218rotacionarEsquerdav"></span><span id="rotacionarEsquerda"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a452a1f6df908dd30fb1b6952feb6a68f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rotacionarEsquerda</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418rotacionarEsquerdav" title="Link to this definition"></a><br /></dt>
+<dd><p>Rotaciona o robô para a esquerda. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv417rotacionarDireitav">
+<span id="_CPPv317rotacionarDireitav"></span><span id="_CPPv217rotacionarDireitav"></span><span id="rotacionarDireita"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a62923213229d6c87423830780bbbe72a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rotacionarDireita</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417rotacionarDireitav" title="Link to this definition"></a><br /></dt>
+<dd><p>Rotaciona o robô para a direita. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv410fazerCurvav">
+<span id="_CPPv310fazerCurvav"></span><span id="_CPPv210fazerCurvav"></span><span id="fazerCurva"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a52e05ca164687b5cd7a790372f778236"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fazerCurva</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410fazerCurvav" title="Link to this definition"></a><br /></dt>
+<dd><p>Faz o robô fazer uma curva definindo velocidades diferentes para cada motor. Lê dois valores de velocidade (v1, v2) do cliente para o motor A e o motor B. Valida que as velocidades estão no intervalo [0, 255]. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412pararMotoresv">
+<span id="_CPPv312pararMotoresv"></span><span id="_CPPv212pararMotoresv"></span><span id="pararMotores"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a3f72d87240811fc0e125e5327c97b57f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pararMotores</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412pararMotoresv" title="Link to this definition"></a><br /></dt>
+<dd><p>Para ambos os motores. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv49ativarLedv">
+<span id="_CPPv39ativarLedv"></span><span id="_CPPv29ativarLedv"></span><span id="ativarLed"></span><span class="target" id="servidorUnoR4Wifi_8ino_1adf1984a78911f45614cef1b0c9e36476"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ativarLed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49ativarLedv" title="Link to this definition"></a><br /></dt>
+<dd><p>Ativa um LED simples. Lê o número do LED (1 ou 2) do cliente. Verifica se o pino do LED correspondente foi configurado. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414ativarLedDelayv">
+<span id="_CPPv314ativarLedDelayv"></span><span id="_CPPv214ativarLedDelayv"></span><span id="ativarLedDelay"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a4e40ae9a55f48f68f1cdb08ed9076b68"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ativarLedDelay</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414ativarLedDelayv" title="Link to this definition"></a><br /></dt>
+<dd><p>Ativa um LED simples por uma duração específica. Lê o número do LED (1 ou 2) e um tempo de atraso em milissegundos do cliente. O LED é ligado, o programa espera pelo tempo especificado e depois o LED é desligado. Verifica se o pino do LED correspondente foi configurado. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv411inverterLedv">
+<span id="_CPPv311inverterLedv"></span><span id="_CPPv211inverterLedv"></span><span id="inverterLed"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a0290afa2a8a0f634e9d98fac0508edbe"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">inverterLed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411inverterLedv" title="Link to this definition"></a><br /></dt>
+<dd><p>Inverte o estado de um LED simples. Lê o número do LED (1 ou 2) do cliente. Verifica se o pino do LED correspondente foi configurado. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412desativarLedv">
+<span id="_CPPv312desativarLedv"></span><span id="_CPPv212desativarLedv"></span><span id="desativarLed"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a7ff65b277c9ff583e646b77af95c0f4c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">desativarLed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412desativarLedv" title="Link to this definition"></a><br /></dt>
+<dd><p>Desativa um LED simples. Lê o número do LED (1 ou 2) do cliente. Verifica se o pino do LED correspondente foi configurado. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412ativarLedRGBv">
+<span id="_CPPv312ativarLedRGBv"></span><span id="_CPPv212ativarLedRGBv"></span><span id="ativarLedRGB"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a70039b68214d3c0e29fe764fa103991e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ativarLedRGB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412ativarLedRGBv" title="Link to this definition"></a><br /></dt>
+<dd><p>Ativa o LED RGB com uma cor específica. Lê os valores R, G e B (0-255) do cliente. Verifica se os pinos do LED RGB foram configurados. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv417ativarLedRGBDelayv">
+<span id="_CPPv317ativarLedRGBDelayv"></span><span id="_CPPv217ativarLedRGBDelayv"></span><span id="ativarLedRGBDelay"></span><span class="target" id="servidorUnoR4Wifi_8ino_1aa80b14ea371e71ac49ad98ac3e07fc13"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ativarLedRGBDelay</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417ativarLedRGBDelayv" title="Link to this definition"></a><br /></dt>
+<dd><p>Ativa o LED RGB com uma cor específica por uma duração específica. Lê os valores R, G, B (0-255) e um tempo de atraso em milissegundos do cliente. O LED é ligado com a cor especificada, o programa espera e depois o LED é desligado. Verifica se os pinos do LED RGB foram configurados. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv415desativarLedRGBv">
+<span id="_CPPv315desativarLedRGBv"></span><span id="_CPPv215desativarLedRGBv"></span><span id="desativarLedRGB"></span><span class="target" id="servidorUnoR4Wifi_8ino_1adb7d9dcb4796f03740d64736b5b3816e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">desativarLedRGB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415desativarLedRGBv" title="Link to this definition"></a><br /></dt>
+<dd><p>Desativa o LED RGB. Verifica se os pinos do LED RGB foram configurados. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412ativarBuzzerv">
+<span id="_CPPv312ativarBuzzerv"></span><span id="_CPPv212ativarBuzzerv"></span><span id="ativarBuzzer"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a4adbd25c74d0633d3ca2edfb43779b16"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ativarBuzzer</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412ativarBuzzerv" title="Link to this definition"></a><br /></dt>
+<dd><p>Ativa o buzzer com uma frequência específica. Lê a frequência do cliente. Verifica se o pino do buzzer foi configurado. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv417ativarBuzzerDelayv">
+<span id="_CPPv317ativarBuzzerDelayv"></span><span id="_CPPv217ativarBuzzerDelayv"></span><span id="ativarBuzzerDelay"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a7d7d361ec839bc7f3739b2e15e60e280"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ativarBuzzerDelay</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417ativarBuzzerDelayv" title="Link to this definition"></a><br /></dt>
+<dd><p>Ativa o buzzer com uma frequência específica por uma duração específica. Lê a frequência e um tempo de atraso em milissegundos do cliente. O buzzer soa, o programa espera e então o buzzer para. Verifica se o pino do buzzer foi configurado. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv415desativarBuzzerv">
+<span id="_CPPv315desativarBuzzerv"></span><span id="_CPPv215desativarBuzzerv"></span><span id="desativarBuzzer"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a713a2448a75e49687553ead599d4702e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">desativarBuzzer</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415desativarBuzzerv" title="Link to this definition"></a><br /></dt>
+<dd><p>Desativa o buzzer. Verifica se o pino do buzzer foi configurado. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv421lerSensorUltrassonicov">
+<span id="_CPPv321lerSensorUltrassonicov"></span><span id="_CPPv221lerSensorUltrassonicov"></span><span id="lerSensorUltrassonico"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a13584600115b6ed3b26deb722f5fdfd1"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lerSensorUltrassonico</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421lerSensorUltrassonicov" title="Link to this definition"></a><br /></dt>
+<dd><p>Lê a distância do sensor ultrassônico. Dispara o sensor e lê o pulso de eco para calcular a distância em centímetros. Verifica se os pinos do sensor ultrassônico foram configurados. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv421lerSensorFotoresistorv">
+<span id="_CPPv321lerSensorFotoresistorv"></span><span id="_CPPv221lerSensorFotoresistorv"></span><span id="lerSensorFotoresistor"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a0734f9b67afb5875ef26e300ca658e14"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lerSensorFotoresistor</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421lerSensorFotoresistorv" title="Link to this definition"></a><br /></dt>
+<dd><p>Lê o valor de um sensor fotorresistor. Lê o número do sensor (1 ou 2) do cliente e retorna o valor analógico. Verifica se o pino do sensor correspondente foi configurado. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv424lerSensorOpticoReflexivov">
+<span id="_CPPv324lerSensorOpticoReflexivov"></span><span id="_CPPv224lerSensorOpticoReflexivov"></span><span id="lerSensorOpticoReflexivo"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a5616a868d4179efe3f0289fbb71ff958"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lerSensorOpticoReflexivo</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424lerSensorOpticoReflexivov" title="Link to this definition"></a><br /></dt>
+<dd><p>Lê o valor de um sensor óptico reflexivo. Lê o número do sensor (1, 2 ou 3) do cliente e retorna o valor digital. Verifica se o pino do sensor correspondente foi configurado. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv416lerPotenciometrov">
+<span id="_CPPv316lerPotenciometrov"></span><span id="_CPPv216lerPotenciometrov"></span><span id="lerPotenciometro"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a53a24b42dcf9a280f91bd44715d2e012"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lerPotenciometro</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416lerPotenciometrov" title="Link to this definition"></a><br /></dt>
+<dd><p>Lê o valor do potenciômetro. Retorna o valor analógico. Verifica se o pino do potenciômetro foi configurado. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv48lerBotaov">
+<span id="_CPPv38lerBotaov"></span><span id="_CPPv28lerBotaov"></span><span id="lerBotao"></span><span class="target" id="servidorUnoR4Wifi_8ino_1ad6730dc252ec0382c194193564f5f132"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lerBotao</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv48lerBotaov" title="Link to this definition"></a><br /></dt>
+<dd><p>Lê o estado do botão de pressão. Retorna o valor digital. Verifica se o pino do botão de pressão foi configurado. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414lerTemperaturav">
+<span id="_CPPv314lerTemperaturav"></span><span id="_CPPv214lerTemperaturav"></span><span id="lerTemperatura"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a208896dc6f240de0410718533dcdd5c7"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lerTemperatura</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414lerTemperaturav" title="Link to this definition"></a><br /></dt>
+<dd><p>Lê a temperatura do sensor MPU6050. Retorna a temperatura em graus Celsius. Verifica se o MPU foi configurado. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv416lerAcelerometroXv">
+<span id="_CPPv316lerAcelerometroXv"></span><span id="_CPPv216lerAcelerometroXv"></span><span id="lerAcelerometroX"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a50513ef676a651868bdc89c0020ba7fa"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lerAcelerometroX</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416lerAcelerometroXv" title="Link to this definition"></a><br /></dt>
+<dd><p>Lê a aceleração do eixo X do sensor MPU6050. Retorna a aceleração em m/s^2. Verifica se o MPU foi configurado. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv416lerAcelerometroYv">
+<span id="_CPPv316lerAcelerometroYv"></span><span id="_CPPv216lerAcelerometroYv"></span><span id="lerAcelerometroY"></span><span class="target" id="servidorUnoR4Wifi_8ino_1ad8913a70c5ed7d4f1bdac2cd8fe429b4"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lerAcelerometroY</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416lerAcelerometroYv" title="Link to this definition"></a><br /></dt>
+<dd><p>Lê a aceleração do eixo Y do sensor MPU6050. Retorna a aceleração em m/s^2. Verifica se o MPU foi configurado. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv416lerAcelerometroZv">
+<span id="_CPPv316lerAcelerometroZv"></span><span id="_CPPv216lerAcelerometroZv"></span><span id="lerAcelerometroZ"></span><span class="target" id="servidorUnoR4Wifi_8ino_1adc8f1b708d87fa4e8dc97412d1eff252"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lerAcelerometroZ</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416lerAcelerometroZv" title="Link to this definition"></a><br /></dt>
+<dd><p>Lê a aceleração do eixo Z do sensor MPU6050. Retorna a aceleração em m/s^2. Verifica se o MPU foi configurado. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414lerGiroscopioXv">
+<span id="_CPPv314lerGiroscopioXv"></span><span id="_CPPv214lerGiroscopioXv"></span><span id="lerGiroscopioX"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a90ba59acabcb9ab1a2d9913743a5d0c3"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lerGiroscopioX</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414lerGiroscopioXv" title="Link to this definition"></a><br /></dt>
+<dd><p>Lê os dados do giroscópio do eixo X do sensor MPU6050. Retorna a velocidade angular em rad/s. Verifica se o MPU foi configurado. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414lerGiroscopioYv">
+<span id="_CPPv314lerGiroscopioYv"></span><span id="_CPPv214lerGiroscopioYv"></span><span id="lerGiroscopioY"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a7c4d0bc780c2e515546148b0a282f473"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lerGiroscopioY</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414lerGiroscopioYv" title="Link to this definition"></a><br /></dt>
+<dd><p>Lê os dados do giroscópio do eixo Y do sensor MPU6050. Retorna a velocidade angular em rad/s. Verifica se o MPU foi configurado. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414lerGiroscopioZv">
+<span id="_CPPv314lerGiroscopioZv"></span><span id="_CPPv214lerGiroscopioZv"></span><span id="lerGiroscopioZ"></span><span class="target" id="servidorUnoR4Wifi_8ino_1aeb11602aad9b7e869614daa1b9e1faf2"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lerGiroscopioZ</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414lerGiroscopioZv" title="Link to this definition"></a><br /></dt>
+<dd><p>Lê os dados do giroscópio do eixo Z do sensor MPU6050. Retorna a velocidade angular em rad/s. Verifica se o MPU foi configurado. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419encerrarComunicacaov">
+<span id="_CPPv319encerrarComunicacaov"></span><span id="_CPPv219encerrarComunicacaov"></span><span id="encerrarComunicacao"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a433dfd261caa6942fa37d10b1a327d2c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">encerrarComunicacao</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419encerrarComunicacaov" title="Link to this definition"></a><br /></dt>
+<dd><p>Reinicia a placa Arduino, encerrando efetivamente a comunicação. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv45setupv">
+<span id="_CPPv35setupv"></span><span id="_CPPv25setupv"></span><span id="setup"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a4fc01d736fe50cf5b977f755b675f11d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setup</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv45setupv" title="Link to this definition"></a><br /></dt>
+<dd><p>Função de configuração, executada uma vez no início. Inicializa a comunicação serial, define a velocidade padrão, conecta-se ao WiFi. Em seguida, escuta por um broadcast UDP de um cliente para descoberta. Uma vez descoberto, aguarda uma conexão TCP do cliente. Após a conexão, entra em um loop de configuração onde o cliente pode configurar os pinos de hardware do robô antes do início da operação principal. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv44loopv">
+<span id="_CPPv34loopv"></span><span id="_CPPv24loopv"></span><span id="loop"></span><span class="target" id="servidorUnoR4Wifi_8ino_1afe461d27b9c48d5921c00d521181f12f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">loop</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv44loopv" title="Link to this definition"></a><br /></dt>
+<dd><p>Loop principal, executado repetidamente. Verifica se há dados disponíveis do cliente TCP conectado. Lê os bytes de comando e chama a função apropriada para executar o comando. Após executar um comando, envia uma resposta de ponto flutuante de 4 bytes de volta para o cliente. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv45teste">
+<span id="_CPPv35teste"></span><span id="_CPPv25teste"></span><span id="teste__i"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a71237b18c216e02629593b1969cff245"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">teste</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv45teste" title="Link to this definition"></a><br /></dt>
+<dd><p>Variável de teste. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv44ssid">
+<span id="_CPPv34ssid"></span><span id="_CPPv24ssid"></span><span id="ssid__cA"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a375b545f86fd7e1d5d44926f28b75800"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ssid</span></span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;kadu&quot;</span></span><a class="headerlink" href="#_CPPv44ssid" title="Link to this definition"></a><br /></dt>
+<dd><p>SSID da rede Wi-Fi. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv44pass">
+<span id="_CPPv34pass"></span><span id="_CPPv24pass"></span><span id="pass__cA"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a0c2356d302e37fcf49be9c6dab314eb2"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pass</span></span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;12345678&quot;</span></span><a class="headerlink" href="#_CPPv44pass" title="Link to this definition"></a><br /></dt>
+<dd><p>Senha da rede Wi-Fi. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv43udp">
+<span id="_CPPv33udp"></span><span id="_CPPv23udp"></span><span id="udp__WiFiUDP"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a46b48e04b347d8c6d55433b1f1dcc5b1"></span><span class="n"><span class="pre">WiFiUDP</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">udp</span></span></span><a class="headerlink" href="#_CPPv43udp" title="Link to this definition"></a><br /></dt>
+<dd><p>Objeto UDP para comunicação Wi-Fi. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv49localPort">
+<span id="_CPPv39localPort"></span><span id="_CPPv29localPort"></span><span id="localPort__unsigned-i"></span><span class="target" id="servidorUnoR4Wifi_8ino_1ac240824c9b35035b41bc24ee200565a2"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">localPort</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">4210</span></span><a class="headerlink" href="#_CPPv49localPort" title="Link to this definition"></a><br /></dt>
+<dd><p>Porta local para comunicação UDP e TCP. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv414incomingPacket">
+<span id="_CPPv314incomingPacket"></span><span id="_CPPv214incomingPacket"></span><span id="incomingPacket__cA"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a09f82ca3f4d4959b170e32faa6dd156b"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">incomingPacket</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">255</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv414incomingPacket" title="Link to this definition"></a><br /></dt>
+<dd><p>Buffer para pacotes UDP recebidos. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv411pcConectado">
+<span id="_CPPv311pcConectado"></span><span id="_CPPv211pcConectado"></span><span id="pcConectado__b"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a9e1fc20f55b604320298e914c94b8606"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pcConectado</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv411pcConectado" title="Link to this definition"></a><br /></dt>
+<dd><p>Flag para indicar se um cliente está conectado. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv44pcIP">
+<span id="_CPPv34pcIP"></span><span id="_CPPv24pcIP"></span><span id="pcIP__IPAddress"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a7fb260bf1dbb09bc80e67afb0af2712a"></span><span class="n"><span class="pre">IPAddress</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pcIP</span></span></span><a class="headerlink" href="#_CPPv44pcIP" title="Link to this definition"></a><br /></dt>
+<dd><p>Endereço IP do cliente. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv46pcPort">
+<span id="_CPPv36pcPort"></span><span id="_CPPv26pcPort"></span><span id="pcPort__unsigned-i"></span><span class="target" id="servidorUnoR4Wifi_8ino_1aedabdee4afdb0490571449d309e2a42d"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pcPort</span></span></span><a class="headerlink" href="#_CPPv46pcPort" title="Link to this definition"></a><br /></dt>
+<dd><p>Porta do cliente. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv46client">
+<span id="_CPPv36client"></span><span id="_CPPv26client"></span><span id="client__WiFiClient"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a323dfc205549b3c13f0a25c1b670708a"></span><span class="n"><span class="pre">WiFiClient</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">client</span></span></span><a class="headerlink" href="#_CPPv46client" title="Link to this definition"></a><br /></dt>
+<dd><p>Objeto do cliente TCP. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv410velocidade">
+<span id="_CPPv310velocidade"></span><span id="_CPPv210velocidade"></span><span id="velocidade__binaryFloat"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a873441686f019628522f222413a7a64d"></span><a class="reference internal" href="#_CPPv411binaryFloat" title="binaryFloat"><span class="n"><span class="pre">binaryFloat</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">velocidade</span></span></span><a class="headerlink" href="#_CPPv410velocidade" title="Link to this definition"></a><br /></dt>
+<dd><p>Armazena a velocidade atual dos motores. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv412dado_retorno">
+<span id="_CPPv312dado_retorno"></span><span id="_CPPv212dado_retorno"></span><span id="dado_retorno__binaryFloat"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a90b85bec731e8aefeb555400fd82e633"></span><a class="reference internal" href="#_CPPv411binaryFloat" title="binaryFloat"><span class="n"><span class="pre">binaryFloat</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dado_retorno</span></span></span><a class="headerlink" href="#_CPPv412dado_retorno" title="Link to this definition"></a><br /></dt>
+<dd><p>Armazena os dados a serem retornados ao cliente. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv47MPU6050">
+<span id="_CPPv37MPU6050"></span><span id="_CPPv27MPU6050"></span><span id="MPU6050__iC"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a416f8fac44a484fc40a995b1e1012a49"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MPU6050</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0x68</span></span><a class="headerlink" href="#_CPPv47MPU6050" title="Link to this definition"></a><br /></dt>
+<dd><p>Endereço I2C para comunicação com o sensor MPU6050. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv45erro0">
+<span id="_CPPv35erro0"></span><span id="_CPPv25erro0"></span><span id="erro0__floatC"></span><span class="target" id="servidorUnoR4Wifi_8ino_1add4e817c2050cd2665ae5cd8ef1a3b30"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">erro0</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">10000000</span></span><a class="headerlink" href="#_CPPv45erro0" title="Link to this definition"></a><br /></dt>
+<dd><p>Código de erro para pino não configurado. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv45erro1">
+<span id="_CPPv35erro1"></span><span id="_CPPv25erro1"></span><span id="erro1__floatC"></span><span class="target" id="servidorUnoR4Wifi_8ino_1ad227567394a46b4e003ac47724022f84"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">erro1</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">10000001</span></span><a class="headerlink" href="#_CPPv45erro1" title="Link to this definition"></a><br /></dt>
+<dd><p>Código de erro para parâmetro inválido. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv45erro2">
+<span id="_CPPv35erro2"></span><span id="_CPPv25erro2"></span><span id="erro2__floatC"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a7589cb82610828af0da7821ccf4019c9"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">erro2</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">10000002</span></span><a class="headerlink" href="#_CPPv45erro2" title="Link to this definition"></a><br /></dt>
+<dd><p>Código de erro para comando inválido. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv47PIN_ENA">
+<span id="_CPPv37PIN_ENA"></span><span id="_CPPv27PIN_ENA"></span><span id="PIN_ENA__byte"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a0026119709cded4d129fd42f7cfbf7c5"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PIN_ENA</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><a class="headerlink" href="#_CPPv47PIN_ENA" title="Link to this definition"></a><br /></dt>
+<dd><p>Pino de ativação do Motor A (PWM). </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv46PIN_M1">
+<span id="_CPPv36PIN_M1"></span><span id="_CPPv26PIN_M1"></span><span id="PIN_M1__byte"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a84e8e78586f5a1849f5c17ef7a8856e5"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PIN_M1</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><a class="headerlink" href="#_CPPv46PIN_M1" title="Link to this definition"></a><br /></dt>
+<dd><p>Pino de controle 1 do Motor A. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv46PIN_M2">
+<span id="_CPPv36PIN_M2"></span><span id="_CPPv26PIN_M2"></span><span id="PIN_M2__byte"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a277fcb21c515e411412ca361346fc3e2"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PIN_M2</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><a class="headerlink" href="#_CPPv46PIN_M2" title="Link to this definition"></a><br /></dt>
+<dd><p>Pino de controle 2 do Motor A. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv46PIN_M3">
+<span id="_CPPv36PIN_M3"></span><span id="_CPPv26PIN_M3"></span><span id="PIN_M3__byte"></span><span class="target" id="servidorUnoR4Wifi_8ino_1ae08fec9a300cd31beda1a9d3fb9c832c"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PIN_M3</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><a class="headerlink" href="#_CPPv46PIN_M3" title="Link to this definition"></a><br /></dt>
+<dd><p>Pino de controle 1 do Motor B. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv46PIN_M4">
+<span id="_CPPv36PIN_M4"></span><span id="_CPPv26PIN_M4"></span><span id="PIN_M4__byte"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a32aa5b80bc8047d3a1bb8fd6471463a3"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PIN_M4</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><a class="headerlink" href="#_CPPv46PIN_M4" title="Link to this definition"></a><br /></dt>
+<dd><p>Pino de controle 2 do Motor B. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv47PIN_ENB">
+<span id="_CPPv37PIN_ENB"></span><span id="_CPPv27PIN_ENB"></span><span id="PIN_ENB__byte"></span><span class="target" id="servidorUnoR4Wifi_8ino_1ac39ee4bf91f0b2f8703f3446cc7afd09"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PIN_ENB</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><a class="headerlink" href="#_CPPv47PIN_ENB" title="Link to this definition"></a><br /></dt>
+<dd><p>Pino de ativação do Motor B (PWM). </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv48PIN_ECHO">
+<span id="_CPPv38PIN_ECHO"></span><span id="_CPPv28PIN_ECHO"></span><span id="PIN_ECHO__byte"></span><span class="target" id="servidorUnoR4Wifi_8ino_1ae4126668f7467422e261b618e97a1b49"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PIN_ECHO</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><a class="headerlink" href="#_CPPv48PIN_ECHO" title="Link to this definition"></a><br /></dt>
+<dd><p>Pino ECHO do sensor ultrassônico. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv48PIN_TRIG">
+<span id="_CPPv38PIN_TRIG"></span><span id="_CPPv28PIN_TRIG"></span><span id="PIN_TRIG__byte"></span><span class="target" id="servidorUnoR4Wifi_8ino_1ab4df8b5eb3122845abf19d200cdc6ef7"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PIN_TRIG</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><a class="headerlink" href="#_CPPv48PIN_TRIG" title="Link to this definition"></a><br /></dt>
+<dd><p>Pino TRIG do sensor ultrassônico. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv48PIN_LED1">
+<span id="_CPPv38PIN_LED1"></span><span id="_CPPv28PIN_LED1"></span><span id="PIN_LED1__byte"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a17c16fb8edbd8e681fd1e37279d60c05"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PIN_LED1</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><a class="headerlink" href="#_CPPv48PIN_LED1" title="Link to this definition"></a><br /></dt>
+<dd><p>Pino para o LED simples 1. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv48PIN_LED2">
+<span id="_CPPv38PIN_LED2"></span><span id="_CPPv28PIN_LED2"></span><span id="PIN_LED2__byte"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a8bace2c48dc6af050ab26c530adbe0ab"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PIN_LED2</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><a class="headerlink" href="#_CPPv48PIN_LED2" title="Link to this definition"></a><br /></dt>
+<dd><p>Pino para o LED simples 2. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv48PIN_LEDR">
+<span id="_CPPv38PIN_LEDR"></span><span id="_CPPv28PIN_LEDR"></span><span id="PIN_LEDR__byte"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a6e768dc6fb56d13570be8c51570894f6"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PIN_LEDR</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><a class="headerlink" href="#_CPPv48PIN_LEDR" title="Link to this definition"></a><br /></dt>
+<dd><p>Pino do componente Vermelho (R) do LED RGB. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv48PIN_LEDG">
+<span id="_CPPv38PIN_LEDG"></span><span id="_CPPv28PIN_LEDG"></span><span id="PIN_LEDG__byte"></span><span class="target" id="servidorUnoR4Wifi_8ino_1adedd798960493ee5cba977b920a3fd28"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PIN_LEDG</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><a class="headerlink" href="#_CPPv48PIN_LEDG" title="Link to this definition"></a><br /></dt>
+<dd><p>Pino do componente Verde (G) do LED RGB. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv48PIN_LEDB">
+<span id="_CPPv38PIN_LEDB"></span><span id="_CPPv28PIN_LEDB"></span><span id="PIN_LEDB__byte"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a883e1e001059f7a99446fa88ad2003b0"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PIN_LEDB</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><a class="headerlink" href="#_CPPv48PIN_LEDB" title="Link to this definition"></a><br /></dt>
+<dd><p>Pino do componente Azul (B) do LED RGB. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv48PIN_TONE">
+<span id="_CPPv38PIN_TONE"></span><span id="_CPPv28PIN_TONE"></span><span id="PIN_TONE__byte"></span><span class="target" id="servidorUnoR4Wifi_8ino_1ac0dab2ae0ec69cbf715c8d40d36c9a7e"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PIN_TONE</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><a class="headerlink" href="#_CPPv48PIN_TONE" title="Link to this definition"></a><br /></dt>
+<dd><p>Pino para o buzzer. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv47PIN_FR1">
+<span id="_CPPv37PIN_FR1"></span><span id="_CPPv27PIN_FR1"></span><span id="PIN_FR1__byte"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a063d05fa078d97e788d499afd7e9e4b9"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PIN_FR1</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><a class="headerlink" href="#_CPPv47PIN_FR1" title="Link to this definition"></a><br /></dt>
+<dd><p>Pino para o sensor fotorresistor 1. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv47PIN_FR2">
+<span id="_CPPv37PIN_FR2"></span><span id="_CPPv27PIN_FR2"></span><span id="PIN_FR2__byte"></span><span class="target" id="servidorUnoR4Wifi_8ino_1abfb30236f07f852bd59bb62daeab3fc4"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PIN_FR2</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><a class="headerlink" href="#_CPPv47PIN_FR2" title="Link to this definition"></a><br /></dt>
+<dd><p>Pino para o sensor fotorresistor 2. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv47PIN_OR1">
+<span id="_CPPv37PIN_OR1"></span><span id="_CPPv27PIN_OR1"></span><span id="PIN_OR1__byte"></span><span class="target" id="servidorUnoR4Wifi_8ino_1af64cd113c46607e7ce128053d2885927"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PIN_OR1</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><a class="headerlink" href="#_CPPv47PIN_OR1" title="Link to this definition"></a><br /></dt>
+<dd><p>Pino para o sensor óptico reflexivo 1. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv47PIN_OR2">
+<span id="_CPPv37PIN_OR2"></span><span id="_CPPv27PIN_OR2"></span><span id="PIN_OR2__byte"></span><span class="target" id="servidorUnoR4Wifi_8ino_1aa7ffe985a503999dee21e3311ccbd5cd"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PIN_OR2</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><a class="headerlink" href="#_CPPv47PIN_OR2" title="Link to this definition"></a><br /></dt>
+<dd><p>Pino para o sensor óptico reflexivo 2. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv47PIN_OR3">
+<span id="_CPPv37PIN_OR3"></span><span id="_CPPv27PIN_OR3"></span><span id="PIN_OR3__byte"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a6700ad4715cbe0ddac4d2221efdd4178"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PIN_OR3</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><a class="headerlink" href="#_CPPv47PIN_OR3" title="Link to this definition"></a><br /></dt>
+<dd><p>Pino para o sensor óptico reflexivo 3. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv47PIN_PTC">
+<span id="_CPPv37PIN_PTC"></span><span id="_CPPv27PIN_PTC"></span><span id="PIN_PTC__byte"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a8026606cd47abdc6a6c2c975d0a06253"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PIN_PTC</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><a class="headerlink" href="#_CPPv47PIN_PTC" title="Link to this definition"></a><br /></dt>
+<dd><p>Pino para o potenciômetro. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv47PIN_PBT">
+<span id="_CPPv37PIN_PBT"></span><span id="_CPPv27PIN_PBT"></span><span id="PIN_PBT__byte"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a9b6d062bdbeb334f0ce52507401160c8"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PIN_PBT</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><a class="headerlink" href="#_CPPv47PIN_PBT" title="Link to this definition"></a><br /></dt>
+<dd><p>Pino para o botão de pressão (Push Button). </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv48PIN_MPU1">
+<span id="_CPPv38PIN_MPU1"></span><span id="_CPPv28PIN_MPU1"></span><span id="PIN_MPU1__byte"></span><span class="target" id="servidorUnoR4Wifi_8ino_1acb80ce753bdbef0715cf02f47155fcff"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PIN_MPU1</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><a class="headerlink" href="#_CPPv48PIN_MPU1" title="Link to this definition"></a><br /></dt>
+<dd><p>Pino SDA para o sensor MPU6050. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv48PIN_MPU2">
+<span id="_CPPv38PIN_MPU2"></span><span id="_CPPv28PIN_MPU2"></span><span id="PIN_MPU2__byte"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a8b57b2fd0b10616709163c2d72a75e37"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PIN_MPU2</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><a class="headerlink" href="#_CPPv48PIN_MPU2" title="Link to this definition"></a><br /></dt>
+<dd><p>Pino SCL para o sensor MPU6050. </p>
+</dd></dl>
+
+</div>
+<dl class="cpp union">
+<dt class="sig sig-object cpp" id="_CPPv411binaryFloat">
+<span id="_CPPv311binaryFloat"></span><span id="_CPPv211binaryFloat"></span><span class="target" id="unionbinaryFloat"></span><span class="k"><span class="pre">union</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">binaryFloat</span></span></span><a class="headerlink" href="#_CPPv411binaryFloat" title="Link to this definition"></a><br /></dt>
+<dd><p>Uma união para converter um float para um array de 4 bytes e vice-versa. É usada para enviar e receber números de ponto flutuante pela rede. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N11binaryFloat13floatingPointE">
+<span id="_CPPv3N11binaryFloat13floatingPointE"></span><span id="_CPPv2N11binaryFloat13floatingPointE"></span><span id="binaryFloat::floatingPoint__float"></span><span class="target" id="unionbinaryFloat_1ae0e718f17140c15eb1c04e263c47b850"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">floatingPoint</span></span></span><a class="headerlink" href="#_CPPv4N11binaryFloat13floatingPointE" title="Link to this definition"></a><br /></dt>
+<dd><p>O valor float. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N11binaryFloat6binaryE">
+<span id="_CPPv3N11binaryFloat6binaryE"></span><span id="_CPPv2N11binaryFloat6binaryE"></span><span id="binaryFloat::binary__byteA"></span><span class="target" id="unionbinaryFloat_1a8d59d75cb7d94a47b549b6437a5d2b18"></span><span class="n"><span class="pre">byte</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">binary</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">4</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N11binaryFloat6binaryE" title="Link to this definition"></a><br /></dt>
+<dd><p>A representação em array de 4 bytes. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="Cliente.html" class="btn btn-neutral float-left" title="Cliente package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, IFC.</p>
+  </div>
+
+  Compilado com <a href="https://www.sphinx-doc.org/">Sphinx</a> usando um
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornecido por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

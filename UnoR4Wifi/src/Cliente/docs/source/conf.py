@@ -5,7 +5,10 @@
 
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../../../Cliente/'))
+import subprocess
+subprocess.call('doxygen Doxyfile.in', shell=True)
+sys.path.insert(0, os.path.abspath('../../../Cliente'))
+#sys.path.append(os.path.abspath('../../../Servidor/'))
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
@@ -22,8 +25,14 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
     'sphinx_rtd_theme',
+    'sphinx.ext.graphviz',
+    'breathe',
+    'sphinx.ext.imgmath', 
+    'sphinx.ext.todo',
         ]
 
+breathe_projects = {"myproject": os.path.abspath("doc_out/xml/"),}
+breathe_default_project = "myproject"
 templates_path = ['_templates']
 exclude_patterns = []
 

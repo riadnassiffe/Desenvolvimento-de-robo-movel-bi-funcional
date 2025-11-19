@@ -1,88 +1,97 @@
+/*
+Implementação do servidor no Arduino R4
+ */
 #include <WiFiS3.h>
 #include <WiFiUdp.h>
 #include <Wire.h>
 
-//Variaves para que se possa estabelecer uma conexção entre o servidor e cliente, um broadcast para encontrar o cliente via UDP, depois mantem conexção TCP
-int teste = 0;
-char ssid[] = "kadu"; //" kadu  ZTE_2.4G_7NXk26";
-char pass[] = "12345678"; //"TUfyZZFT 12345678";
+int teste = 0;  /*!< Variável de teste. */ 
+char ssid[] = "kadu"; /*!< SSID da rede Wi-Fi. */
+char pass[] = "12345678"; /*!< Senha da rede Wi-Fi. */
 
-WiFiUDP udp;
-unsigned int localPort = 4210;
-char incomingPacket[255];
-bool pcConectado = false;
-IPAddress pcIP;
-unsigned int pcPort;
 
-WiFiServer server(4210);
-WiFiClient client;
+WiFiUDP udp; /*!< Objeto UDP para comunicação Wi-Fi. */
 
-// Definição da estrutura de dados utilizada para representação de informações que são envidas
-// e recebidas na comunicação entre cliente e servidor
+unsigned int localPort = 4210; /*!< Porta local para comunicação UDP e TCP. */
+
+char incomingPacket[255]; /*!< Buffer para pacotes UDP recebidos. */
+
+bool pcConectado = false; /*!< Flag para indicar se um cliente está conectado. */
+
+IPAddress pcIP; /*!< Endereço IP do cliente. */
+
+unsigned int pcPort; /*!< Porta do cliente. */
+
+
+WiFiClient client; /*!< Objeto do cliente TCP. */
+
+
+/**
+ * @union binaryFloat
+ * @brief Uma união para converter um float para um array de 4 bytes e vice-versa.
+ * É usada para enviar e receber números de ponto flutuante pela rede.
+ */
 typedef union {
-  float floatingPoint;
-  byte binary[4];
+  float floatingPoint;  /*!< O valor float. */
+  byte binary[4];       /*!< A representação em array de 4 bytes. */
 } binaryFloat;
 
-// Variável que armazena a velocidade utilizada nos motores
-binaryFloat velocidade;
+binaryFloat velocidade; /*!< Armazena a velocidade atual dos motores. */
 
-// Variável utilizada para armazenar os dados que são retornados ao cliente
-binaryFloat dado_retorno;
 
-// Endereço para comunicação com o sensor MPU6050
-const int MPU6050=0x68;
+binaryFloat dado_retorno; /*!< Armazena os dados a serem retornados ao cliente. */
 
-// Definição de variáveis para representação numérica dos erros pré-definidos no projeto
-const float erro0 = 10000000;
-const float erro1 = 10000001;
-const float erro2 = 10000002;
 
-// Pinos para os Motores
-byte PIN_ENA = 255;
-byte PIN_M1 = 255;
-byte PIN_M2 = 255;
-byte PIN_M3 = 255;
-byte PIN_M4 = 255;
-byte PIN_ENB = 255;
+const int MPU6050=0x68; /*!< Endereço I2C para comunicação com o sensor MPU6050. */
 
-// Pinos para sensor do tipo Ultrassônico
-byte PIN_ECHO = 255;
-byte PIN_TRIG = 255;
+const float erro0 = 10000000; /*!< Código de erro para pino não configurado. */
+const float erro1 = 10000001; /*!< Código de erro para parâmetro inválido. */
+const float erro2 = 10000002; /*!< Código de erro para comando inválido. */
 
-// Pinos para Leds simples
-byte PIN_LED1 = 255;
-byte PIN_LED2 = 255;
 
-// Pinos para o Led RGB
-byte PIN_LEDR = 255;
-byte PIN_LEDG = 255; 
-byte PIN_LEDB = 255;
+byte PIN_ENA = 255; /*!< Pino de ativação do Motor A (PWM). */
+byte PIN_M1 = 255; /*!< Pino de controle 1 do Motor A. */
+byte PIN_M2 = 255; /*!< Pino de controle 2 do Motor A. */
+byte PIN_M3 = 255; /*!< Pino de controle 1 do Motor B. */
+byte PIN_M4 = 255; /*!< Pino de controle 2 do Motor B. */
+byte PIN_ENB = 255; /*!< Pino de ativação do Motor B (PWM). */
 
-// Pino para o buzzer elétrico
-byte PIN_TONE = 255;
 
-// Pinos para sensores do tipo Fotoresistor
-byte PIN_FR1 = 255;
-byte PIN_FR2 = 255;
+byte PIN_ECHO = 255; /*!< Pino ECHO do sensor ultrassônico. */
+byte PIN_TRIG = 255; /*!< Pino TRIG do sensor ultrassônico. */
 
-// Pinos para sensores do tipo Óptico Reflexivo
-byte PIN_OR1 = 255;
-byte PIN_OR2 = 255;
-byte PIN_OR3 = 255;
+byte PIN_LED1 = 255; /*!< Pino para o LED simples 1. */
+byte PIN_LED2 = 255; /*!< Pino para o LED simples 2. */
 
-// Pino para o Potenciometro
-byte PIN_PTC = 255;
 
-// Pino para Push Button
-byte PIN_PBT = 255;
+byte PIN_LEDR = 255;  /*!< Pino do componente Vermelho (R) do LED RGB. */
+byte PIN_LEDG = 255;  /*!< Pino do componente Verde (G) do LED RGB. */
+byte PIN_LEDB = 255; /*!< Pino do componente Azul (B) do LED RGB. */
 
-// Pinos para Sensor MPU
-byte PIN_MPU1 = 255;
-byte PIN_MPU2 = 255;
+byte PIN_TONE = 255;  /*!< Pino para o buzzer. */
+
+
+byte PIN_FR1 = 255; /*!< Pino para o sensor fotorresistor 1. */
+byte PIN_FR2 = 255; /*!< Pino para o sensor fotorresistor 2. */
+
+byte PIN_OR1 = 255; /*!< Pino para o sensor óptico reflexivo 1. */
+byte PIN_OR2 = 255; /*!< Pino para o sensor óptico reflexivo 2. */
+byte PIN_OR3 = 255; /*!< Pino para o sensor óptico reflexivo 3. */
+
+byte PIN_PTC = 255; /*!< Pino para o potenciômetro. */
+
+byte PIN_PBT = 255; /*!< Pino para o botão de pressão (Push Button). */
+
+byte PIN_MPU1 = 255; /*!< Pino SDA para o sensor MPU6050. */
+byte PIN_MPU2 = 255; /*!< Pino SCL para o sensor MPU6050. */
+
 
 // FUNÇÕES DE CONFIGURAÇÃO //
 
+/**
+ * @brief Redefine todas as configurações de pino para seu estado padrão (não configurado) de 255.
+ * Também define o dado de retorno como 1 para indicar sucesso.
+ */
 void resetarPinos(){
   // Configuração de todos os pinos para o valor padrão
   PIN_ENA = 255;
@@ -114,6 +123,12 @@ void resetarPinos(){
   
 }
 
+/**
+ * @brief Verifica a configuração de um pino específico.
+ * Lê um inteiro do cliente que corresponde ao pino de um componente específico.
+ * A função então define o dado de retorno para o número do pino configurado para aquele componente.
+ * Se o índice do componente for inválido, define o dado de retorno para um código de erro (erro1).
+ */
 void verificarPinoConfigurado(){
 
   // Leitura do parâmetro do comando
@@ -223,6 +238,12 @@ void verificarPinoConfigurado(){
   
 }
 
+/**
+ * @brief Configura os pinos para os motores.
+ * Lê 6 números de pino do cliente para ENA, M1, M2, M3, M4 e ENB.
+ * Valida os números dos pinos (0-19) e, se forem válidos, os define como SAÍDA (OUTPUT).
+ * Se os números dos pinos forem inválidos, define um código de erro (erro1) e redefine os pinos do motor para 255.
+ */
 void configurarMotores(){
   
   // Leitura dos parâmetros do comando para configuração das variáveis de pinagem
@@ -258,6 +279,12 @@ void configurarMotores(){
   dado_retorno.floatingPoint = 1;
 }
 
+/**
+ * @brief Configura os pinos para o sensor ultrassônico.
+ * Lê 2 números de pino do cliente para ECHO (ENTRADA) e TRIG (SAÍDA).
+ * Valida os números dos pinos (0-19).
+ * Se os números dos pinos forem inválidos, define um código de erro (erro1) e redefine os pinos do sensor para 255.
+ */
 void configurarSensorUltrassonico(){
   // Leitura dos parâmetros do comando para configuração das variáveis de pinagem
   PIN_ECHO = client.parseInt();
@@ -280,6 +307,12 @@ void configurarSensorUltrassonico(){
   dado_retorno.floatingPoint = 1;
 }
 
+/**
+ * @brief Configura o pino para um dos dois LEDs simples.
+ * Lê o número do LED (1 ou 2) e o número do pino do cliente.
+ * Valida o número do pino (0-19).
+ * Se os parâmetros forem inválidos, define um código de erro (erro1).
+ */
 void configurarLedSimples(){
 
   // Leitura dos parâmetros do comando
@@ -315,6 +348,12 @@ void configurarLedSimples(){
   
 }
 
+/**
+ * @brief Configura os pinos para o LED RGB.
+ * Lê 3 números de pino do cliente para os componentes R, G e B (SAÍDA).
+ * Valida os números dos pinos (0-19).
+ * Se os números dos pinos forem inválidos, define um código de erro (erro1) e redefine os pinos do LED RGB para 255.
+ */
 void configurarLedRGB(){
 
   // Leitura dos parâmetros do comando para configuração das variáveis de pinagem
@@ -342,6 +381,12 @@ void configurarLedRGB(){
   
 }
 
+/**
+ * @brief Configura o pino para o buzzer.
+ * Lê 1 número de pino do cliente para o buzzer (SAÍDA).
+ * Valida o número do pino (0-19).
+ * Se o número do pino for inválido, define um código de erro (erro1) e redefine o pino do buzzer para 255.
+ */
 void configurarBuzzer(){
   
   // Leitura dos parâmetros do comando para configuração das variáveis de pinagem
@@ -363,6 +408,12 @@ void configurarBuzzer(){
   
 }
   
+/**
+ * @brief Configura o pino para um dos dois sensores fotorresistores.
+ * Lê o número do sensor (1 ou 2) e o número do pino do cliente.
+ * Valida o número do pino (0-19) e o define como ENTRADA (INPUT).
+ * Se os parâmetros forem inválidos, define um código de erro (erro1).
+ */
 void configurarSensorFotoresistor(){
 
   // Leitura dos parâmetros do comando
@@ -398,6 +449,12 @@ void configurarSensorFotoresistor(){
 
 }  
 
+/**
+ * @brief Configura o pino para um dos três sensores ópticos reflexivos.
+ * Lê o número do sensor (1, 2 ou 3) e o número do pino do cliente.
+ * Valida o número do pino (0-19). Os pinos para os sensores 1 e 2 são SAÍDA (OUTPUT), o pino para o sensor 3 é ENTRADA (INPUT).
+ * Se os parâmetros forem inválidos, define um código de erro (erro1).
+ */
 void configurarSensorOpticoReflexivo(){
 
   // Leitura dos parâmetros do comando
@@ -438,6 +495,12 @@ void configurarSensorOpticoReflexivo(){
  
 }
   
+/**
+ * @brief Configura o pino para o potenciômetro.
+ * Lê 1 número de pino do cliente para o potenciômetro (ENTRADA).
+ * Valida o número do pino (0-19).
+ * Se o número do pino for inválido, define um código de erro (erro1) e redefine o pino do potenciômetro para 255.
+ */
 void configurarPotenciometro(){
 
   // Leitura dos parâmetros do comando para configuração das variáveis de pinagem
@@ -459,6 +522,12 @@ void configurarPotenciometro(){
   
 }
 
+/**
+ * @brief Configura o pino para o botão de pressão.
+ * Lê 1 número de pino do cliente para o botão de pressão (ENTRADA).
+ * Valida o número do pino (0-19).
+ * Se o número do pino for inválido, define um código de erro (erro1) e redefine o pino do botão de pressão para 255.
+ */
 void configurarPushButton(){
 
   // Leitura dos parâmetros do comando
@@ -480,6 +549,11 @@ void configurarPushButton(){
 
 }
 
+/**
+ * @brief Configura o sensor MPU6050.
+ * Inicializa a comunicação I2C com o MPU6050 e o ativa.
+ * Define as variáveis de pino internas para o MPU como 18 (SDA) e 19 (SCL).
+ */
 void configurarMPU(){
   
   // Iniciar a comunicação I2C para comunicar com o sensor MPU6050
@@ -501,6 +575,10 @@ void configurarMPU(){
 }
 // FUNÇÕES DE AÇÕES //
 
+/**
+ * @brief Obtém a velocidade atual do motor.
+ * A velocidade é armazenada em uma variável global e esta função a define como o dado de retorno.
+ */
 void getVelocidade(){
 
   // Configurando a variável com o dado de retorno para o servidor
@@ -508,6 +586,10 @@ void getVelocidade(){
 
 }
 
+/**
+ * @brief Define a velocidade para ambos os motores.
+ * Lê dois valores de velocidade (0-255) do cliente para o motor A e o motor B.
+ */
 void setVelocidade(){
   
   // Leitura dos parâmetros do comando
@@ -527,6 +609,9 @@ void setVelocidade(){
     
 }
 
+/**
+ * @brief Move o robô para frente.
+ */
 void andarParaFrente(){
 
   // Parando os motores
@@ -540,6 +625,9 @@ void andarParaFrente(){
 
 }
 
+/**
+ * @brief Move o robô para trás.
+ */
 void andarParaTras(){
 
   // Parando os motores
@@ -553,6 +641,9 @@ void andarParaTras(){
 
 }
 
+/**
+ * @brief Rotaciona o robô para a esquerda.
+ */
 void rotacionarEsquerda(){
   
   // Motores para esquerda
@@ -565,6 +656,9 @@ void rotacionarEsquerda(){
   dado_retorno.floatingPoint = 1;
 }
 
+/**
+ * @brief Rotaciona o robô para a direita.
+ */
 void rotacionarDireita(){
 
   // Motores para direita
@@ -577,6 +671,11 @@ void rotacionarDireita(){
   dado_retorno.floatingPoint = 1;
 }
 
+/**
+ * @brief Faz o robô fazer uma curva definindo velocidades diferentes para cada motor.
+ * Lê dois valores de velocidade (v1, v2) do cliente para o motor A e o motor B.
+ * Valida que as velocidades estão no intervalo [0, 255].
+ */
 void fazerCurva(){
   
   // Leitura dos parâmetros do comando (velocidades N1 e N2)
@@ -599,6 +698,9 @@ void fazerCurva(){
 
 }
 
+/**
+ * @brief Para ambos os motores.
+ */
 void pararMotores(){
 
   // Código para parar os motores
@@ -612,6 +714,11 @@ void pararMotores(){
 
 }
 
+/**
+ * @brief Ativa um LED simples.
+ * Lê o número do LED (1 ou 2) do cliente.
+ * Verifica se o pino do LED correspondente foi configurado.
+ */
 void ativarLed(){
 
   // Leitura dos parâmetros do comando
@@ -643,6 +750,12 @@ void ativarLed(){
  
 }  
 
+/**
+ * @brief Ativa um LED simples por uma duração específica.
+ * Lê o número do LED (1 ou 2) e um tempo de atraso em milissegundos do cliente.
+ * O LED é ligado, o programa espera pelo tempo especificado e depois o LED é desligado.
+ * Verifica se o pino do LED correspondente foi configurado.
+ */
 void ativarLedDelay(){
   
   // Leitura dos parâmetros do comando
@@ -683,6 +796,11 @@ void ativarLedDelay(){
   
 }  
 
+/**
+ * @brief Inverte o estado de um LED simples.
+ * Lê o número do LED (1 ou 2) do cliente.
+ * Verifica se o pino do LED correspondente foi configurado.
+ */
 void inverterLed(){
   
   // Leitura dos parâmetros do comando
@@ -714,6 +832,11 @@ void inverterLed(){
 
 }
 
+/**
+ * @brief Desativa um LED simples.
+ * Lê o número do LED (1 ou 2) do cliente.
+ * Verifica se o pino do LED correspondente foi configurado.
+ */
 void desativarLed(){
 
   // Leitura dos parâmetros do comando
@@ -744,6 +867,11 @@ void desativarLed(){
     
 }
 
+/**
+ * @brief Ativa o LED RGB com uma cor específica.
+ * Lê os valores R, G e B (0-255) do cliente.
+ * Verifica se os pinos do LED RGB foram configurados.
+ */
 void ativarLedRGB(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -775,6 +903,12 @@ void ativarLedRGB(){
  
 }
 
+/**
+ * @brief Ativa o LED RGB com uma cor específica por uma duração específica.
+ * Lê os valores R, G, B (0-255) e um tempo de atraso em milissegundos do cliente.
+ * O LED é ligado com a cor especificada, o programa espera e depois o LED é desligado.
+ * Verifica se os pinos do LED RGB foram configurados.
+ */
 void ativarLedRGBDelay(){
   
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -813,7 +947,11 @@ void ativarLedRGBDelay(){
     dado_retorno.floatingPoint = erro1; 
     
 }
-    
+
+/**
+ * @brief Desativa o LED RGB.
+ * Verifica se os pinos do LED RGB foram configurados.
+ */
 void desativarLedRGB(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -831,6 +969,11 @@ void desativarLedRGB(){
   dado_retorno.floatingPoint = 1;
 }
 
+/**
+ * @brief Ativa o buzzer com uma frequência específica.
+ * Lê a frequência do cliente.
+ * Verifica se o pino do buzzer foi configurado.
+ */
 void ativarBuzzer(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -850,7 +993,12 @@ void ativarBuzzer(){
   dado_retorno.floatingPoint = 1;
 }
   
-
+/**
+ * @brief Ativa o buzzer com uma frequência específica por uma duração específica.
+ * Lê a frequência e um tempo de atraso em milissegundos do cliente.
+ * O buzzer soa, o programa espera e então o buzzer para.
+ * Verifica se o pino do buzzer foi configurado.
+ */
 void ativarBuzzerDelay(){
   
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -878,6 +1026,10 @@ void ativarBuzzerDelay(){
   
 }
 
+/**
+ * @brief Desativa o buzzer.
+ * Verifica se o pino do buzzer foi configurado.
+ */
 void desativarBuzzer(){
   
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -895,6 +1047,11 @@ void desativarBuzzer(){
 
 }
 
+/**
+ * @brief Lê a distância do sensor ultrassônico.
+ * Dispara o sensor e lê o pulso de eco para calcular a distância em centímetros.
+ * Verifica se os pinos do sensor ultrassônico foram configurados.
+ */
 void lerSensorUltrassonico(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -916,6 +1073,11 @@ void lerSensorUltrassonico(){
 
 }
 
+/**
+ * @brief Lê o valor de um sensor fotorresistor.
+ * Lê o número do sensor (1 ou 2) do cliente e retorna o valor analógico.
+ * Verifica se o pino do sensor correspondente foi configurado.
+ */
 void lerSensorFotoresistor(){
 
   // Leitura dos parâmetros do comando
@@ -942,6 +1104,11 @@ void lerSensorFotoresistor(){
 
 }
 
+/**
+ * @brief Lê o valor de um sensor óptico reflexivo.
+ * Lê o número do sensor (1, 2 ou 3) do cliente e retorna o valor digital.
+ * Verifica se o pino do sensor correspondente foi configurado.
+ */
 void lerSensorOpticoReflexivo(){
   
   // Leitura dos parâmetros do comando
@@ -969,7 +1136,11 @@ void lerSensorOpticoReflexivo(){
   }
     
 }
-  
+
+/**
+ * @brief Lê o valor do potenciômetro.
+ * Retorna o valor analógico. Verifica se o pino do potenciômetro foi configurado.
+ */
 void lerPotenciometro(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -983,7 +1154,11 @@ void lerPotenciometro(){
   dado_retorno.floatingPoint = analogRead(PIN_PTC);
   
 }
-  
+
+/**
+ * @brief Lê o estado do botão de pressão.
+ * Retorna o valor digital. Verifica se o pino do botão de pressão foi configurado.
+ */
 void lerBotao(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -997,7 +1172,11 @@ void lerBotao(){
   dado_retorno.floatingPoint = digitalRead(PIN_PBT);
   
 }
-  
+
+/**
+ * @brief Lê a temperatura do sensor MPU6050.
+ * Retorna a temperatura em graus Celsius. Verifica se o MPU foi configurado.
+ */
 void lerTemperatura(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -1033,6 +1212,10 @@ void lerTemperatura(){
  
 }
 
+/**
+ * @brief Lê a aceleração do eixo X do sensor MPU6050.
+ * Retorna a aceleração em m/s^2. Verifica se o MPU foi configurado.
+ */
 void lerAcelerometroX(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -1063,6 +1246,10 @@ void lerAcelerometroX(){
   
 }
 
+/**
+ * @brief Lê a aceleração do eixo Y do sensor MPU6050.
+ * Retorna a aceleração em m/s^2. Verifica se o MPU foi configurado.
+ */
 void lerAcelerometroY(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -1094,6 +1281,10 @@ void lerAcelerometroY(){
   
 }
 
+/**
+ * @brief Lê a aceleração do eixo Z do sensor MPU6050.
+ * Retorna a aceleração em m/s^2. Verifica se o MPU foi configurado.
+ */
 void lerAcelerometroZ(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -1125,6 +1316,10 @@ void lerAcelerometroZ(){
   
 }
 
+/**
+ * @brief Lê os dados do giroscópio do eixo X do sensor MPU6050.
+ * Retorna a velocidade angular em rad/s. Verifica se o MPU foi configurado.
+ */
 void lerGiroscopioX(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -1156,6 +1351,10 @@ void lerGiroscopioX(){
   
 }
 
+/**
+ * @brief Lê os dados do giroscópio do eixo Y do sensor MPU6050.
+ * Retorna a velocidade angular em rad/s. Verifica se o MPU foi configurado.
+ */
 void lerGiroscopioY(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -1187,6 +1386,10 @@ void lerGiroscopioY(){
   
 }
 
+/**
+ * @brief Lê os dados do giroscópio do eixo Z do sensor MPU6050.
+ * Retorna a velocidade angular em rad/s. Verifica se o MPU foi configurado.
+ */
 void lerGiroscopioZ(){
 
   // Verifica se os pinos requeridos para essa ação foram configurados
@@ -1218,11 +1421,23 @@ void lerGiroscopioZ(){
   
 }
 
+/**
+ * @brief Reinicia a placa Arduino, encerrando efetivamente a comunicação.
+ */
 void encerrarComunicacao(){
   NVIC_SystemReset();
 }
 
+/**
+ * @brief Função de configuração, executada uma vez no início.
+ * Inicializa a comunicação serial, define a velocidade padrão, conecta-se ao WiFi.
+ * Em seguida, escuta por um broadcast UDP de um cliente para descoberta.
+ * Uma vez descoberto, aguarda uma conexão TCP do cliente.
+ * Após a conexão, entra em um loop de configuração onde o cliente pode configurar
+ * os pinos de hardware do robô antes do início da operação principal.
+ */
 void setup() {
+  WiFiServer server(4210); /*!< Objeto do servidor TCP. */
   Serial.begin(115200);
   // Configurando a velocidade para o seu valor inicial padrão
   velocidade.floatingPoint = 255;
@@ -1361,6 +1576,12 @@ void setup() {
   
 }
 
+/**
+ * @brief Loop principal, executado repetidamente.
+ * Verifica se há dados disponíveis do cliente TCP conectado.
+ * Lê os bytes de comando e chama a função apropriada para executar o comando.
+ * Após executar um comando, envia uma resposta de ponto flutuante de 4 bytes de volta para o cliente.
+ */
 void loop() {
   
   // Verifica se algum byte foi enviado ao servidor

@@ -7,7 +7,7 @@ __pycache__/
 # Documentação gerada pelo Sphinx
 # Ignora o diretório 'build' dentro de qualquer pasta 'docs'
 **/docs/build/
-
+**/doc_out/
 
 
 # Arquivos de configuração de IDEs
