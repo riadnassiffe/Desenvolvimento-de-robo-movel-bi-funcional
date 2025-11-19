@@ -1,0 +1,537 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cliente package &mdash; Documentação Desenvolvimento de robo bifuncional 2.0</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=29cdef05"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/translations.js?v=beaedd51"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Pesquisar" href="search.html" />
+    <link rel="next" title="servidorUnoR4Wifi" href="servidorUnoR4Wifi.html" />
+    <link rel="prev" title="Cliente" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Desenvolvimento de robo bifuncional
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar docs" aria-label="Pesquisar docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <p class="caption" role="heading"><span class="caption-text">Conteúdo:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Cliente</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Cliente package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cliente">Cliente module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cliente.Cliente"><code class="docutils literal notranslate"><span class="pre">Cliente</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-clienteUnoR4WiFi">Cliente.clienteUnoR4WiFi module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#clienteUnoR4WiFi.ClienteUnoR4Wifi"><code class="docutils literal notranslate"><span class="pre">ClienteUnoR4Wifi</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-comandos">Cliente.comandos module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-erro">Cliente.erro module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#erro.ErroComandoInvalido"><code class="docutils literal notranslate"><span class="pre">ErroComandoInvalido</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#erro.ErroConexaoInexistente"><code class="docutils literal notranslate"><span class="pre">ErroConexaoInexistente</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#erro.ErroPinoNaoConfigurado"><code class="docutils literal notranslate"><span class="pre">ErroPinoNaoConfigurado</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#erro.ErroValorParametroInvalido"><code class="docutils literal notranslate"><span class="pre">ErroValorParametroInvalido</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-exemplo">Cliente.exemplo module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#exemplo.loop"><code class="docutils literal notranslate"><span class="pre">loop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exemplo.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exemplo.setup"><code class="docutils literal notranslate"><span class="pre">setup()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exemplo.velocidade"><code class="docutils literal notranslate"><span class="pre">velocidade()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-robo">Cliente.robo module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#robo.PORTA_CLIENTE"><code class="docutils literal notranslate"><span class="pre">PORTA_CLIENTE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#robo.PORTA_ROBO"><code class="docutils literal notranslate"><span class="pre">PORTA_ROBO</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#robo.conectar_robo"><code class="docutils literal notranslate"><span class="pre">conectar_robo()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#robo.desconectar_robo"><code class="docutils literal notranslate"><span class="pre">desconectar_robo()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#robo.enviar"><code class="docutils literal notranslate"><span class="pre">enviar()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#robo.receber"><code class="docutils literal notranslate"><span class="pre">receber()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-contents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="servidorUnoR4Wifi.html">servidorUnoR4Wifi</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Desenvolvimento de robo bifuncional</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">Cliente</a></li>
+      <li class="breadcrumb-item active">Cliente package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Cliente.rst.txt" rel="nofollow"> Ver código-fonte da página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cliente-package">
+<h1>Cliente package<a class="headerlink" href="#cliente-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-cliente">
+<span id="cliente-module"></span><h2>Cliente module<a class="headerlink" href="#module-cliente" title="Link to this heading"></a></h2>
+<p>Define a interface abstrata para um Cliente de Robô.</p>
+<p>Esta classe serve como um «contrato», garantindo que qualquer classe de cliente concreta implemente todos os métodos essenciais para a comunicação, como conectar, enviar e receber.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="cliente.Cliente">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cliente.</span></span><span class="sig-name descname"><span class="pre">Cliente</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">porta_cliente</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">porta_robo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cliente.html#Cliente"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#cliente.Cliente" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Essa classe é uma interface que deve ser herda por outra classe que deve implementar
+as especificidades de comunicação com a placa que controla o robô.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cliente.Cliente.alterar_conexao">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">alterar_conexao</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cliente.html#Cliente.alterar_conexao"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#cliente.Cliente.alterar_conexao" title="Link to this definition"></a></dt>
+<dd><p>Método abstrato para modificar o estado da conexão (ex: reconectar).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cliente.Cliente.conectar">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">conectar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cliente.html#Cliente.conectar"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#cliente.Cliente.conectar" title="Link to this definition"></a></dt>
+<dd><p>Método abstrato para estabelecer a conexão com o robô.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cliente.Cliente.desconectar">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">desconectar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/cliente.html#Cliente.desconectar"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#cliente.Cliente.desconectar" title="Link to this definition"></a></dt>
+<dd><p>Método abstrato para encerrar a conexão com o robô.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cliente.Cliente.enviar_mensagem">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">enviar_mensagem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mensagem</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/cliente.html#Cliente.enviar_mensagem"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#cliente.Cliente.enviar_mensagem" title="Link to this definition"></a></dt>
+<dd><p>Método abstrato para enviar uma string de comando ao robô.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cliente.Cliente.receber_mensagem">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">receber_mensagem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/cliente.html#Cliente.receber_mensagem"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#cliente.Cliente.receber_mensagem" title="Link to this definition"></a></dt>
+<dd><p>Método abstrato para aguardar e receber uma resposta (float) do robô.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cliente.Cliente.resposta">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resposta</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#cliente.Cliente.resposta" title="Link to this definition"></a></dt>
+<dd><p>Obtém a última resposta recebida.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cliente.Cliente.solicitar_status">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">solicitar_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cliente.html#Cliente.solicitar_status"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#cliente.Cliente.solicitar_status" title="Link to this definition"></a></dt>
+<dd><p>Método abstrato para requisitar o status atual do robô.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cliente.Cliente.testar_tempo_conexao">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">testar_tempo_conexao</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mensagem</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/cliente.html#Cliente.testar_tempo_conexao"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#cliente.Cliente.testar_tempo_conexao" title="Link to this definition"></a></dt>
+<dd><p>Método abstrato para medir o tempo de ida e volta de uma mensagem.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cliente.Cliente.verificar_erros">
+<span class="sig-name descname"><span class="pre">verificar_erros</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">saida</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/cliente.html#Cliente.verificar_erros"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#cliente.Cliente.verificar_erros" title="Link to this definition"></a></dt>
+<dd><p>Verifica códigos de erro numéricos e levanta exceções Python.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>saida</strong> (<em>int</em>) – O código de status retornado pelo robô.</p>
+</dd>
+<dt class="field-even">Retorno<span class="colon">:</span></dt>
+<dd class="field-even"><p>O mesmo “saida” se não for um código de erro conhecido.</p>
+</dd>
+<dt class="field-odd">Tipo de retorno<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+<dt class="field-even">Levanta<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="#erro.ErroPinoNaoConfigurado" title="erro.ErroPinoNaoConfigurado"><strong>ErroPinoNaoConfigurado</strong></a> – Se o código for ERRO_0_PINO_NAO_CONFIGURADO.</p></li>
+<li><p><a class="reference internal" href="#erro.ErroValorParametroInvalido" title="erro.ErroValorParametroInvalido"><strong>ErroValorParametroInvalido</strong></a> – Se o código for ERRO_1_PARAMETRO_INVALIDO.</p></li>
+<li><p><a class="reference internal" href="#erro.ErroComandoInvalido" title="erro.ErroComandoInvalido"><strong>ErroComandoInvalido</strong></a> – Se o código for ERRO_2_COMANDO_INVALIDO.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-clienteUnoR4WiFi">
+<span id="cliente-clienteunor4wifi-module"></span><h2>Cliente.clienteUnoR4WiFi module<a class="headerlink" href="#module-clienteUnoR4WiFi" title="Link to this heading"></a></h2>
+<p>Implementação do cliente de comunicação específico para o Arduino Uno R4 WiFi.</p>
+<p>Esta classe herda de “Cliente” e implementa a lógica de:
+1. Descoberta do robô na rede local usando broadcast UDP.
+2. Conexão TCP para troca de mensagens de comando e dados.
+3. Uma thread de escuta para receber dados (floats) continuamente.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="clienteUnoR4WiFi.ClienteUnoR4Wifi">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">clienteUnoR4WiFi.</span></span><span class="sig-name descname"><span class="pre">ClienteUnoR4Wifi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">porta_cliente</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">porta_robo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/clienteUnoR4WiFi.html#ClienteUnoR4Wifi"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#clienteUnoR4WiFi.ClienteUnoR4Wifi" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#cliente.Cliente" title="cliente.Cliente"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cliente</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="clienteUnoR4WiFi.ClienteUnoR4Wifi.alterar_conexao">
+<span class="sig-name descname"><span class="pre">alterar_conexao</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/clienteUnoR4WiFi.html#ClienteUnoR4Wifi.alterar_conexao"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#clienteUnoR4WiFi.ClienteUnoR4Wifi.alterar_conexao" title="Link to this definition"></a></dt>
+<dd><p>Método placeholder (não implementado).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clienteUnoR4WiFi.ClienteUnoR4Wifi.conectar">
+<span class="sig-name descname"><span class="pre">conectar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/clienteUnoR4WiFi.html#ClienteUnoR4Wifi.conectar"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#clienteUnoR4WiFi.ClienteUnoR4Wifi.conectar" title="Link to this definition"></a></dt>
+<dd><p>Estabelece a conexão TCP principal com o robô.</p>
+<p>Utiliza o endereço IP (self._addr) obtido durante a descoberta
+para criar a conexão de streaming (TCP).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clienteUnoR4WiFi.ClienteUnoR4Wifi.descoberta">
+<span class="sig-name descname"><span class="pre">descoberta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/clienteUnoR4WiFi.html#ClienteUnoR4Wifi.descoberta"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#clienteUnoR4WiFi.ClienteUnoR4Wifi.descoberta" title="Link to this definition"></a></dt>
+<dd><p>Localiza o robô na rede local usando broadcast UDP.</p>
+<p>Envia uma mensagem de broadcast («UnoR4WiFi») e aguarda
+uma resposta do robô para identificar seu endereço IP.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clienteUnoR4WiFi.ClienteUnoR4Wifi.desconectar">
+<span class="sig-name descname"><span class="pre">desconectar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/clienteUnoR4WiFi.html#ClienteUnoR4Wifi.desconectar"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#clienteUnoR4WiFi.ClienteUnoR4Wifi.desconectar" title="Link to this definition"></a></dt>
+<dd><p>Encerra a conexão TCP com o robô.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clienteUnoR4WiFi.ClienteUnoR4Wifi.enviar_mensagem">
+<span class="sig-name descname"><span class="pre">enviar_mensagem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mensagem</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/clienteUnoR4WiFi.html#ClienteUnoR4Wifi.enviar_mensagem"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#clienteUnoR4WiFi.ClienteUnoR4Wifi.enviar_mensagem" title="Link to this definition"></a></dt>
+<dd><p>Envia uma string de comando para o robô via TCP.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clienteUnoR4WiFi.ClienteUnoR4Wifi.escutar_servidor">
+<span class="sig-name descname"><span class="pre">escutar_servidor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/clienteUnoR4WiFi.html#ClienteUnoR4Wifi.escutar_servidor"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#clienteUnoR4WiFi.ClienteUnoR4Wifi.escutar_servidor" title="Link to this definition"></a></dt>
+<dd><p>Thread de escuta para dados do robô.</p>
+<p>Lê continuamente o socket TCP, monta pacotes de 4 bytes e
+os decodifica como valores float, armazenando o último valor
+em “self.valor”.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clienteUnoR4WiFi.ClienteUnoR4Wifi.executar">
+<span class="sig-name descname"><span class="pre">executar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/clienteUnoR4WiFi.html#ClienteUnoR4Wifi.executar"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#clienteUnoR4WiFi.ClienteUnoR4Wifi.executar" title="Link to this definition"></a></dt>
+<dd><p>Executa a sequência de inicialização completa.</p>
+<p>Realiza a descoberta, conecta-se via TCP e inicia a
+thread de escuta.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clienteUnoR4WiFi.ClienteUnoR4Wifi.iniciar_threads">
+<span class="sig-name descname"><span class="pre">iniciar_threads</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/clienteUnoR4WiFi.html#ClienteUnoR4Wifi.iniciar_threads"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#clienteUnoR4WiFi.ClienteUnoR4Wifi.iniciar_threads" title="Link to this definition"></a></dt>
+<dd><p>Inicia as threads de serviço do cliente.</p>
+<p>Case(0): Inicia a thread “escutar_servidor”.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clienteUnoR4WiFi.ClienteUnoR4Wifi.receber_mensagem">
+<span class="sig-name descname"><span class="pre">receber_mensagem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/clienteUnoR4WiFi.html#ClienteUnoR4Wifi.receber_mensagem"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#clienteUnoR4WiFi.ClienteUnoR4Wifi.receber_mensagem" title="Link to this definition"></a></dt>
+<dd><p>Aguarda e obtém o próximo valor (float) recebido pela thread.</p>
+<p>Esta função não lê o socket diretamente. Ela consome o valor
+que a thread “escutar_servidor” armazena em “self.valor”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout</strong> (<em>float</em>) – Tempo máximo em segundos para esperar por um valor.</p>
+</dd>
+<dt class="field-even">Retorno<span class="colon">:</span></dt>
+<dd class="field-even"><p>O valor recebido, ou 999 em caso de timeout.</p>
+</dd>
+<dt class="field-odd">Tipo de retorno<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clienteUnoR4WiFi.ClienteUnoR4Wifi.solicitar_status">
+<span class="sig-name descname"><span class="pre">solicitar_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/clienteUnoR4WiFi.html#ClienteUnoR4Wifi.solicitar_status"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#clienteUnoR4WiFi.ClienteUnoR4Wifi.solicitar_status" title="Link to this definition"></a></dt>
+<dd><p>Método placeholder (não implementado).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clienteUnoR4WiFi.ClienteUnoR4Wifi.testar_tempo_conexao">
+<span class="sig-name descname"><span class="pre">testar_tempo_conexao</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mensagem</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/clienteUnoR4WiFi.html#ClienteUnoR4Wifi.testar_tempo_conexao"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#clienteUnoR4WiFi.ClienteUnoR4Wifi.testar_tempo_conexao" title="Link to this definition"></a></dt>
+<dd><p>Método placeholder (não implementado).</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-comandos">
+<span id="cliente-comandos-module"></span><h2>Cliente.comandos module<a class="headerlink" href="#module-comandos" title="Link to this heading"></a></h2>
+<p>Módulo de Comandos - Protocolo Serial do Robô.</p>
+<p>Este arquivo centraliza todas as strings de comando (códigos de protocolo)
+usadas na comunicação entre o script Python e o robô (ex: Arduino).</p>
+<p>O objetivo é mapear constantes Python legíveis (ex: MOVER_PARA_FRENTE)
+para os códigos de string curtos (ex: «MF») que o robô espera.</p>
+<p>Fica a gosto do usuário utilizar os comandos ou diretamente suas representações
+de letras.</p>
+</section>
+<section id="module-erro">
+<span id="cliente-erro-module"></span><h2>Cliente.erro module<a class="headerlink" href="#module-erro" title="Link to this heading"></a></h2>
+<p>Arquivo que contém a definição de todas as classes de erro
+padrão definidas no projeto. Cada erro possui apenas uma simples
+mensagem de aviso para quando ele for disparado.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="erro.ErroComandoInvalido">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">erro.</span></span><span class="sig-name descname"><span class="pre">ErroComandoInvalido</span></span><a class="reference internal" href="_modules/erro.html#ErroComandoInvalido"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#erro.ErroComandoInvalido" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>ERRO 2</p>
+<p>Comando Inválido - Envie somente os comandos aceitos pelo servidor.
+Os comandos válidos estão listados na documentação na seção —</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="erro.ErroConexaoInexistente">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">erro.</span></span><span class="sig-name descname"><span class="pre">ErroConexaoInexistente</span></span><a class="reference internal" href="_modules/erro.html#ErroConexaoInexistente"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#erro.ErroConexaoInexistente" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>ERRO - 3</p>
+<p>Cliente não conectado ao Servidor, impossível realizar a
+transimissão/recepção de dados.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="erro.ErroPinoNaoConfigurado">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">erro.</span></span><span class="sig-name descname"><span class="pre">ErroPinoNaoConfigurado</span></span><a class="reference internal" href="_modules/erro.html#ErroPinoNaoConfigurado"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#erro.ErroPinoNaoConfigurado" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>ERRO 0</p>
+<p>O pino não foi definido durante o processo de configuração do robô.
+Não é possível utilizar essa funcionalidade sem a correta configuração
+de pinos!</p>
+<p>Para mais detalhes, cheque a documentação na seção —</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="erro.ErroValorParametroInvalido">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">erro.</span></span><span class="sig-name descname"><span class="pre">ErroValorParametroInvalido</span></span><a class="reference internal" href="_modules/erro.html#ErroValorParametroInvalido"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#erro.ErroValorParametroInvalido" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>ERRO - 1</p>
+<p>Valor informado como parâmetro para o comando não é aceito.
+Verifique a documentação do comando em questão na seção —
+para observar os possíveis valores de entrada e saída válidos.</p>
+</dd></dl>
+
+</section>
+<section id="module-exemplo">
+<span id="cliente-exemplo-module"></span><h2>Cliente.exemplo module<a class="headerlink" href="#module-exemplo" title="Link to this heading"></a></h2>
+<p>Script principal para controle de um robô via comunicação.</p>
+<p>Este script define a lógica de operação do robô, incluindo a configuração
+inicial (setup) e o loop de comportamento principal (loop).</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="exemplo.loop">
+<span class="sig-prename descclassname"><span class="pre">exemplo.</span></span><span class="sig-name descname"><span class="pre">loop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/exemplo.html#loop"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#exemplo.loop" title="Link to this definition"></a></dt>
+<dd><p>Executa o ciclo da lógica de controle do robô o qual deve
+ser criado pelo usuário.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="exemplo.main">
+<span class="sig-prename descclassname"><span class="pre">exemplo.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/exemplo.html#main"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#exemplo.main" title="Link to this definition"></a></dt>
+<dd><p>Função principal que gerencia o ciclo de vida da execução do robô.</p>
+<p>Estabelece a conexão, executa a configuração (setup) e, em seguida,
+entra no loop de ação principal (loop), que é executado continuamente.</p>
+<p>Captura “KeyboardInterrupt” (Ctrl+C) para permitir uma interrupção
+limpa, garantindo que o robô seja desconectado corretamente.
+Trata também outras exceções que possam ocorrer durante a execução,
+tais exeções fazem parte da classe Erros.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="exemplo.setup">
+<span class="sig-prename descclassname"><span class="pre">exemplo.</span></span><span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/exemplo.html#setup"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#exemplo.setup" title="Link to this definition"></a></dt>
+<dd><p>Local onde o usuário deve inseria a configuração dos pinos e componentes iniciais do robô.</p>
+<p>Finalize enviando o comando “SETUP_CONCLUIDO”
+para sinalizar que o robô está pronto para iniciar o loop principal.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="exemplo.velocidade">
+<span class="sig-prename descclassname"><span class="pre">exemplo.</span></span><span class="sig-name descname"><span class="pre">velocidade</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/exemplo.html#velocidade"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#exemplo.velocidade" title="Link to this definition"></a></dt>
+<dd><p>Formata o comando de velocidade para os motores.</p>
+<p>Cria uma string de comando padronizada «VS/a/b» que pode ser
+enviada ao robô para definir a velocidade dos motores.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>int</em>) – A velocidade desejada para o motor A (ou esquerdo).</p></li>
+<li><p><strong>b</strong> (<em>int</em>) – A velocidade desejada para o motor B (ou direito).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorno<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string de comando formatada (ex: «VS/120/120»).</p>
+</dd>
+<dt class="field-odd">Tipo de retorno<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-robo">
+<span id="cliente-robo-module"></span><h2>Cliente.robo module<a class="headerlink" href="#module-robo" title="Link to this heading"></a></h2>
+<p>Módulo da Fachada do Robô (robo.py)</p>
+<p>Este arquivo abstrai toda a complexidade da conexão com o robô
+(escondendo a classe “ClienteUnoR4Wifi”) e expõe funções
+simples e globais que o “main.py” pode utilizar.</p>
+<p>O “main.py” (o arquivo do usuário) deve importar
+apenas deste módulo.</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="robo.PORTA_CLIENTE">
+<span class="sig-prename descclassname"><span class="pre">robo.</span></span><span class="sig-name descname"><span class="pre">PORTA_CLIENTE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5005</span></em><a class="headerlink" href="#robo.PORTA_CLIENTE" title="Link to this definition"></a></dt>
+<dd><p>Porta que este cliente (PC) usará para a descoberta UDP.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="robo.PORTA_ROBO">
+<span class="sig-prename descclassname"><span class="pre">robo.</span></span><span class="sig-name descname"><span class="pre">PORTA_ROBO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4210</span></em><a class="headerlink" href="#robo.PORTA_ROBO" title="Link to this definition"></a></dt>
+<dd><p>Porta do Arduino (Servidor) para descoberta UDP e conexão TCP.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="robo.conectar_robo">
+<span class="sig-prename descclassname"><span class="pre">robo.</span></span><span class="sig-name descname"><span class="pre">conectar_robo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cliente</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/robo.html#conectar_robo"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#robo.conectar_robo" title="Link to this definition"></a></dt>
+<dd><p>Inicializa e conecta ao robô.</p>
+<p>Esta função deve ser chamada uma vez no início do “main.py”.
+Ela instancia o “ClienteUnoR4Wifi” (escondendo as portas)
+e o armazena na variável global “_cliente”.
+Em seguida, chama o método “executar()” do cliente para
+realizar a descoberta, conexão e iniciar a thread de escuta.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="robo.desconectar_robo">
+<span class="sig-prename descclassname"><span class="pre">robo.</span></span><span class="sig-name descname"><span class="pre">desconectar_robo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/robo.html#desconectar_robo"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#robo.desconectar_robo" title="Link to this definition"></a></dt>
+<dd><p>Desconecta do robô de forma segura.</p>
+<p>Esta função deve ser chamada no bloco “finally” do “main.py”.
+Ela envia um comando final de “FINALIZAR” (para o Arduino)
+e, em seguida, fecha o socket de conexão.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="robo.enviar">
+<span class="sig-prename descclassname"><span class="pre">robo.</span></span><span class="sig-name descname"><span class="pre">enviar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comando</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/robo.html#enviar"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#robo.enviar" title="Link to this definition"></a></dt>
+<dd><p>Envia um comando de string para o robô.</p>
+<p>Verifica se a conexão (_cliente) existe e, em caso afirmativo,
+chama o método “enviar_mensagem” do cliente.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>comando</strong> (<em>str</em>) – A string de comando (ex: «MF», «VS/120/120»).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="robo.receber">
+<span class="sig-prename descclassname"><span class="pre">robo.</span></span><span class="sig-name descname"><span class="pre">receber</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/robo.html#receber"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#robo.receber" title="Link to this definition"></a></dt>
+<dd><p>Espera e recebe um valor (float) do robô.</p>
+<p>Esta é uma função bloqueante. Ela espera até que a thread
+“escutar_servidor” (no cliente) preencha um valor.
+Chama “verificar_erros” internamente (na classe Cliente).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout</strong> (<em>float</em><em>, </em><em>optional</em>) – Tempo máximo de espera em segundos.
+Padrão é 5.0.</p>
+</dd>
+<dt class="field-even">Retorno<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>O valor recebido do robô (ex: distância, status)</dt><dd><p>ou 999 se o tempo estourar.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Tipo de retorno<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="modules.html" class="btn btn-neutral float-left" title="Cliente" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="servidorUnoR4Wifi.html" class="btn btn-neutral float-right" title="servidorUnoR4Wifi" accesskey="n" rel="next">Seguinte <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, IFC.</p>
+  </div>
+
+  Compilado com <a href="https://www.sphinx-doc.org/">Sphinx</a> usando um
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornecido por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

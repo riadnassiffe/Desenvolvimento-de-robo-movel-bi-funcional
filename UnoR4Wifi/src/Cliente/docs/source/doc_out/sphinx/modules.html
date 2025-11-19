@@ -1,0 +1,182 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cliente &mdash; Documentação Desenvolvimento de robo bifuncional 2.0</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=29cdef05"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/translations.js?v=beaedd51"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Pesquisar" href="search.html" />
+    <link rel="next" title="Cliente package" href="Cliente.html" />
+    <link rel="prev" title="Bem-vindo à documentação do Robô Bifuncional!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Desenvolvimento de robo bifuncional
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar docs" aria-label="Pesquisar docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <p class="caption" role="heading"><span class="caption-text">Conteúdo:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Cliente</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Cliente.html">Cliente package</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="servidorUnoR4Wifi.html">servidorUnoR4Wifi</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Desenvolvimento de robo bifuncional</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Cliente</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/modules.rst.txt" rel="nofollow"> Ver código-fonte da página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cliente">
+<h1>Cliente<a class="headerlink" href="#cliente" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Cliente.html">Cliente package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Cliente.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Cliente.html#module-cliente">Cliente module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Cliente.html#cliente.Cliente"><code class="docutils literal notranslate"><span class="pre">Cliente</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Cliente.html#cliente.Cliente.alterar_conexao"><code class="docutils literal notranslate"><span class="pre">Cliente.alterar_conexao()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Cliente.html#cliente.Cliente.conectar"><code class="docutils literal notranslate"><span class="pre">Cliente.conectar()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Cliente.html#cliente.Cliente.desconectar"><code class="docutils literal notranslate"><span class="pre">Cliente.desconectar()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Cliente.html#cliente.Cliente.enviar_mensagem"><code class="docutils literal notranslate"><span class="pre">Cliente.enviar_mensagem()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Cliente.html#cliente.Cliente.receber_mensagem"><code class="docutils literal notranslate"><span class="pre">Cliente.receber_mensagem()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Cliente.html#cliente.Cliente.resposta"><code class="docutils literal notranslate"><span class="pre">Cliente.resposta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Cliente.html#cliente.Cliente.solicitar_status"><code class="docutils literal notranslate"><span class="pre">Cliente.solicitar_status()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Cliente.html#cliente.Cliente.testar_tempo_conexao"><code class="docutils literal notranslate"><span class="pre">Cliente.testar_tempo_conexao()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Cliente.html#cliente.Cliente.verificar_erros"><code class="docutils literal notranslate"><span class="pre">Cliente.verificar_erros()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Cliente.html#module-clienteUnoR4WiFi">Cliente.clienteUnoR4WiFi module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi"><code class="docutils literal notranslate"><span class="pre">ClienteUnoR4Wifi</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi.alterar_conexao"><code class="docutils literal notranslate"><span class="pre">ClienteUnoR4Wifi.alterar_conexao()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi.conectar"><code class="docutils literal notranslate"><span class="pre">ClienteUnoR4Wifi.conectar()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi.descoberta"><code class="docutils literal notranslate"><span class="pre">ClienteUnoR4Wifi.descoberta()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi.desconectar"><code class="docutils literal notranslate"><span class="pre">ClienteUnoR4Wifi.desconectar()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi.enviar_mensagem"><code class="docutils literal notranslate"><span class="pre">ClienteUnoR4Wifi.enviar_mensagem()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi.escutar_servidor"><code class="docutils literal notranslate"><span class="pre">ClienteUnoR4Wifi.escutar_servidor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi.executar"><code class="docutils literal notranslate"><span class="pre">ClienteUnoR4Wifi.executar()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi.iniciar_threads"><code class="docutils literal notranslate"><span class="pre">ClienteUnoR4Wifi.iniciar_threads()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi.receber_mensagem"><code class="docutils literal notranslate"><span class="pre">ClienteUnoR4Wifi.receber_mensagem()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi.solicitar_status"><code class="docutils literal notranslate"><span class="pre">ClienteUnoR4Wifi.solicitar_status()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Cliente.html#clienteUnoR4WiFi.ClienteUnoR4Wifi.testar_tempo_conexao"><code class="docutils literal notranslate"><span class="pre">ClienteUnoR4Wifi.testar_tempo_conexao()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Cliente.html#module-comandos">Cliente.comandos module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Cliente.html#module-erro">Cliente.erro module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Cliente.html#erro.ErroComandoInvalido"><code class="docutils literal notranslate"><span class="pre">ErroComandoInvalido</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Cliente.html#erro.ErroConexaoInexistente"><code class="docutils literal notranslate"><span class="pre">ErroConexaoInexistente</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Cliente.html#erro.ErroPinoNaoConfigurado"><code class="docutils literal notranslate"><span class="pre">ErroPinoNaoConfigurado</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Cliente.html#erro.ErroValorParametroInvalido"><code class="docutils literal notranslate"><span class="pre">ErroValorParametroInvalido</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Cliente.html#module-exemplo">Cliente.exemplo module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Cliente.html#exemplo.loop"><code class="docutils literal notranslate"><span class="pre">loop()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Cliente.html#exemplo.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Cliente.html#exemplo.setup"><code class="docutils literal notranslate"><span class="pre">setup()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Cliente.html#exemplo.velocidade"><code class="docutils literal notranslate"><span class="pre">velocidade()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Cliente.html#module-robo">Cliente.robo module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Cliente.html#robo.PORTA_CLIENTE"><code class="docutils literal notranslate"><span class="pre">PORTA_CLIENTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Cliente.html#robo.PORTA_ROBO"><code class="docutils literal notranslate"><span class="pre">PORTA_ROBO</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Cliente.html#robo.conectar_robo"><code class="docutils literal notranslate"><span class="pre">conectar_robo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Cliente.html#robo.desconectar_robo"><code class="docutils literal notranslate"><span class="pre">desconectar_robo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Cliente.html#robo.enviar"><code class="docutils literal notranslate"><span class="pre">enviar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Cliente.html#robo.receber"><code class="docutils literal notranslate"><span class="pre">receber()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Cliente.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="index.html" class="btn btn-neutral float-left" title="Bem-vindo à documentação do Robô Bifuncional!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="Cliente.html" class="btn btn-neutral float-right" title="Cliente package" accesskey="n" rel="next">Seguinte <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, IFC.</p>
+  </div>
+
+  Compilado com <a href="https://www.sphinx-doc.org/">Sphinx</a> usando um
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornecido por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

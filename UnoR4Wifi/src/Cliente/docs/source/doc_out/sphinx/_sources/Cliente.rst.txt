@@ -1,0 +1,61 @@
+Cliente package
+===============
+
+Submodules
+----------
+
+Cliente module
+----------------------
+
+.. automodule:: cliente
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Cliente.clienteUnoR4WiFi module
+-------------------------------
+
+.. automodule:: clienteUnoR4WiFi
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Cliente.comandos module
+-----------------------
+
+.. automodule:: comandos
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Cliente.erro module
+-------------------
+
+.. automodule:: erro
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Cliente.exemplo module
+----------------------
+
+.. automodule:: exemplo
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Cliente.robo module
+-------------------
+
+.. automodule:: robo
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: Cliente
+   :members:
+   :show-inheritance:
+   :undoc-members:
