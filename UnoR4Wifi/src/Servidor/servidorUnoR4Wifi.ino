@@ -609,10 +609,14 @@ void setVelocidade(){
     
 }
 
+<<<<<<< HEAD
 /**
  * @brief Move o robô para frente.
  */
 void andarParaFrente(){
+=======
+void andarParaTras(){
+>>>>>>> 4d6a22ae96d925e66a8690346357a0234118797f
 
   // Parando os motores
   digitalWrite(PIN_M1, HIGH);
@@ -625,10 +629,14 @@ void andarParaFrente(){
 
 }
 
+<<<<<<< HEAD
 /**
  * @brief Move o robô para trás.
  */
 void andarParaTras(){
+=======
+void andarParaFrente(){
+>>>>>>> 4d6a22ae96d925e66a8690346357a0234118797f
 
   // Parando os motores
   digitalWrite(PIN_M1, LOW);
