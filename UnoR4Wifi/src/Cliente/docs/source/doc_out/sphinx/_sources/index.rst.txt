@@ -14,7 +14,8 @@ Clientes
 .. toctree::
    :maxdepth: 1
    :caption: Conteúdo:
-
+   :name: mastertoc
+   :numbered:
 
    modules
 
@@ -22,6 +23,7 @@ Servidor
 ================
 .. toctree::
    :maxdepth: 1
+   :numbered:
 
    servidorUnoR4Wifi
 

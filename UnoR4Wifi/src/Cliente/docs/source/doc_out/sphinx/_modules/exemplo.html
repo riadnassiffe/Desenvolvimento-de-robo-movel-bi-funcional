@@ -6,12 +6,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>exemplo &mdash; Documentação Desenvolvimento de robo bifuncional 2.0</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=f5127f15" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
 
   
-      <script src="../_static/jquery.js?v=958b65b0"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../_static/documentation_options.js?v=29cdef05"></script>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
@@ -41,8 +41,14 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <p class="caption" role="heading"><span class="caption-text">Conteúdo:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Cliente</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../servidorUnoR4Wifi.html">servidorUnoR4Wifi</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -74,11 +80,35 @@
 <span class="sd">Este script define a lógica de operação do robô, incluindo a configuração</span>
 <span class="sd">inicial (setup) e o loop de comportamento principal (loop). </span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">clienteUnoR4WiFi</span> <span class="kn">import</span> <span class="n">ClienteUnoR4Wifi</span>
-<span class="kn">from</span> <span class="nn">robo</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">comandos</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">clienteUnoR4WiFi</span><span class="w"> </span><span class="kn">import</span> <span class="n">ClienteUnoR4Wifi</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">robo</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">comandos</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd"> --- Funções De Ajuda ---</span>
+<span class="sd"> opcional, isso depende caso o usuário precise</span>
+<span class="sd"> apenas um exemplo para facilitar o uso de enviar</span>
+<span class="sd"> comandos para alterar a velocidade do robo</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="velocidade">
+<a class="viewcode-back" href="../Cliente.html#exemplo.velocidade">[documentos]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">velocidade</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Formata o comando de velocidade para os motores.</span>
+
+<span class="sd">    Cria uma string de comando padronizada &quot;VS/a/b&quot; que pode ser</span>
+<span class="sd">    enviada ao robô para definir a velocidade dos motores.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        a (int): A velocidade desejada para o motor A (ou esquerdo).</span>
+<span class="sd">        b (int): A velocidade desejada para o motor B (ou direito).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: A string de comando formatada (ex: &quot;VS/120/120&quot;).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;VS/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span></div>
+
 
 <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">--- Setup ---</span>
@@ -88,18 +118,15 @@
 
 <div class="viewcode-block" id="setup">
 <a class="viewcode-back" href="../Cliente.html#exemplo.setup">[documentos]</a>
-<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Local onde o usuário deve inseria a configuração dos pinos e componentes iniciais do robô.</span>
 
 <span class="sd">    Finalize enviando o comando &#39;SETUP_CONCLUIDO&#39;</span>
 <span class="sd">    para sinalizar que o robô está pronto para iniciar o loop principal.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Exemplo: Configura os pinos dos motores.</span>
-    <span class="n">enviar</span><span class="p">(</span><span class="n">CONFIGURAR_MOTORES</span> <span class="o">+</span> <span class="s2">&quot;/8/9/10/11/12/13&quot;</span><span class="p">)</span>
-    <span class="n">esperar</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
-    <span class="c1"># Exemplo: Configura os pinos do sensor ultrassônico.</span>
-    <span class="n">enviar</span><span class="p">(</span><span class="n">CONFIGURAR_ULTRASSONICO</span> <span class="o">+</span> <span class="s2">&quot;/6/7&quot;</span><span class="p">)</span>
+    <span class="c1"># Exemplo: Configura o pino do buzzer.</span>
+    <span class="n">enviar</span><span class="p">(</span><span class="n">CONFIGURAR_BUZZER</span> <span class="o">+</span> <span class="s2">&quot;/7&quot;</span><span class="p">)</span>
     <span class="n">esperar</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
     <span class="c1"># Envia o comando para o robô sair do modo de configuração e entrar no loop de ação.</span>
     <span class="n">enviar</span><span class="p">(</span><span class="n">SETUP_CONCLUIDO</span><span class="p">)</span></div>
@@ -114,43 +141,17 @@
 
 <div class="viewcode-block" id="loop">
 <a class="viewcode-back" href="../Cliente.html#exemplo.loop">[documentos]</a>
-<span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Executa o ciclo da lógica de controle do robô o qual deve</span>
-<span class="sd">    ser criado pelo usuário.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Define a velocidade dos motores para 120 (em uma escala de 0-255, por exemplo).</span>
-    <span class="n">enviar</span><span class="p">(</span><span class="n">velocidade</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">120</span><span class="p">))</span>
-    <span class="c1"># Solicita uma leitura do sensor ultrassônico.</span>
-    <span class="n">enviar</span><span class="p">(</span><span class="n">SENSOR_ULTRASSONICO</span><span class="p">)</span>
-    <span class="c1"># Aguarda e recebe o valor da distância lida.</span>
-    <span class="n">valor</span> <span class="o">=</span> <span class="n">receber</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span>
-
-    <span class="c1"># Lógica de desvio de obstáculo simples.</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">valor</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">):</span>
-        <span class="c1"># Se um obstáculo estiver a menos de 20cm, o robô para e manobra.</span>
-        <span class="n">enviar</span><span class="p">(</span><span class="n">MOTOR_PARAR</span><span class="p">)</span>
-        <span class="n">esperar</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
-        <span class="n">enviar</span><span class="p">(</span><span class="n">MOVER_PARA_TRAZ</span><span class="p">)</span>
-        <span class="n">esperar</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
-        <span class="n">enviar</span><span class="p">(</span><span class="n">MOTOR_PARAR</span><span class="p">)</span>
-        <span class="n">esperar</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
-        <span class="n">enviar</span><span class="p">(</span><span class="n">MOVER_PARA_DIREITA</span><span class="p">)</span>
-        <span class="n">esperar</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
-        <span class="n">enviar</span><span class="p">(</span><span class="n">MOTOR_PARAR</span><span class="p">)</span>
-        <span class="n">esperar</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># Se o caminho estiver livre, o robô continua em frente.</span>
-        <span class="n">enviar</span><span class="p">(</span><span class="n">MOVER_PARA_FRENTE</span><span class="p">)</span>
-
+<span class="k">def</span><span class="w"> </span><span class="nf">loop</span><span class="p">():</span>
+    
+    <span class="c1"># Enviando comando para ativar o buzzer</span>
+    <span class="n">enviar</span><span class="p">(</span><span class="n">BUZZER_ATIVAR_DELAY</span> <span class="o">+</span> <span class="s2">&quot;500/100&quot;</span><span class="p">)</span>
     <span class="c1"># Pequena pausa para controlar a frequência do loop.</span>
-    <span class="n">esperar</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span></div>
+    <span class="n">esperar</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="main">
 <a class="viewcode-back" href="../Cliente.html#exemplo.main">[documentos]</a>
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Função principal que gerencia o ciclo de vida da execução do robô.</span>
 
 <span class="sd">    Estabelece a conexão, executa a configuração (setup) e, em seguida,</span>
@@ -187,29 +188,6 @@
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
-
-<span class="sd">&#39;&#39;&#39;</span>
-<span class="sd"> --- Funções De Ajuda ---</span>
-<span class="sd"> opcional, isso depende caso o usuário precise</span>
-<span class="sd"> apenas um exemplo para facilitar o uso de enviar</span>
-<span class="sd"> comandos para alterar a velocidade do robo</span>
-<span class="sd">&#39;&#39;&#39;</span>
-<div class="viewcode-block" id="velocidade">
-<a class="viewcode-back" href="../Cliente.html#exemplo.velocidade">[documentos]</a>
-<span class="k">def</span> <span class="nf">velocidade</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Formata o comando de velocidade para os motores.</span>
-
-<span class="sd">    Cria uma string de comando padronizada &quot;VS/a/b&quot; que pode ser</span>
-<span class="sd">    enviada ao robô para definir a velocidade dos motores.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        a (int): A velocidade desejada para o motor A (ou esquerdo).</span>
-<span class="sd">        b (int): A velocidade desejada para o motor B (ou direito).</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        str: A string de comando formatada (ex: &quot;VS/120/120&quot;).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="s2">&quot;VS/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span></div>
 
 </pre></div>
 

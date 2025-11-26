@@ -20,8 +20,10 @@
 <area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="42,301,68,343,87,366,110,385,123,392,120,397,106,390,83,370,63,346,38,304"/>
 <area shape="rect" id="Node000011" href="$servidorUnoR4Wifi_8ino.html#afc2eeb512d517b4695cdf5508669ed66" title="Configura os pinos para o sensor ultrassônico. Lê 2 números de pino do cliente para ECHO (ENTRADA) e ..." alt="" coords="118,449,311,475"/>
 <area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="39,302,47,330,60,366,81,403,110,435,119,441,116,445,106,439,77,406,56,368,42,332,34,304"/>
-<area shape="rect" id="Node000012" href="$servidorUnoR4Wifi_8ino.html#a954fce97884c9f03d16ae86946f89897" title="Redefine todas as configurações de pino para seu estado padrão (não configurado) de 255...." alt="" coords="167,499,262,524"/>
-<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="37,302,42,339,54,388,75,440,91,464,110,484,130,497,154,505,153,510,128,502,106,488,87,467,71,442,49,390,37,340,32,303"/>
-<area shape="rect" id="Node000013" href="$servidorUnoR4Wifi_8ino.html#af98376458ce101b2606db73f49fc2724" title="Verifica a configuração de um pino específico. Lê um inteiro do cliente que corresponde ao pino de um..." alt="" coords="133,548,297,573"/>
-<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="36,303,38,347,48,409,57,443,70,476,87,507,110,533,122,542,119,547,106,537,83,510,65,478,52,445,42,411,33,348,31,303"/>
+<area shape="rect" id="Node000013" href="$servidorUnoR4Wifi_8ino.html#a954fce97884c9f03d16ae86946f89897" title="Redefine todas as configurações de pino para seu estado padrão (não configurado) de 255...." alt="" coords="167,499,262,524"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="37,302,42,339,54,388,75,440,91,464,110,484,130,497,154,505,153,510,128,502,106,488,87,467,71,442,49,390,37,340,32,303"/>
+<area shape="rect" id="Node000014" href="$servidorUnoR4Wifi_8ino.html#af98376458ce101b2606db73f49fc2724" title="Verifica a configuração de um pino específico. Lê um inteiro do cliente que corresponde ao pino de um..." alt="" coords="133,548,297,573"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="36,303,38,347,48,409,57,443,70,476,87,507,110,533,122,542,119,547,106,537,83,510,65,478,52,445,42,411,33,348,31,303"/>
+<area shape="rect" id="Node000012" href="$servidorUnoR4Wifi_8ino.html#ad7af970c66c780dfae7a9dc95ce31d7d" title=" " alt="" coords="369,449,456,475"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="311,459,356,459,356,465,311,465"/>
 </map>

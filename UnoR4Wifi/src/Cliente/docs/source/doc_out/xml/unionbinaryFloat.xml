@@ -17,14 +17,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/riad/projetos/Desenvolvimento-de-robo-movel-bi-funcional/UnoR4Wifi/src/Servidor/servidorUnoR4Wifi.ino" line="35" column="9" bodyfile="/home/riad/projetos/Desenvolvimento-de-robo-movel-bi-funcional/UnoR4Wifi/src/Servidor/servidorUnoR4Wifi.ino" bodystart="35" bodyend="-1"/>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1aac9440a16cfd8cb283bcd3a546c4947b" compoundref="servidorUnoR4Wifi_8ino" startline="615" endline="626">andarParaFrente</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1ab89c93d77db36afe5db7f8ad6f9092db" compoundref="servidorUnoR4Wifi_8ino" startline="631" endline="642">andarParaTras</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1a4adbd25c74d0633d3ca2edfb43779b16" compoundref="servidorUnoR4Wifi_8ino" startline="977" endline="994">ativarBuzzer</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1a7d7d361ec839bc7f3739b2e15e60e280" compoundref="servidorUnoR4Wifi_8ino" startline="1002" endline="1027">ativarBuzzerDelay</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1adf1984a78911f45614cef1b0c9e36476" compoundref="servidorUnoR4Wifi_8ino" startline="722" endline="751">ativarLed</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1a4e40ae9a55f48f68f1cdb08ed9076b68" compoundref="servidorUnoR4Wifi_8ino" startline="759" endline="797">ativarLedDelay</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1a70039b68214d3c0e29fe764fa103991e" compoundref="servidorUnoR4Wifi_8ino" startline="875" endline="904">ativarLedRGB</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1aa80b14ea371e71ac49ad98ac3e07fc13" compoundref="servidorUnoR4Wifi_8ino" startline="912" endline="949">ativarLedRGBDelay</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1a4adbd25c74d0633d3ca2edfb43779b16" compoundref="servidorUnoR4Wifi_8ino" startline="985" endline="1002">ativarBuzzer</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1a7d7d361ec839bc7f3739b2e15e60e280" compoundref="servidorUnoR4Wifi_8ino" startline="1010" endline="1035">ativarBuzzerDelay</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1adf1984a78911f45614cef1b0c9e36476" compoundref="servidorUnoR4Wifi_8ino" startline="730" endline="759">ativarLed</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1a4e40ae9a55f48f68f1cdb08ed9076b68" compoundref="servidorUnoR4Wifi_8ino" startline="767" endline="805">ativarLedDelay</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1a70039b68214d3c0e29fe764fa103991e" compoundref="servidorUnoR4Wifi_8ino" startline="883" endline="912">ativarLedRGB</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1aa80b14ea371e71ac49ad98ac3e07fc13" compoundref="servidorUnoR4Wifi_8ino" startline="920" endline="957">ativarLedRGBDelay</referencedby>
         <referencedby refid="servidorUnoR4Wifi_8ino_1af06be3870e9f2549853a86d9cf90811b" compoundref="servidorUnoR4Wifi_8ino" startline="390" endline="409">configurarBuzzer</referencedby>
         <referencedby refid="servidorUnoR4Wifi_8ino_1a346b08a0d427c6c5b479b8ab89ddf938" compoundref="servidorUnoR4Wifi_8ino" startline="357" endline="382">configurarLedRGB</referencedby>
         <referencedby refid="servidorUnoR4Wifi_8ino_1ab525a01b2720fc032d277c8a9d6f176a" compoundref="servidorUnoR4Wifi_8ino" startline="316" endline="349">configurarLedSimples</referencedby>
@@ -35,30 +33,30 @@
         <referencedby refid="servidorUnoR4Wifi_8ino_1a782965d13bf9ba90e035aee5b4b0f1de" compoundref="servidorUnoR4Wifi_8ino" startline="417" endline="450">configurarSensorFotoresistor</referencedby>
         <referencedby refid="servidorUnoR4Wifi_8ino_1aa42c16490ac8c828c8a600a9dd969b1b" compoundref="servidorUnoR4Wifi_8ino" startline="458" endline="496">configurarSensorOpticoReflexivo</referencedby>
         <referencedby refid="servidorUnoR4Wifi_8ino_1afc2eeb512d517b4695cdf5508669ed66" compoundref="servidorUnoR4Wifi_8ino" startline="288" endline="308">configurarSensorUltrassonico</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1a713a2448a75e49687553ead599d4702e" compoundref="servidorUnoR4Wifi_8ino" startline="1033" endline="1048">desativarBuzzer</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1a7ff65b277c9ff583e646b77af95c0f4c" compoundref="servidorUnoR4Wifi_8ino" startline="840" endline="868">desativarLed</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1adb7d9dcb4796f03740d64736b5b3816e" compoundref="servidorUnoR4Wifi_8ino" startline="955" endline="970">desativarLedRGB</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1a52e05ca164687b5cd7a790372f778236" compoundref="servidorUnoR4Wifi_8ino" startline="679" endline="699">fazerCurva</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1a713a2448a75e49687553ead599d4702e" compoundref="servidorUnoR4Wifi_8ino" startline="1041" endline="1056">desativarBuzzer</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1a7ff65b277c9ff583e646b77af95c0f4c" compoundref="servidorUnoR4Wifi_8ino" startline="848" endline="876">desativarLed</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1adb7d9dcb4796f03740d64736b5b3816e" compoundref="servidorUnoR4Wifi_8ino" startline="963" endline="978">desativarLedRGB</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1a52e05ca164687b5cd7a790372f778236" compoundref="servidorUnoR4Wifi_8ino" startline="687" endline="707">fazerCurva</referencedby>
         <referencedby refid="servidorUnoR4Wifi_8ino_1a087f779b8b9f4f18cf4ba1b4ead11b0d" compoundref="servidorUnoR4Wifi_8ino" startline="582" endline="587">getVelocidade</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1a0290afa2a8a0f634e9d98fac0508edbe" compoundref="servidorUnoR4Wifi_8ino" startline="804" endline="833">inverterLed</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1a50513ef676a651868bdc89c0020ba7fa" compoundref="servidorUnoR4Wifi_8ino" startline="1219" endline="1247">lerAcelerometroX</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1ad8913a70c5ed7d4f1bdac2cd8fe429b4" compoundref="servidorUnoR4Wifi_8ino" startline="1253" endline="1282">lerAcelerometroY</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1adc8f1b708d87fa4e8dc97412d1eff252" compoundref="servidorUnoR4Wifi_8ino" startline="1288" endline="1317">lerAcelerometroZ</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1ad6730dc252ec0382c194193564f5f132" compoundref="servidorUnoR4Wifi_8ino" startline="1162" endline="1174">lerBotao</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1a90ba59acabcb9ab1a2d9913743a5d0c3" compoundref="servidorUnoR4Wifi_8ino" startline="1323" endline="1352">lerGiroscopioX</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1a7c4d0bc780c2e515546148b0a282f473" compoundref="servidorUnoR4Wifi_8ino" startline="1358" endline="1387">lerGiroscopioY</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1aeb11602aad9b7e869614daa1b9e1faf2" compoundref="servidorUnoR4Wifi_8ino" startline="1393" endline="1422">lerGiroscopioZ</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1a53a24b42dcf9a280f91bd44715d2e012" compoundref="servidorUnoR4Wifi_8ino" startline="1144" endline="1156">lerPotenciometro</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1a0734f9b67afb5875ef26e300ca658e14" compoundref="servidorUnoR4Wifi_8ino" startline="1081" endline="1105">lerSensorFotoresistor</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1a5616a868d4179efe3f0289fbb71ff958" compoundref="servidorUnoR4Wifi_8ino" startline="1112" endline="1138">lerSensorOpticoReflexivo</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1a13584600115b6ed3b26deb722f5fdfd1" compoundref="servidorUnoR4Wifi_8ino" startline="1055" endline="1074">lerSensorUltrassonico</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1a208896dc6f240de0410718533dcdd5c7" compoundref="servidorUnoR4Wifi_8ino" startline="1180" endline="1213">lerTemperatura</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1afe461d27b9c48d5921c00d521181f12f" compoundref="servidorUnoR4Wifi_8ino" startline="1585" endline="1794">loop</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1a3f72d87240811fc0e125e5327c97b57f" compoundref="servidorUnoR4Wifi_8ino" startline="704" endline="715">pararMotores</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1a0290afa2a8a0f634e9d98fac0508edbe" compoundref="servidorUnoR4Wifi_8ino" startline="812" endline="841">inverterLed</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1a50513ef676a651868bdc89c0020ba7fa" compoundref="servidorUnoR4Wifi_8ino" startline="1227" endline="1255">lerAcelerometroX</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1ad8913a70c5ed7d4f1bdac2cd8fe429b4" compoundref="servidorUnoR4Wifi_8ino" startline="1261" endline="1290">lerAcelerometroY</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1adc8f1b708d87fa4e8dc97412d1eff252" compoundref="servidorUnoR4Wifi_8ino" startline="1296" endline="1325">lerAcelerometroZ</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1ad6730dc252ec0382c194193564f5f132" compoundref="servidorUnoR4Wifi_8ino" startline="1170" endline="1182">lerBotao</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1a90ba59acabcb9ab1a2d9913743a5d0c3" compoundref="servidorUnoR4Wifi_8ino" startline="1331" endline="1360">lerGiroscopioX</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1a7c4d0bc780c2e515546148b0a282f473" compoundref="servidorUnoR4Wifi_8ino" startline="1366" endline="1395">lerGiroscopioY</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1aeb11602aad9b7e869614daa1b9e1faf2" compoundref="servidorUnoR4Wifi_8ino" startline="1401" endline="1430">lerGiroscopioZ</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1a53a24b42dcf9a280f91bd44715d2e012" compoundref="servidorUnoR4Wifi_8ino" startline="1152" endline="1164">lerPotenciometro</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1a0734f9b67afb5875ef26e300ca658e14" compoundref="servidorUnoR4Wifi_8ino" startline="1089" endline="1113">lerSensorFotoresistor</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1a5616a868d4179efe3f0289fbb71ff958" compoundref="servidorUnoR4Wifi_8ino" startline="1120" endline="1146">lerSensorOpticoReflexivo</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1a13584600115b6ed3b26deb722f5fdfd1" compoundref="servidorUnoR4Wifi_8ino" startline="1063" endline="1082">lerSensorUltrassonico</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1a208896dc6f240de0410718533dcdd5c7" compoundref="servidorUnoR4Wifi_8ino" startline="1188" endline="1221">lerTemperatura</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1afe461d27b9c48d5921c00d521181f12f" compoundref="servidorUnoR4Wifi_8ino" startline="1593" endline="1802">loop</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1a3f72d87240811fc0e125e5327c97b57f" compoundref="servidorUnoR4Wifi_8ino" startline="712" endline="723">pararMotores</referencedby>
         <referencedby refid="servidorUnoR4Wifi_8ino_1a954fce97884c9f03d16ae86946f89897" compoundref="servidorUnoR4Wifi_8ino" startline="95" endline="124">resetarPinos</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1a62923213229d6c87423830780bbbe72a" compoundref="servidorUnoR4Wifi_8ino" startline="662" endline="672">rotacionarDireita</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1a452a1f6df908dd30fb1b6952feb6a68f" compoundref="servidorUnoR4Wifi_8ino" startline="647" endline="657">rotacionarEsquerda</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="servidorUnoR4Wifi_8ino" startline="1439" endline="1577">setup</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1a62923213229d6c87423830780bbbe72a" compoundref="servidorUnoR4Wifi_8ino" startline="670" endline="680">rotacionarDireita</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1a452a1f6df908dd30fb1b6952feb6a68f" compoundref="servidorUnoR4Wifi_8ino" startline="655" endline="665">rotacionarEsquerda</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="servidorUnoR4Wifi_8ino" startline="1447" endline="1585">setup</referencedby>
         <referencedby refid="servidorUnoR4Wifi_8ino_1a77440c3ed10c584ba3bdebf86da1eafa" compoundref="servidorUnoR4Wifi_8ino" startline="593" endline="610">setVelocidade</referencedby>
         <referencedby refid="servidorUnoR4Wifi_8ino_1af98376458ce101b2606db73f49fc2724" compoundref="servidorUnoR4Wifi_8ino" startline="132" endline="239">verificarPinoConfigurado</referencedby>
       </memberdef>
@@ -76,8 +74,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/riad/projetos/Desenvolvimento-de-robo-movel-bi-funcional/UnoR4Wifi/src/Servidor/servidorUnoR4Wifi.ino" line="36" column="8" bodyfile="/home/riad/projetos/Desenvolvimento-de-robo-movel-bi-funcional/UnoR4Wifi/src/Servidor/servidorUnoR4Wifi.ino" bodystart="36" bodyend="-1"/>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1afe461d27b9c48d5921c00d521181f12f" compoundref="servidorUnoR4Wifi_8ino" startline="1585" endline="1794">loop</referencedby>
-        <referencedby refid="servidorUnoR4Wifi_8ino_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="servidorUnoR4Wifi_8ino" startline="1439" endline="1577">setup</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1afe461d27b9c48d5921c00d521181f12f" compoundref="servidorUnoR4Wifi_8ino" startline="1593" endline="1802">loop</referencedby>
+        <referencedby refid="servidorUnoR4Wifi_8ino_1a4fc01d736fe50cf5b977f755b675f11d" compoundref="servidorUnoR4Wifi_8ino" startline="1447" endline="1585">setup</referencedby>
       </memberdef>
     </sectiondef>
     <briefdescription>

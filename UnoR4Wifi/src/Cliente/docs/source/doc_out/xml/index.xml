@@ -44,6 +44,7 @@
     <member refid="servidorUnoR4Wifi_8ino_1a9b6d062bdbeb334f0ce52507401160c8" kind="variable"><name>PIN_PBT</name></member>
     <member refid="servidorUnoR4Wifi_8ino_1acb80ce753bdbef0715cf02f47155fcff" kind="variable"><name>PIN_MPU1</name></member>
     <member refid="servidorUnoR4Wifi_8ino_1a8b57b2fd0b10616709163c2d72a75e37" kind="variable"><name>PIN_MPU2</name></member>
+    <member refid="servidorUnoR4Wifi_8ino_1a885d5debfae401a7d85c75e2801c23fa" kind="variable"><name>floatingPoint</name></member>
     <member refid="servidorUnoR4Wifi_8ino_1a954fce97884c9f03d16ae86946f89897" kind="function"><name>resetarPinos</name></member>
     <member refid="servidorUnoR4Wifi_8ino_1af98376458ce101b2606db73f49fc2724" kind="function"><name>verificarPinoConfigurado</name></member>
     <member refid="servidorUnoR4Wifi_8ino_1a99c9fd6a63f6eed2d909d71d96f17883" kind="function"><name>configurarMotores</name></member>
@@ -58,8 +59,14 @@
     <member refid="servidorUnoR4Wifi_8ino_1aa1468c09a2b1f8f500d2a41edbc9b74a" kind="function"><name>configurarMPU</name></member>
     <member refid="servidorUnoR4Wifi_8ino_1a087f779b8b9f4f18cf4ba1b4ead11b0d" kind="function"><name>getVelocidade</name></member>
     <member refid="servidorUnoR4Wifi_8ino_1a77440c3ed10c584ba3bdebf86da1eafa" kind="function"><name>setVelocidade</name></member>
-    <member refid="servidorUnoR4Wifi_8ino_1aac9440a16cfd8cb283bcd3a546c4947b" kind="function"><name>andarParaFrente</name></member>
-    <member refid="servidorUnoR4Wifi_8ino_1ab89c93d77db36afe5db7f8ad6f9092db" kind="function"><name>andarParaTras</name></member>
+    <member refid="servidorUnoR4Wifi_8ino_1ad7af970c66c780dfae7a9dc95ce31d7d" kind="function"><name>digitalWrite</name></member>
+    <member refid="servidorUnoR4Wifi_8ino_1acf6e9fe91c9c728c228bf49fdd4e771e" kind="function"><name>digitalWrite</name></member>
+    <member refid="servidorUnoR4Wifi_8ino_1a37b78efa61f1d816a1bc58439448e176" kind="function"><name>digitalWrite</name></member>
+    <member refid="servidorUnoR4Wifi_8ino_1a3ad9d046854cd61a4b6ee7dcc2ef6462" kind="function"><name>digitalWrite</name></member>
+    <member refid="servidorUnoR4Wifi_8ino_1abc897351320616c0e8eea44b17893d07" kind="function"><name>digitalWrite</name></member>
+    <member refid="servidorUnoR4Wifi_8ino_1a9d9f7c0c2511b8d14b226976a838208b" kind="function"><name>digitalWrite</name></member>
+    <member refid="servidorUnoR4Wifi_8ino_1a47e8bc55a766cbc040901bc0e82daf36" kind="function"><name>digitalWrite</name></member>
+    <member refid="servidorUnoR4Wifi_8ino_1a90d0a676ee0da95863ff540fbe5fe1ec" kind="function"><name>digitalWrite</name></member>
     <member refid="servidorUnoR4Wifi_8ino_1a452a1f6df908dd30fb1b6952feb6a68f" kind="function"><name>rotacionarEsquerda</name></member>
     <member refid="servidorUnoR4Wifi_8ino_1a62923213229d6c87423830780bbbe72a" kind="function"><name>rotacionarDireita</name></member>
     <member refid="servidorUnoR4Wifi_8ino_1a52e05ca164687b5cd7a790372f778236" kind="function"><name>fazerCurva</name></member>
