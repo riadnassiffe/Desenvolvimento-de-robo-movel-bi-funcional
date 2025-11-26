@@ -27,6 +27,12 @@ Servidor
 
    servidorUnoR4Wifi
 
+.. only:: builder_html
+
+See this :download:`Documento de Referência da Comunicação Wifi do Robô <./refComuRobo.pdf>`.
+
+See this :download:`Documento de Montagem do Robô <./refMontagem.pdf>`.
+
 Índices e tabelas
 ==================
 * :ref:`genindex`

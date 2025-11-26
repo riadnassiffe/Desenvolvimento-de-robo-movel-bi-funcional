@@ -29,7 +29,8 @@ extensions = [
     'breathe',
     'sphinx.ext.imgmath', 
     'sphinx.ext.todo',
-        ]
+    'sphinx_simplepdf',
+    ]
 
 breathe_projects = {"myproject": os.path.abspath("doc_out/xml/"),}
 breathe_default_project = "myproject"
