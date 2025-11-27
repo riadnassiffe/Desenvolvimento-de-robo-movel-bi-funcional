@@ -1,5 +1,0 @@
-<map id="inverterLed" name="inverterLed">
-<area shape="rect" id="Node000001" title="Inverte o estado de um LED simples. Lê o número do LED (1 ou 2) do cliente. Verifica se o pino do LED..." alt="" coords="5,5,92,31"/>
-<area shape="rect" id="Node000002" href="$servidorUnoR4Wifi_8ino.html#ad7af970c66c780dfae7a9dc95ce31d7d" title=" " alt="" coords="140,5,227,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,15,126,15,126,21,92,21"/>
-</map>

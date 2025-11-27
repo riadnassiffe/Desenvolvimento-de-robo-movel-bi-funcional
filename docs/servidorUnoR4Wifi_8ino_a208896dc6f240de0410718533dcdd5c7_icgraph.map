@@ -1,5 +1,0 @@
-<map id="lerTemperatura" name="lerTemperatura">
-<area shape="rect" id="Node000001" title="Lê a temperatura do sensor MPU6050. Retorna a temperatura em graus Celsius. Verifica se o MPU foi con..." alt="" coords="100,5,208,31"/>
-<area shape="rect" id="Node000002" href="$servidorUnoR4Wifi_8ino.html#afe461d27b9c48d5921c00d521181f12f" title="Loop principal, executado repetidamente. Verifica se há dados disponíveis do cliente TCP conectado...." alt="" coords="5,5,52,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,21,52,21,52,15,87,15"/>
-</map>

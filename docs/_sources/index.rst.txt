@@ -14,7 +14,8 @@ Clientes
 .. toctree::
    :maxdepth: 1
    :caption: Conteúdo:
-
+   :name: mastertoc
+   :numbered:
 
    modules
 
@@ -22,8 +23,15 @@ Servidor
 ================
 .. toctree::
    :maxdepth: 1
+   :numbered:
 
    servidorUnoR4Wifi
+
+.. only:: builder_html
+
+See this :download:`Documento de Referência da Comunicação Wifi do Robô <./refComuRobo.pdf>`.
+
+See this :download:`Documento de Montagem do Robô <./refMontagem.pdf>`.
 
 Índices e tabelas
 ==================

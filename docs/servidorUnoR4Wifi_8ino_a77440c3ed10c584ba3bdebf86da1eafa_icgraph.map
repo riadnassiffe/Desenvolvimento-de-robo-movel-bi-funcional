@@ -1,5 +1,0 @@
-<map id="setVelocidade" name="setVelocidade">
-<area shape="rect" id="Node000001" title="Define a velocidade para ambos os motores. Lê dois valores de velocidade (0&#45;255) do cliente para o mo..." alt="" coords="100,5,204,31"/>
-<area shape="rect" id="Node000002" href="$servidorUnoR4Wifi_8ino.html#afe461d27b9c48d5921c00d521181f12f" title="Loop principal, executado repetidamente. Verifica se há dados disponíveis do cliente TCP conectado...." alt="" coords="5,5,52,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,21,53,21,53,15,86,15"/>
-</map>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>servidorUnoR4Wifi &mdash; Documentação Desenvolvimento de robo bifuncional 2.0</title>
+  <title>1. servidorUnoR4Wifi &mdash; Documentação Desenvolvimento de robo bifuncional 2.0</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
@@ -21,7 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Pesquisar" href="search.html" />
-    <link rel="prev" title="Cliente package" href="Cliente.html" /> 
+    <link rel="prev" title="1.1. Cliente package" href="Cliente.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,10 +45,10 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
               <p class="caption" role="heading"><span class="caption-text">Conteúdo:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Cliente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">1. Cliente</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">servidorUnoR4Wifi</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. servidorUnoR4Wifi</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#_CPPv412resetarPinosv"><code class="docutils literal notranslate"><span class="pre">resetarPinos()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#_CPPv424verificarPinoConfiguradov"><code class="docutils literal notranslate"><span class="pre">verificarPinoConfigurado()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#_CPPv417configurarMotoresv"><code class="docutils literal notranslate"><span class="pre">configurarMotores()</span></code></a></li>
@@ -63,8 +63,12 @@
 <li class="toctree-l2"><a class="reference internal" href="#_CPPv413configurarMPUv"><code class="docutils literal notranslate"><span class="pre">configurarMPU()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#_CPPv413getVelocidadev"><code class="docutils literal notranslate"><span class="pre">getVelocidade()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#_CPPv413setVelocidadev"><code class="docutils literal notranslate"><span class="pre">setVelocidade()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#_CPPv415andarParaFrentev"><code class="docutils literal notranslate"><span class="pre">andarParaFrente()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#_CPPv413andarParaTrasv"><code class="docutils literal notranslate"><span class="pre">andarParaTras()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv412digitalWrite6PIN_M23LOW"><code class="docutils literal notranslate"><span class="pre">digitalWrite()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv412digitalWrite6PIN_M34HIGH"><code class="docutils literal notranslate"><span class="pre">digitalWrite()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv412digitalWrite6PIN_M43LOW"><code class="docutils literal notranslate"><span class="pre">digitalWrite()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv412digitalWrite6PIN_M24HIGH"><code class="docutils literal notranslate"><span class="pre">digitalWrite()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv412digitalWrite6PIN_M33LOW"><code class="docutils literal notranslate"><span class="pre">digitalWrite()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv412digitalWrite6PIN_M44HIGH"><code class="docutils literal notranslate"><span class="pre">digitalWrite()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#_CPPv418rotacionarEsquerdav"><code class="docutils literal notranslate"><span class="pre">rotacionarEsquerda()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#_CPPv417rotacionarDireitav"><code class="docutils literal notranslate"><span class="pre">rotacionarDireita()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#_CPPv410fazerCurvav"><code class="docutils literal notranslate"><span class="pre">fazerCurva()</span></code></a></li>
@@ -133,6 +137,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#_CPPv47PIN_PBT"><code class="docutils literal notranslate"><span class="pre">PIN_PBT</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#_CPPv48PIN_MPU1"><code class="docutils literal notranslate"><span class="pre">PIN_MPU1</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#_CPPv48PIN_MPU2"><code class="docutils literal notranslate"><span class="pre">PIN_MPU2</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv413floatingPoint"><code class="docutils literal notranslate"><span class="pre">floatingPoint</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#_CPPv411binaryFloat"><code class="docutils literal notranslate"><span class="pre">binaryFloat</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#_CPPv4N11binaryFloat13floatingPointE"><code class="docutils literal notranslate"><span class="pre">floatingPoint</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#_CPPv4N11binaryFloat6binaryE"><code class="docutils literal notranslate"><span class="pre">binary</span></code></a></li>
@@ -156,7 +161,7 @@
           <div role="navigation" aria-label="Navegação da página">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">servidorUnoR4Wifi</li>
+      <li class="breadcrumb-item active"><span class="section-number">1. </span>servidorUnoR4Wifi</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/servidorUnoR4Wifi.rst.txt" rel="nofollow"> Ver código-fonte da página</a>
       </li>
@@ -167,7 +172,7 @@
            <div itemprop="articleBody">
              
   <section id="servidorunor4wifi">
-<h1>servidorUnoR4Wifi<a class="headerlink" href="#servidorunor4wifi" title="Link to this heading"></a></h1>
+<h1><span class="section-number">1. </span>servidorUnoR4Wifi<a class="headerlink" href="#servidorunor4wifi" title="Link to this heading"></a></h1>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
@@ -255,16 +260,44 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv415andarParaFrentev">
-<span id="_CPPv315andarParaFrentev"></span><span id="_CPPv215andarParaFrentev"></span><span id="andarParaFrente"></span><span class="target" id="servidorUnoR4Wifi_8ino_1aac9440a16cfd8cb283bcd3a546c4947b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">andarParaFrente</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415andarParaFrentev" title="Link to this definition"></a><br /></dt>
-<dd><p>Move o robô para frente. </p>
-</dd></dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="servidorUnoR4Wifi_8ino_1ad7af970c66c780dfae7a9dc95ce31d7d"></span><span class="sig-name descname"><span class="pre">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="pre">HEAD</span> <span class="pre">void</span> <span class="pre">andarParaFrente(){=======void</span> <span class="pre">andarParaTras(){</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span> <span class="pre">digitalWrite</span> <span class="pre">(PIN_M1,</span> <span class="pre">HIGH)</span></span></dt>
+<dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv413andarParaTrasv">
-<span id="_CPPv313andarParaTrasv"></span><span id="_CPPv213andarParaTrasv"></span><span id="andarParaTras"></span><span class="target" id="servidorUnoR4Wifi_8ino_1ab89c93d77db36afe5db7f8ad6f9092db"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">andarParaTras</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413andarParaTrasv" title="Link to this definition"></a><br /></dt>
-<dd><p>Move o robô para trás. </p>
-</dd></dl>
+<dt class="sig sig-object cpp" id="_CPPv412digitalWrite6PIN_M23LOW">
+<span id="_CPPv312digitalWrite6PIN_M23LOW"></span><span id="_CPPv212digitalWrite6PIN_M23LOW"></span><span id="digitalWrite__PIN_M2.LOW"></span><span class="target" id="servidorUnoR4Wifi_8ino_1acf6e9fe91c9c728c228bf49fdd4e771e"></span><span class="sig-name descname"><span class="n"><span class="pre">digitalWrite</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv46PIN_M2" title="PIN_M2"><span class="n"><span class="pre">PIN_M2</span></span></a>, <span class="n"><span class="pre">LOW</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412digitalWrite6PIN_M23LOW" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412digitalWrite6PIN_M34HIGH">
+<span id="_CPPv312digitalWrite6PIN_M34HIGH"></span><span id="_CPPv212digitalWrite6PIN_M34HIGH"></span><span id="digitalWrite__PIN_M3.HIGH"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a37b78efa61f1d816a1bc58439448e176"></span><span class="sig-name descname"><span class="n"><span class="pre">digitalWrite</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv46PIN_M3" title="PIN_M3"><span class="n"><span class="pre">PIN_M3</span></span></a>, <span class="n"><span class="pre">HIGH</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412digitalWrite6PIN_M34HIGH" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412digitalWrite6PIN_M43LOW">
+<span id="_CPPv312digitalWrite6PIN_M43LOW"></span><span id="_CPPv212digitalWrite6PIN_M43LOW"></span><span id="digitalWrite__PIN_M4.LOW"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a3ad9d046854cd61a4b6ee7dcc2ef6462"></span><span class="sig-name descname"><span class="n"><span class="pre">digitalWrite</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv46PIN_M4" title="PIN_M4"><span class="n"><span class="pre">PIN_M4</span></span></a>, <span class="n"><span class="pre">LOW</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412digitalWrite6PIN_M43LOW" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="servidorUnoR4Wifi_8ino_1abc897351320616c0e8eea44b17893d07"></span><span class="sig-name descname"><span class="pre">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="pre">HEAD</span> <span class="pre">void</span> <span class="pre">andarParaTras(){=======void</span> <span class="pre">andarParaFrente(){</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span> <span class="pre">digitalWrite</span> <span class="pre">(PIN_M1,</span> <span class="pre">LOW)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412digitalWrite6PIN_M24HIGH">
+<span id="_CPPv312digitalWrite6PIN_M24HIGH"></span><span id="_CPPv212digitalWrite6PIN_M24HIGH"></span><span id="digitalWrite__PIN_M2.HIGH"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a9d9f7c0c2511b8d14b226976a838208b"></span><span class="sig-name descname"><span class="n"><span class="pre">digitalWrite</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv46PIN_M2" title="PIN_M2"><span class="n"><span class="pre">PIN_M2</span></span></a>, <span class="n"><span class="pre">HIGH</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412digitalWrite6PIN_M24HIGH" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412digitalWrite6PIN_M33LOW">
+<span id="_CPPv312digitalWrite6PIN_M33LOW"></span><span id="_CPPv212digitalWrite6PIN_M33LOW"></span><span id="digitalWrite__PIN_M3.LOW"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a47e8bc55a766cbc040901bc0e82daf36"></span><span class="sig-name descname"><span class="n"><span class="pre">digitalWrite</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv46PIN_M3" title="PIN_M3"><span class="n"><span class="pre">PIN_M3</span></span></a>, <span class="n"><span class="pre">LOW</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412digitalWrite6PIN_M33LOW" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412digitalWrite6PIN_M44HIGH">
+<span id="_CPPv312digitalWrite6PIN_M44HIGH"></span><span id="_CPPv212digitalWrite6PIN_M44HIGH"></span><span id="digitalWrite__PIN_M4.HIGH"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a90d0a676ee0da95863ff540fbe5fe1ec"></span><span class="sig-name descname"><span class="n"><span class="pre">digitalWrite</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv46PIN_M4" title="PIN_M4"><span class="n"><span class="pre">PIN_M4</span></span></a>, <span class="n"><span class="pre">HIGH</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412digitalWrite6PIN_M44HIGH" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv418rotacionarEsquerdav">
@@ -677,6 +710,11 @@
 <dd><p>Pino SCL para o sensor MPU6050. </p>
 </dd></dl>
 
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv413floatingPoint">
+<span id="_CPPv313floatingPoint"></span><span id="_CPPv213floatingPoint"></span><span id="floatingPoint__dado_retorno"></span><span class="target" id="servidorUnoR4Wifi_8ino_1a885d5debfae401a7d85c75e2801c23fa"></span><a class="reference internal" href="#_CPPv412dado_retorno" title="dado_retorno"><span class="n"><span class="pre">dado_retorno</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">floatingPoint</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><a class="headerlink" href="#_CPPv413floatingPoint" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
 </div>
 <dl class="cpp union">
 <dt class="sig sig-object cpp" id="_CPPv411binaryFloat">
@@ -705,7 +743,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
-        <a href="Cliente.html" class="btn btn-neutral float-left" title="Cliente package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="Cliente.html" class="btn btn-neutral float-left" title="1.1. Cliente package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
     </div>
 
   <hr/>

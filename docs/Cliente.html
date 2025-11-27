@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cliente package &mdash; Documentação Desenvolvimento de robo bifuncional 2.0</title>
+  <title>1.1. Cliente package &mdash; Documentação Desenvolvimento de robo bifuncional 2.0</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
@@ -21,8 +21,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Pesquisar" href="search.html" />
-    <link rel="next" title="servidorUnoR4Wifi" href="servidorUnoR4Wifi.html" />
-    <link rel="prev" title="Cliente" href="modules.html" /> 
+    <link rel="next" title="1. servidorUnoR4Wifi" href="servidorUnoR4Wifi.html" />
+    <link rel="prev" title="1. Cliente" href="modules.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,33 +46,33 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
               <p class="caption" role="heading"><span class="caption-text">Conteúdo:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Cliente</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Cliente package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cliente">Cliente module</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">1. Cliente</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.1. Cliente package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">1.1.1. Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cliente">1.1.2. Cliente module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#cliente.Cliente"><code class="docutils literal notranslate"><span class="pre">Cliente</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#module-clienteUnoR4WiFi">Cliente.clienteUnoR4WiFi module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-clienteUnoR4WiFi">1.1.3. Cliente.clienteUnoR4WiFi module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#clienteUnoR4WiFi.ClienteUnoR4Wifi"><code class="docutils literal notranslate"><span class="pre">ClienteUnoR4Wifi</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#module-comandos">Cliente.comandos module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-erro">Cliente.erro module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-comandos">1.1.4. Cliente.comandos module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-erro">1.1.5. Cliente.erro module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#erro.ErroComandoInvalido"><code class="docutils literal notranslate"><span class="pre">ErroComandoInvalido</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#erro.ErroConexaoInexistente"><code class="docutils literal notranslate"><span class="pre">ErroConexaoInexistente</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#erro.ErroPinoNaoConfigurado"><code class="docutils literal notranslate"><span class="pre">ErroPinoNaoConfigurado</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#erro.ErroValorParametroInvalido"><code class="docutils literal notranslate"><span class="pre">ErroValorParametroInvalido</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#module-exemplo">Cliente.exemplo module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-exemplo">1.1.6. Cliente.exemplo module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#exemplo.loop"><code class="docutils literal notranslate"><span class="pre">loop()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#exemplo.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#exemplo.setup"><code class="docutils literal notranslate"><span class="pre">setup()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#exemplo.velocidade"><code class="docutils literal notranslate"><span class="pre">velocidade()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#module-robo">Cliente.robo module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-robo">1.1.7. Cliente.robo module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#robo.PORTA_CLIENTE"><code class="docutils literal notranslate"><span class="pre">PORTA_CLIENTE</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#robo.PORTA_ROBO"><code class="docutils literal notranslate"><span class="pre">PORTA_ROBO</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#robo.conectar_robo"><code class="docutils literal notranslate"><span class="pre">conectar_robo()</span></code></a></li>
@@ -81,14 +81,14 @@
 <li class="toctree-l4"><a class="reference internal" href="#robo.receber"><code class="docutils literal notranslate"><span class="pre">receber()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-contents">1.1.8. Module contents</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="servidorUnoR4Wifi.html">servidorUnoR4Wifi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="servidorUnoR4Wifi.html">1. servidorUnoR4Wifi</a></li>
 </ul>
 
         </div>
@@ -105,8 +105,8 @@
           <div role="navigation" aria-label="Navegação da página">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">Cliente</a></li>
-      <li class="breadcrumb-item active">Cliente package</li>
+          <li class="breadcrumb-item"><a href="modules.html"><span class="section-number">1. </span>Cliente</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">1.1. </span>Cliente package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/Cliente.rst.txt" rel="nofollow"> Ver código-fonte da página</a>
       </li>
@@ -117,12 +117,12 @@
            <div itemprop="articleBody">
              
   <section id="cliente-package">
-<h1>Cliente package<a class="headerlink" href="#cliente-package" title="Link to this heading"></a></h1>
+<h1><span class="section-number">1.1. </span>Cliente package<a class="headerlink" href="#cliente-package" title="Link to this heading"></a></h1>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<h2><span class="section-number">1.1.1. </span>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 </section>
 <section id="module-cliente">
-<span id="cliente-module"></span><h2>Cliente module<a class="headerlink" href="#module-cliente" title="Link to this heading"></a></h2>
+<span id="cliente-module"></span><h2><span class="section-number">1.1.2. </span>Cliente module<a class="headerlink" href="#module-cliente" title="Link to this heading"></a></h2>
 <p>Define a interface abstrata para um Cliente de Robô.</p>
 <p>Esta classe serve como um «contrato», garantindo que qualquer classe de cliente concreta implemente todos os métodos essenciais para a comunicação, como conectar, enviar e receber.</p>
 <dl class="py class">
@@ -207,7 +207,7 @@ as especificidades de comunicação com a placa que controla o robô.</p>
 
 </section>
 <section id="module-clienteUnoR4WiFi">
-<span id="cliente-clienteunor4wifi-module"></span><h2>Cliente.clienteUnoR4WiFi module<a class="headerlink" href="#module-clienteUnoR4WiFi" title="Link to this heading"></a></h2>
+<span id="cliente-clienteunor4wifi-module"></span><h2><span class="section-number">1.1.3. </span>Cliente.clienteUnoR4WiFi module<a class="headerlink" href="#module-clienteUnoR4WiFi" title="Link to this heading"></a></h2>
 <p>Implementação do cliente de comunicação específico para o Arduino Uno R4 WiFi.</p>
 <p>Esta classe herda de “Cliente” e implementa a lógica de:
 1. Descoberta do robô na rede local usando broadcast UDP.
@@ -310,7 +310,7 @@ que a thread “escutar_servidor” armazena em “self.valor”.</p>
 
 </section>
 <section id="module-comandos">
-<span id="cliente-comandos-module"></span><h2>Cliente.comandos module<a class="headerlink" href="#module-comandos" title="Link to this heading"></a></h2>
+<span id="cliente-comandos-module"></span><h2><span class="section-number">1.1.4. </span>Cliente.comandos module<a class="headerlink" href="#module-comandos" title="Link to this heading"></a></h2>
 <p>Módulo de Comandos - Protocolo Serial do Robô.</p>
 <p>Este arquivo centraliza todas as strings de comando (códigos de protocolo)
 usadas na comunicação entre o script Python e o robô (ex: Arduino).</p>
@@ -320,7 +320,7 @@ para os códigos de string curtos (ex: «MF») que o robô espera.</p>
 de letras.</p>
 </section>
 <section id="module-erro">
-<span id="cliente-erro-module"></span><h2>Cliente.erro module<a class="headerlink" href="#module-erro" title="Link to this heading"></a></h2>
+<span id="cliente-erro-module"></span><h2><span class="section-number">1.1.5. </span>Cliente.erro module<a class="headerlink" href="#module-erro" title="Link to this heading"></a></h2>
 <p>Arquivo que contém a definição de todas as classes de erro
 padrão definidas no projeto. Cada erro possui apenas uma simples
 mensagem de aviso para quando ele for disparado.</p>
@@ -365,16 +365,14 @@ para observar os possíveis valores de entrada e saída válidos.</p>
 
 </section>
 <section id="module-exemplo">
-<span id="cliente-exemplo-module"></span><h2>Cliente.exemplo module<a class="headerlink" href="#module-exemplo" title="Link to this heading"></a></h2>
+<span id="cliente-exemplo-module"></span><h2><span class="section-number">1.1.6. </span>Cliente.exemplo module<a class="headerlink" href="#module-exemplo" title="Link to this heading"></a></h2>
 <p>Script principal para controle de um robô via comunicação.</p>
 <p>Este script define a lógica de operação do robô, incluindo a configuração
 inicial (setup) e o loop de comportamento principal (loop).</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="exemplo.loop">
 <span class="sig-prename descclassname"><span class="pre">exemplo.</span></span><span class="sig-name descname"><span class="pre">loop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/exemplo.html#loop"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#exemplo.loop" title="Link to this definition"></a></dt>
-<dd><p>Executa o ciclo da lógica de controle do robô o qual deve
-ser criado pelo usuário.</p>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="exemplo.main">
@@ -420,7 +418,7 @@ enviada ao robô para definir a velocidade dos motores.</p>
 
 </section>
 <section id="module-robo">
-<span id="cliente-robo-module"></span><h2>Cliente.robo module<a class="headerlink" href="#module-robo" title="Link to this heading"></a></h2>
+<span id="cliente-robo-module"></span><h2><span class="section-number">1.1.7. </span>Cliente.robo module<a class="headerlink" href="#module-robo" title="Link to this heading"></a></h2>
 <p>Módulo da Fachada do Robô (robo.py)</p>
 <p>Este arquivo abstrai toda a complexidade da conexão com o robô
 (escondendo a classe “ClienteUnoR4Wifi”) e expõe funções
@@ -499,7 +497,7 @@ Padrão é 5.0.</p>
 
 </section>
 <section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<h2><span class="section-number">1.1.8. </span>Module contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
 </section>
 </section>
 
@@ -507,8 +505,8 @@ Padrão é 5.0.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
-        <a href="modules.html" class="btn btn-neutral float-left" title="Cliente" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
-        <a href="servidorUnoR4Wifi.html" class="btn btn-neutral float-right" title="servidorUnoR4Wifi" accesskey="n" rel="next">Seguinte <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="modules.html" class="btn btn-neutral float-left" title="1. Cliente" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="servidorUnoR4Wifi.html" class="btn btn-neutral float-right" title="1. servidorUnoR4Wifi" accesskey="n" rel="next">Seguinte <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
