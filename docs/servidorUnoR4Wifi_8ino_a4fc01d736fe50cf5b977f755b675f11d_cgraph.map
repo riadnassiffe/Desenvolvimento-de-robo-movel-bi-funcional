@@ -1,0 +1,29 @@
+<map id="setup" name="setup">
+<area shape="rect" id="Node000001" title="Função de configuração, executada uma vez no início. Inicializa a comunicação serial,..." alt="" coords="5,277,60,303"/>
+<area shape="rect" id="Node000002" href="$servidorUnoR4Wifi_8ino.html#af06be3870e9f2549853a86d9cf90811b" title="Configura o pino para o buzzer. Lê 1 número de pino do cliente para o buzzer (SAÍDA)...." alt="" coords="155,5,275,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="31,277,33,232,42,168,51,133,64,99,83,68,106,40,122,29,141,21,143,26,125,33,110,44,87,71,69,102,56,135,47,169,38,232,36,277"/>
+<area shape="rect" id="Node000003" href="$servidorUnoR4Wifi_8ino.html#a346b08a0d427c6c5b479b8ab89ddf938" title="Configura os pinos para o LED RGB. Lê 3 números de pino do cliente para os componentes R,..." alt="" coords="150,55,279,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="32,277,37,240,48,189,70,135,86,111,106,89,135,73,138,78,110,93,91,114,75,138,53,191,42,241,37,277"/>
+<area shape="rect" id="Node000004" href="$servidorUnoR4Wifi_8ino.html#ab525a01b2720fc032d277c8a9d6f176a" title="Configura o pino para um dos dois LEDs simples. Lê o número do LED (1 ou 2) e o número do pino do cli..." alt="" coords="141,104,288,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="34,277,41,248,55,210,76,172,106,139,127,126,130,131,110,143,81,175,60,213,46,250,39,278"/>
+<area shape="rect" id="Node000005" href="$servidorUnoR4Wifi_8ino.html#a99c9fd6a63f6eed2d909d71d96f17883" title="Configura os pinos para os motores. Lê 6 números de pino do cliente para ENA, M1, M2,..." alt="" coords="151,153,278,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="37,276,63,232,83,208,107,188,137,174,139,179,109,192,86,212,67,235,42,279"/>
+<area shape="rect" id="Node000006" href="$servidorUnoR4Wifi_8ino.html#aa1468c09a2b1f8f500d2a41edbc9b74a" title="Configura o sensor MPU6050. Inicializa a comunicação I2C com o MPU6050 e o ativa. Define as variáveis..." alt="" coords="160,203,269,228"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="47,275,74,255,107,237,145,224,147,229,109,242,77,260,50,279"/>
+<area shape="rect" id="Node000007" href="$servidorUnoR4Wifi_8ino.html#ad93ab4b6ce1df3fdb501cf51ffaed5a3" title="Configura o pino para o potenciômetro. Lê 1 número de pino do cliente para o potenciômetro (ENTRADA)...." alt="" coords="133,252,296,277"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="60,284,119,275,120,281,60,289"/>
+<area shape="rect" id="Node000008" href="$servidorUnoR4Wifi_8ino.html#a126461d53e055bb0a536d18c65bec6fa" title="Configura o pino para o botão de pressão. Lê 1 número de pino do cliente para o botão de pressão (ENT..." alt="" coords="141,301,288,327"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="60,291,128,300,128,305,60,296"/>
+<area shape="rect" id="Node000009" href="$servidorUnoR4Wifi_8ino.html#a782965d13bf9ba90e035aee5b4b0f1de" title="Configura o pino para um dos dois sensores fotorresistores. Lê o número do sensor (1 ou 2) e o número..." alt="" coords="120,351,309,376"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="52,301,78,319,109,336,133,344,131,349,107,340,75,323,49,305"/>
+<area shape="rect" id="Node000010" href="$servidorUnoR4Wifi_8ino.html#aa42c16490ac8c828c8a600a9dd969b1b" title="Configura o pino para um dos três sensores ópticos reflexivos. Lê o número do sensor (1,..." alt="" coords="108,400,321,425"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="42,301,68,343,87,366,110,385,123,392,120,397,106,390,83,370,63,346,38,304"/>
+<area shape="rect" id="Node000011" href="$servidorUnoR4Wifi_8ino.html#afc2eeb512d517b4695cdf5508669ed66" title="Configura os pinos para o sensor ultrassônico. Lê 2 números de pino do cliente para ECHO (ENTRADA) e ..." alt="" coords="118,449,311,475"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="39,302,47,330,60,366,81,403,110,435,119,441,116,445,106,439,77,406,56,368,42,332,34,304"/>
+<area shape="rect" id="Node000013" href="$servidorUnoR4Wifi_8ino.html#a954fce97884c9f03d16ae86946f89897" title="Redefine todas as configurações de pino para seu estado padrão (não configurado) de 255...." alt="" coords="167,499,262,524"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="37,302,42,339,54,388,75,440,91,464,110,484,130,497,154,505,153,510,128,502,106,488,87,467,71,442,49,390,37,340,32,303"/>
+<area shape="rect" id="Node000014" href="$servidorUnoR4Wifi_8ino.html#af98376458ce101b2606db73f49fc2724" title="Verifica a configuração de um pino específico. Lê um inteiro do cliente que corresponde ao pino de um..." alt="" coords="133,548,297,573"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="36,303,38,347,48,409,57,443,70,476,87,507,110,533,122,542,119,547,106,537,83,510,65,478,52,445,42,411,33,348,31,303"/>
+<area shape="rect" id="Node000012" href="$servidorUnoR4Wifi_8ino.html#ad7af970c66c780dfae7a9dc95ce31d7d" title=" " alt="" coords="369,449,456,475"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="311,459,356,459,356,465,311,465"/>
+</map>

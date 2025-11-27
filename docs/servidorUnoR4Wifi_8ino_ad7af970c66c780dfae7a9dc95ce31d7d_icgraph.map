@@ -1,0 +1,32 @@
+<map id="digitalWrite" name="digitalWrite">
+<area shape="rect" id="Node000001" title=" " alt="" coords="349,203,436,228"/>
+<area shape="rect" id="Node000002" href="$servidorUnoR4Wifi_8ino.html#adf1984a78911f45614cef1b0c9e36476" title="Ativa um LED simples. Lê o número do LED (1 ou 2) do cliente. Verifica se o pino do LED correspondent..." alt="" coords="167,55,242,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="377,191,346,142,325,116,300,95,271,81,242,74,243,69,273,76,303,90,329,113,351,139,382,189"/>
+<area shape="rect" id="Node000004" href="$servidorUnoR4Wifi_8ino.html#a4e40ae9a55f48f68f1cdb08ed9076b68" title="Ativa um LED simples por uma duração específica. Lê o número do LED (1 ou 2) e um tempo de atraso em ..." alt="" coords="150,104,259,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="368,195,337,169,300,144,259,129,260,124,303,140,340,164,371,191"/>
+<area shape="rect" id="Node000005" href="$servidorUnoR4Wifi_8ino.html#afc2eeb512d517b4695cdf5508669ed66" title="Configura os pinos para o sensor ultrassônico. Lê 2 números de pino do cliente para ECHO (ENTRADA) e ..." alt="" coords="108,5,301,31"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="383,190,372,156,355,117,331,77,300,44,281,33,284,28,303,40,335,74,360,114,377,154,388,188"/>
+<area shape="rect" id="Node000007" href="$servidorUnoR4Wifi_8ino.html#a7ff65b277c9ff583e646b77af95c0f4c" title="Desativa um LED simples. Lê o número do LED (1 ou 2) do cliente. Verifica se o pino do LED correspond..." alt="" coords="157,153,253,179"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="335,203,301,194,252,181,254,176,302,189,337,198"/>
+<area shape="rect" id="Node000008" href="$servidorUnoR4Wifi_8ino.html#a0290afa2a8a0f634e9d98fac0508edbe" title="Inverte o estado de um LED simples. Lê o número do LED (1 ou 2) do cliente. Verifica se o pino do LED..." alt="" coords="161,203,248,228"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="336,218,249,218,249,213,336,213"/>
+<area shape="rect" id="Node000009" href="$servidorUnoR4Wifi_8ino.html#a13584600115b6ed3b26deb722f5fdfd1" title="Lê a distância do sensor ultrassônico. Dispara o sensor e lê o pulso de eco para calcular a distância..." alt="" coords="129,252,280,277"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="337,234,302,243,258,255,257,249,301,238,335,229"/>
+<area shape="rect" id="Node000010" href="$servidorUnoR4Wifi_8ino.html#a3f72d87240811fc0e125e5327c97b57f" title="Para ambos os motores." alt="" coords="155,301,254,327"/>
+<area shape="poly" id="edge13_Node000001_Node000010" title=" " alt="" coords="371,240,341,267,303,292,255,309,253,304,300,288,337,263,368,236"/>
+<area shape="rect" id="Node000011" href="$servidorUnoR4Wifi_8ino.html#a62923213229d6c87423830780bbbe72a" title="Rotaciona o robô para a direita." alt="" coords="146,351,263,376"/>
+<area shape="poly" id="edge15_Node000001_Node000011" title=" " alt="" coords="382,242,351,293,329,319,303,342,265,358,263,353,300,337,325,315,347,289,378,239"/>
+<area shape="rect" id="Node000012" href="$servidorUnoR4Wifi_8ino.html#a452a1f6df908dd30fb1b6952feb6a68f" title="Rotaciona o robô para a esquerda." alt="" coords="137,400,272,425"/>
+<area shape="poly" id="edge17_Node000001_Node000012" title=" " alt="" coords="388,242,377,276,360,316,335,357,303,391,274,406,271,401,300,387,331,353,355,314,372,274,383,241"/>
+<area shape="rect" id="Node000003" href="$servidorUnoR4Wifi_8ino.html#afe461d27b9c48d5921c00d521181f12f" title="Loop principal, executado repetidamente. Verifica se há dados disponíveis do cliente TCP conectado...." alt="" coords="9,228,56,253"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="155,75,131,82,110,95,81,127,61,164,47,200,39,228,34,227,42,199,56,162,77,123,106,91,129,77,153,70"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="138,131,109,144,87,164,68,187,42,229,38,227,63,184,83,160,107,140,136,126"/>
+<area shape="rect" id="Node000006" href="$servidorUnoR4Wifi_8ino.html#a4fc01d736fe50cf5b977f755b675f11d" title="Função de configuração, executada uma vez no início. Inicializa a comunicação serial,..." alt="" coords="5,5,60,31"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="94,21,60,21,60,15,94,15"/>
+<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="144,181,109,194,78,211,52,230,49,225,75,207,107,189,142,176"/>
+<area shape="poly" id="edge10_Node000008_Node000003" title=" " alt="" coords="148,226,56,240,56,235,147,221"/>
+<area shape="poly" id="edge12_Node000009_Node000003" title=" " alt="" coords="115,255,56,246,56,241,116,250"/>
+<area shape="poly" id="edge14_Node000010_Node000003" title=" " alt="" coords="141,304,107,292,75,275,49,256,52,252,78,270,109,288,143,299"/>
+<area shape="poly" id="edge16_Node000011_Node000003" title=" " alt="" coords="132,354,107,342,83,321,63,298,38,255,42,252,68,295,87,318,109,337,134,349"/>
+<area shape="poly" id="edge18_Node000012_Node000003" title=" " alt="" coords="123,401,106,391,77,358,56,320,42,283,34,254,39,253,47,281,60,317,81,355,110,387,126,397"/>
+</map>

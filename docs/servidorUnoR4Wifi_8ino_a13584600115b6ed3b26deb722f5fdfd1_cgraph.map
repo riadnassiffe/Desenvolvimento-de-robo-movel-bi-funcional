@@ -1,0 +1,5 @@
+<map id="lerSensorUltrassonico" name="lerSensorUltrassonico">
+<area shape="rect" id="Node000001" title="Lê a distância do sensor ultrassônico. Dispara o sensor e lê o pulso de eco para calcular a distância..." alt="" coords="5,5,156,31"/>
+<area shape="rect" id="Node000002" href="$servidorUnoR4Wifi_8ino.html#ad7af970c66c780dfae7a9dc95ce31d7d" title=" " alt="" coords="204,5,291,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,15,190,15,190,21,156,21"/>
+</map>

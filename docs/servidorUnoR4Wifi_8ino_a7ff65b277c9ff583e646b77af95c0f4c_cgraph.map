@@ -1,0 +1,5 @@
+<map id="desativarLed" name="desativarLed">
+<area shape="rect" id="Node000001" title="Desativa um LED simples. Lê o número do LED (1 ou 2) do cliente. Verifica se o pino do LED correspond..." alt="" coords="5,5,101,31"/>
+<area shape="rect" id="Node000002" href="$servidorUnoR4Wifi_8ino.html#ad7af970c66c780dfae7a9dc95ce31d7d" title=" " alt="" coords="149,5,236,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="102,15,136,15,136,21,102,21"/>
+</map>
